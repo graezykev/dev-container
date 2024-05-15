@@ -31,17 +31,22 @@ RUN add-apt-repository ppa:longsleep/golang-backports && \
 # Install Java
 RUN apt-get install -y default-jdk
 
-# Install NVM and Node.js LTS versions
+# Install NVM
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash && \
     export NVM_DIR="$HOME/.nvm" && \
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
-    NODE_VERSIONS=$(curl -s https://nodejs.org/dist/index.json | jq -r '[.[] | select(.lts != false) | .version] | unique | .[]') && \
-    for version in $NODE_VERSIONS; do nvm install "$version"; done && \
-    nvm alias default $(nvm version-remote --lts) && \
-    npm config set registry https://npm.test.io/
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Dynamically install all LTS versions of Node.js from v12 onwards
+RUN NVM_VERSIONS=$(curl https://nodejs.org/dist/index.json | jq -r '[.[] | select(.version | test("^v(12|[2-9][0-9])\\.")) | select(.lts != false)] | sort_by(.version) | reverse | unique_by(.version | split(".")[0]) | .[].version') && \
+    echo "Node.js LTS Versions to be installed: $NVM_VERSIONS" && \
+    for version in $NVM_VERSIONS; do nvm install $version; done && \
+    nvm alias default $(echo $NVM_VERSIONS | awk '{print $1}')
 
 # Install PNPM
 RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
+
+# Set NPM default registry
+# RUN npm config set registry https://npm.test.io/
 
 # Create a non-root user and grant sudo access
 RUN useradd -m developer -s /usr/bin/zsh && \
@@ -50,3 +55,6 @@ RUN useradd -m developer -s /usr/bin/zsh && \
 # Set default user and work directory
 USER developer
 WORKDIR /home/developer
+
+# Clean up
+RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
