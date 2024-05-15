@@ -1,0 +1,24 @@
+{
+  "name": "Full Stack Development Container",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint@3.0.5",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "GitHub.copilot"
+      ]
+    }
+  },
+  "postCreateCommand": "echo 'Container created. Environment is ready to use.'",
+  "remoteUser": "developer"
+}
