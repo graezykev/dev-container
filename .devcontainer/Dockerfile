@@ -36,14 +36,14 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | ba
     export NVM_DIR="$HOME/.nvm" && \
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# Dynamically install all LTS versions of Node.js from v12 onwards
-RUN NVM_VERSIONS=$(curl https://nodejs.org/dist/index.json | jq -r '[.[] | select(.version | test("^v(12|[2-9][0-9])\\.")) | select(.lts != false)] | sort_by(.version) | reverse | unique_by(.version | split(".")[0]) | .[].version') && \
-    echo "Node.js LTS Versions to be installed: $NVM_VERSIONS" && \
-    for version in $NVM_VERSIONS; do nvm install $version; done && \
-    nvm alias default $(echo $NVM_VERSIONS | awk '{print $1}')
+# # Dynamically install all LTS versions of Node.js from v12 onwards
+# RUN NVM_VERSIONS=$(curl https://nodejs.org/dist/index.json | jq -r '[.[] | select(.version | test("^v(12|[2-9][0-9])\\.")) | select(.lts != false)] | sort_by(.version) | reverse | unique_by(.version | split(".")[0]) | .[].version') && \
+#     echo "Node.js LTS Versions to be installed: $NVM_VERSIONS" && \
+#     for version in $NVM_VERSIONS; do nvm install $version; done && \
+#     nvm alias default $(echo $NVM_VERSIONS | awk '{print $1}')
 
-# Install PNPM
-RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
+# # Install PNPM
+# RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 # Set NPM default registry
 # RUN npm config set registry https://npm.test.io/
