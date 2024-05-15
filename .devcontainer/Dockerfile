@@ -4,7 +4,7 @@ FROM ubuntu:latest
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install necessary packages for builds and installs
+# Install necessary tools
 RUN apt-get update && apt-get install -y \
     curl \
     wget \
@@ -16,45 +16,50 @@ RUN apt-get update && apt-get install -y \
     jq
 
 # Install Python and create alias
-RUN add-apt-repository ppa:deadsnakes/ppa && \
-    apt-get update && apt-get install -y python3 python3-pip && \
+RUN apt-get install -y python3 python3-pip && \
     ln -s /usr/bin/python3 /usr/bin/python
 
 # Install Ruby and Jekyll
 RUN apt-get install -y ruby-full && \
     gem install jekyll bundler
 
-# Install Go
-RUN add-apt-repository ppa:longsleep/golang-backports && \
-    apt-get update && apt-get install -y golang-go
+# Install Go and Java
+RUN apt-get install -y golang-go openjdk-11-jdk
 
-# Install Java
-RUN apt-get install -y default-jdk
 
 # Install NVM
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash && \
     export NVM_DIR="$HOME/.nvm" && \
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# # Dynamically install all LTS versions of Node.js from v12 onwards
-# RUN NVM_VERSIONS=$(curl https://nodejs.org/dist/index.json | jq -r '[.[] | select(.version | test("^v(12|[2-9][0-9])\\.")) | select(.lts != false)] | sort_by(.version) | reverse | unique_by(.version | split(".")[0]) | .[].version') && \
-#     echo "Node.js LTS Versions to be installed: $NVM_VERSIONS" && \
-#     for version in $NVM_VERSIONS; do nvm install $version; done && \
-#     nvm alias default $(echo $NVM_VERSIONS | awk '{print $1}')
+# Fetch, process, and install Node.js LTS versions SINCE v12
+RUN echo "Fetching LTS versions of Node.js..." && \
+    LTS_VERSIONS=$(curl -s https://nodejs.org/dist/index.json | \
+      jq -r '[.[] | select(.lts != false) | .version | ltrimstr("v")] | map(select(split(".")[0] | tonumber >= 12)) | unique_by(split(".")[0])') && \
+    LTS_VERSIONS_ARRAY=($(echo $LTS_VERSIONS | jq -r '.[] | split(".")[0] + ".*"')) && \
+    echo "LTS versions to install: ${LTS_VERSIONS_ARRAY[@]}" && \
+    for version in "${LTS_VERSIONS_ARRAY[@]}"; do \
+        echo "Installing Node.js version $version..." && \
+        nvm install $version; \
+    done && \
+    nvm alias default $(nvm version-remote --lts)
 
-# # Install PNPM
-# RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
+# Install the latest stable version of PNPM
+RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
 
-# Set NPM default registry
-# RUN npm config set registry https://npm.test.io/
+# Set the default npm registry
+RUN npm config set registry https://npm.test.io/
 
-# Create a non-root user and grant sudo access
+# Install PostgreSQL server and client
+RUN apt-get install -y postgresql postgresql-client
+
+# Create a non-root user
 RUN useradd -m developer -s /usr/bin/zsh && \
     echo "developer ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/developer
 
-# Set default user and work directory
+# Clean up
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Set default user and workspace
 USER developer
 WORKDIR /home/developer
-
-# Clean up
-RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
