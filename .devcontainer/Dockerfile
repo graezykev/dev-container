@@ -1,8 +1,15 @@
-# Use the latest LTS version of Ubuntu
-FROM ubuntu:20.04
+# Use the latest stable version of Ubuntu
+FROM ubuntu:latest
 
 # Avoid interactive prompts during package installation
 ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN=true
+ENV TZ=Etc/UTC
+
+# Preconfigure tzdata package
+RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime \
+    && echo "Etc/UTC" > /etc/timezone \
+    && apt-get update && apt-get install -y tzdata
 
 # Update and install essential packages
 RUN apt-get update && apt-get install -y \
@@ -39,7 +46,7 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | ba
 
 # Install multiple versions of Node.js via NVM
 RUN bash -c 'source $HOME/.nvm/nvm.sh \
-    && curl -s https://nodejs.org/dist/index.json | jq "[.[] | select(.lts != false) | select(.version | split(\".\")[0] | ltrimstr(\"v\") | tonumber >= 12)] | unique_by(.version | split(\".\")[0]) | .[].version" \
+    && curl -s https://nodejs.org/dist/index.json | jq "[.[] | select(.lts != false) | select(.version | split(\\".\\")[0] | ltrimstr(\\"v\\") | tonumber >= 12)] | unique_by(.version | split(\\".\\")[0]) | .[].version" \
     | xargs -I {} bash -c "source $HOME/.nvm/nvm.sh && nvm install {}" \
     && bash -c "source $HOME/.nvm/nvm.sh && nvm alias default lts/*"'
 
