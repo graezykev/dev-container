@@ -26,11 +26,11 @@ RUN apt-get update && apt-get install -y \
     && ln -s /usr/bin/python3 /usr/bin/python \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Go (latest version auto-detected)
-RUN curl -sSL https://golang.org/dl/ | grep -oP 'href="\Khttps://.*?linux-amd64.tar.gz(?=")' | head -n 1 | xargs wget -O go.tar.gz \
-    && tar -C /usr/local -xzf go.tar.gz \
-    && rm go.tar.gz \
-    && echo "export PATH=\$PATH:/usr/local/go/bin" >> /root/.zshrc
+# # Install Go (latest version auto-detected)
+# RUN curl -sSL https://golang.org/dl/ | grep -oP 'href="\Khttps://.*?linux-amd64.tar.gz(?=")' | head -n 1 | xargs wget -O go.tar.gz \
+#     && tar -C /usr/local -xzf go.tar.gz \
+#     && rm go.tar.gz \
+#     && echo "export PATH=\$PATH:/usr/local/go/bin" >> /root/.zshrc
 
 # Install JDK (latest version auto-detected)
 RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/lists/*
