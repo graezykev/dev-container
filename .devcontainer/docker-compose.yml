@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/workspace:cached
+    ports:
+      - "8000-8999:8000-8999"
+      - "443:443"
+    command: /bin/zsh -c "while sleep 1000; do :; done"
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
