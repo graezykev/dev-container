@@ -62,14 +62,14 @@ RUN sudo apt-get update && sudo apt-get install -y \
 # Install JDK (latest version auto-detected)
 RUN sudo apt-get update && sudo apt-get install -y default-jdk && sudo rm -rf /var/lib/apt/lists/*
 
-# # Install Ruby and set up local gem installation directory
-# RUN sudo apt-get update && sudo apt-get install -y ruby-full && sudo rm -rf /var/lib/apt/lists/* \
-#     && echo 'export GEM_HOME=$HOME/gems' >> ~/.zshrc \
-#     && echo 'export PATH=$HOME/gems/bin:$PATH' >> ~/.zshrc \
-#     && mkdir -p $HOME/gems
+# Install Ruby and set up local gem installation directory
+RUN sudo apt-get update && sudo apt-get install -y ruby-full && sudo rm -rf /var/lib/apt/lists/* \
+    && echo 'export GEM_HOME=$HOME/gems' >> ~/.zshrc \
+    && echo 'export PATH=$HOME/gems/bin:$PATH' >> ~/.zshrc \
+    && mkdir -p $HOME/gems
 
-# # Install Jekyll and Bundler as non-root user
-# RUN bash -c 'source ~/.zshrc && gem install jekyll bundler'
+# Install Jekyll and Bundler as non-root user
+RUN bash -c 'source ~/.zshrc && gem install jekyll bundler'
 
 # # Install Go (latest version auto-detected)
 # RUN GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
