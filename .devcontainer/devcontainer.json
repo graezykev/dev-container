@@ -1,25 +1,45 @@
 {
-  "name": "Node.js Development Container",
-  "dockerComposeFile": [
-    "docker-compose.yml"
-  ],
+  "name": "My Dev Container",
+  "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
+      "settings": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false
+      },
       "extensions": [
         "dbaeumer.vscode-eslint@3.0.5",
         "esbenp.prettier-vscode",
         "eamodio.gitlens",
         "github.copilot"
-      ],
-      "settings": {
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true,
-        "editor.detectIndentation": false
-      }
+      ]
     }
   },
-  "postCreateCommand": "source $NVM_DIR/nvm.sh && nvm use default && pnpm install",
-  "remoteUser": "vscode"
+  "postCreateCommand": "sudo service postgresql start",
+  "remoteUser": "vscode",
+  "portsAttributes": {
+    "8000": {
+      "label": "Application"
+    },
+    "443": {
+      "label": "HTTPS"
+    }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+  "runArgs": [
+    "--user",
+    "vscode"
+  ],
+  "forwardPorts": [
+    8000,
+    443
+  ],
+  "remoteEnv": {
+    "NVM_DIR": "/home/vscode/.nvm"
+  }
 }
