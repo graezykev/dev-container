@@ -35,9 +35,9 @@ RUN apt-get update && apt-get install -y \
 # Install JDK (latest version auto-detected)
 RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/lists/*
 
-# Install Ruby, Jekyll, and Bundler
-RUN apt-get update && apt-get install -y ruby-full && rm -rf /var/lib/apt/lists/* \
-    && gem install jekyll bundler
+# # Install Ruby, Jekyll, and Bundler
+# RUN apt-get update && apt-get install -y ruby-full && rm -rf /var/lib/apt/lists/* \
+#     && gem install jekyll bundler
 
 # Install PostgreSQL client
 RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
