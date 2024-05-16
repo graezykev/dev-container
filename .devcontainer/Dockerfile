@@ -1,5 +1,5 @@
 # Use the latest LTS version of Ubuntu
-FROM ubuntu:20.04
+FROM ubuntu:latest
 
 # Avoid interactive prompts during package installation
 ARG DEBIAN_FRONTEND=noninteractive
