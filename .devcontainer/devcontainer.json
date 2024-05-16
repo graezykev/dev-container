@@ -21,6 +21,5 @@
       ]
     }
   },
-  "postCreateCommand": "sudo chsh -s $(which zsh) devuser",
-  "annotation-remoteUser": "devuser"
+  "postCreateCommand": "sudo chsh -s $(which zsh) $(whoami)"
 }
