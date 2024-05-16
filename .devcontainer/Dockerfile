@@ -1,7 +1,7 @@
 # Use the latest LTS version of Ubuntu
 FROM ubuntu:22.04
 
-# Install dependencies
+# Install basic dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -9,26 +9,35 @@ RUN apt-get update && apt-get install -y \
     zsh \
     build-essential \
     libssl-dev \
-    python3 \
-    python3-pip \
-    python3-venv \
-    ruby-full \
-    openjdk-11-jdk \
-    postgresql-client \
+    jq \
     software-properties-common \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set Python 3 as the default
-RUN ln -s /usr/bin/python3 /usr/bin/python
+# Set default shell to Zsh
+RUN chsh -s $(which zsh)
 
-# Install Jekyll
-RUN gem install jekyll bundler
+# Install Python and set Python 3 as the default
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    && ln -s /usr/bin/python3 /usr/bin/python \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install Go
-RUN wget https://golang.org/dl/go1.19.5.linux-amd64.tar.gz \
-    && tar -C /usr/local -xzf go1.19.5.linux-amd64.tar.gz \
-    && rm go1.19.5.linux-amd64.tar.gz \
-    && echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.profile
+# Install Ruby and Jekyll
+RUN apt-get update && apt-get install -y \
+    ruby-full \
+    && gem install jekyll bundler \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Java
+RUN apt-get update && apt-get install -y \
+    openjdk-11-jdk \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# # Install Go (latest version)
+# RUN curl -sSL https://dl.google.com/go/go1.20.3.linux-amd64.tar.gz | tar -C /usr/local -xz \
+#     && echo "export PATH=\$PATH:/usr/local/go/bin" >> /etc/profile
 
 # Install NVM
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -43,11 +52,8 @@ RUN bash -c 'source $NVM_DIR/nvm.sh && LTS_VERSIONS=$(eval $NODE_VERSION_FETCH_C
 # Install PNPM
 RUN bash -c 'source $NVM_DIR/nvm.sh && npm install -g pnpm'
 
-# Set default NPM registry
-RUN bash -c 'source $NVM_DIR/nvm.sh && npm set registry https://npm.test.io/'
-
-# Set default shell to Zsh
-RUN chsh -s $(which zsh)
+# # Set default NPM registry
+# RUN bash -c 'source $NVM_DIR/nvm.sh && npm set registry https://npm.test.io/'
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
