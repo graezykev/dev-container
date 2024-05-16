@@ -6,13 +6,15 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ..:/workspace
+      - ..:/workspace:cached
     ports:
       - 8000-8999:8000-8999
       - 443:443
     environment:
-      - NVM_DIR=/root/.nvm
+      - NVM_DIR=/home/devuser/.nvm
     command: /bin/zsh -c "while sleep 1000; do :; done"
+    depends_on:
+      - postgres
 
   postgres:
     image: postgres:latest

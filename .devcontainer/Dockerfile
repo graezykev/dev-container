@@ -1,5 +1,5 @@
 # Use the latest LTS version of Ubuntu
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 # Avoid interactive prompts during package installation
 ARG DEBIAN_FRONTEND=noninteractive
@@ -29,8 +29,7 @@ WORKDIR /workspace
 
 # Install Oh My Zsh for a beautiful prompt
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
-    && sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' ~/.zshrc \
-    && echo "PROMPT='%F{cyan}%n@%m %F{green}%1~ %# %f'" >> ~/.zshrc
+    && sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="ys"/g' ~/.zshrc
 
 # Install NVM (latest version auto-detected) and set up environment variables
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
