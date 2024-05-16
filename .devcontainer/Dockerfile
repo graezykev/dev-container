@@ -35,9 +35,9 @@ RUN apt-get update && apt-get install -y \
     openjdk-11-jdk \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# # Install Go (latest version)
-# RUN curl -sSL https://dl.google.com/go/go1.20.3.linux-amd64.tar.gz | tar -C /usr/local -xz \
-#     && echo "export PATH=\$PATH:/usr/local/go/bin" >> /etc/profile
+# Install Go (latest version)
+RUN curl -sSL https://golang.org/dl/go1.20.3.linux-amd64.tar.gz | tar -C /usr/local -xz \
+    && echo "export PATH=\$PATH:/usr/local/go/bin" >> /etc/profile
 
 # Install NVM
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -46,14 +46,14 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | b
 ENV NVM_DIR=/root/.nvm
 ENV NODE_VERSION_FETCH_COMMAND='curl -s https://nodejs.org/dist/index.json | jq -r "[.[] | select(.lts != false) | .version | ltrimstr(\"v\")] | map(select(split(\".\")[0] | tonumber >= 12)) | unique_by(split(\".\")[0]) | .[] | split(\".\")[0] + \".*\""'
 
-# Install Node.js versions
+# Ensure NVM and jq are available in the PATH for the following commands
 RUN bash -c 'source $NVM_DIR/nvm.sh && LTS_VERSIONS=$(eval $NODE_VERSION_FETCH_COMMAND) && for version in $LTS_VERSIONS; do nvm install $version; done && nvm alias default $(echo $LTS_VERSIONS | jq -r ".[-1]")'
 
 # Install PNPM
 RUN bash -c 'source $NVM_DIR/nvm.sh && npm install -g pnpm'
 
-# # Set default NPM registry
-# RUN bash -c 'source $NVM_DIR/nvm.sh && npm set registry https://npm.test.io/'
+# Set default NPM registry
+RUN bash -c 'source $NVM_DIR/nvm.sh && npm set registry https://npm.test.io/'
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
