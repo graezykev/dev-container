@@ -62,6 +62,10 @@ RUN . "$NVM_DIR/nvm.sh" \
 RUN . "$NVM_DIR/nvm.sh" \
     && npm install -g pnpm
 
+# Install YARN
+RUN . "$NVM_DIR/nvm.sh" \
+    && npm install -g yarn
+
 # # Set NPM registry
 # RUN . "$NVM_DIR/nvm.sh" \
 #     && npm config set registry https://npm.test.io/
