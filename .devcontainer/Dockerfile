@@ -1,5 +1,5 @@
 # Use the latest LTS version of Ubuntu
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 # Avoid interactive prompts during package installation
 ARG DEBIAN_FRONTEND=noninteractive
@@ -33,8 +33,14 @@ RUN bash -c 'source $HOME/.nvm/nvm.sh \
 # Install PNPM
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g pnpm'
 
-# # Set NPM registry
-# RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
+# Set NPM registry
+RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
+
+# Install PostgreSQL client
+RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
+
+# Install MySQL client
+RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt/lists/*
 
 # Install Python
 RUN apt-get update && apt-get install -y \
@@ -47,22 +53,16 @@ RUN apt-get update && apt-get install -y \
 # Install JDK (latest version auto-detected)
 RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/lists/*
 
-# Install PostgreSQL client
-RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
+# Install Ruby, Jekyll, and Bundler
+RUN apt-get update && apt-get install -y ruby-full && rm -rf /var/lib/apt/lists/* \
+    && gem install jekyll bundler
 
-# Install MySQL client
-RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt/lists/*
-
-# # Install Ruby, Jekyll, and Bundler
-# RUN apt-get update && apt-get install -y ruby-full && rm -rf /var/lib/apt/lists/* \
-# && gem install jekyll bundler
-
-# # Install Go (latest version auto-detected)
-# RUN GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
-#     && wget https://dl.google.com/go/${GO_LATEST}.linux-amd64.tar.gz -O go.tar.gz \
-#     && tar -C /usr/local -xzf go.tar.gz \
-#     && rm go.tar.gz \
-#     && echo "export PATH=\$PATH:/usr/local/go/bin" >> /root/.zshrc
+# Install Go (latest version auto-detected)
+RUN GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
+    && wget https://dl.google.com/go/${GO_LATEST}.linux-amd64.tar.gz -O go.tar.gz \
+    && tar -C /usr/local -xzf go.tar.gz \
+    && rm go.tar.gz \
+    && echo "export PATH=\$PATH:/usr/local/go/bin" >> /root/.zshrc
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
