@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
     zsh \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Set Zsh as the default shell
@@ -33,8 +34,8 @@ RUN bash -c 'source $HOME/.nvm/nvm.sh \
 # Install PNPM
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g pnpm'
 
-# Set NPM registry
-RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
+# # Set NPM registry
+# RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
 
 # Install PostgreSQL client
 RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
@@ -64,5 +65,13 @@ RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/list
 #     && rm go.tar.gz \
 #     && echo "export PATH=\$PATH:/usr/local/go/bin" >> /root/.zshrc
 
+# Create a non-root user and grant root access
+RUN useradd -ms /bin/zsh devuser \
+    && echo 'devuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Switch to the new user
+USER devuser
+WORKDIR /home/devuser
+
 # Clean up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
