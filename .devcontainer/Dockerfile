@@ -53,16 +53,16 @@ RUN apt-get update && apt-get install -y \
 # Install JDK (latest version auto-detected)
 RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/lists/*
 
-# Install Ruby, Jekyll, and Bundler
-RUN apt-get update && apt-get install -y ruby-full && rm -rf /var/lib/apt/lists/* \
-    && gem install jekyll bundler
+# # Install Ruby, Jekyll, and Bundler
+# RUN apt-get update && apt-get install -y ruby-full && rm -rf /var/lib/apt/lists/* \
+#     && gem install jekyll bundler
 
-# Install Go (latest version auto-detected)
-RUN GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
-    && wget https://dl.google.com/go/${GO_LATEST}.linux-amd64.tar.gz -O go.tar.gz \
-    && tar -C /usr/local -xzf go.tar.gz \
-    && rm go.tar.gz \
-    && echo "export PATH=\$PATH:/usr/local/go/bin" >> /root/.zshrc
+# # Install Go (latest version auto-detected)
+# RUN GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
+#     && wget https://dl.google.com/go/${GO_LATEST}.linux-amd64.tar.gz -O go.tar.gz \
+#     && tar -C /usr/local -xzf go.tar.gz \
+#     && rm go.tar.gz \
+#     && echo "export PATH=\$PATH:/usr/local/go/bin" >> /root/.zshrc
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
