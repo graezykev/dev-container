@@ -1,23 +1,25 @@
 {
-  "name": "Full Stack Development Container",
-  "dockerFile": "Dockerfile",
+  "name": "Node.js Development Container",
+  "dockerComposeFile": [
+    "docker-compose.yml"
+  ],
+  "service": "app",
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
-      "settings": {
-        "terminal.integrated.defaultProfile.linux": "zsh",
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true,
-        "editor.detectIndentation": false
-      },
       "extensions": [
         "dbaeumer.vscode-eslint@3.0.5",
         "esbenp.prettier-vscode",
         "eamodio.gitlens",
-        "GitHub.copilot"
-      ]
+        "github.copilot"
+      ],
+      "settings": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false
+      }
     }
   },
-  "postCreateCommand": "echo 'Container created. Environment is ready to use.'",
-  "remoteUser": "developer"
+  "postCreateCommand": "source $NVM_DIR/nvm.sh && nvm use default && pnpm install",
+  "remoteUser": "vscode"
 }
