@@ -1,7 +1,6 @@
 {
   "name": "Full Stack Development Container",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
+  "dockerFile": "Dockerfile",
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
