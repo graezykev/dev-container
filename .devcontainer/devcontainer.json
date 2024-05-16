@@ -22,5 +22,5 @@
     }
   },
   "postCreateCommand": "sudo chsh -s $(which zsh) devuser",
-  "remoteUser": "devuser"
+  "annotation-remoteUser": "devuser"
 }

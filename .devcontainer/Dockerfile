@@ -65,13 +65,13 @@ RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/list
 #     && rm go.tar.gz \
 #     && echo "export PATH=\$PATH:/usr/local/go/bin" >> /root/.zshrc
 
-# Create a non-root user and grant root access
-RUN useradd -ms /bin/zsh devuser \
-    && echo 'devuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+# # Create a non-root user and grant root access
+# RUN useradd -ms /bin/zsh devuser \
+#     && echo 'devuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-# Switch to the new user
-USER devuser
-WORKDIR /home/devuser
+# # Switch to the new user
+# USER devuser
+# WORKDIR /home/devuser
 
 # Clean up
 RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
