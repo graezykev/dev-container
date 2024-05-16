@@ -26,15 +26,15 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | ba
 
 # Install multiple versions of Node.js via NVM
 RUN bash -c 'source $HOME/.nvm/nvm.sh \
-    && curl -s https://nodejs.org/dist/index.json | jq "[.[] | select(.lts != false) | select(.version | split(\\".\\")[0] | ltrimstr(\\"v\\") | tonumber >= 12)] | unique_by(.version | split(\\".\\")[0]) | .[].version" \
+    && curl -s https://nodejs.org/dist/index.json | jq "[.[] | select(.lts != false) | select(.version | split(\".\")[0] | ltrimstr(\"v\") | tonumber >= 12)] | unique_by(.version | split(\".\")[0]) | .[].version" \
     | xargs -I {} nvm install {} \
     && nvm alias default lts/*'
 
 # Install PNPM
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g pnpm'
 
-# Set NPM registry
-RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
+# # Set NPM registry
+# RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
 
 # Install Python
 RUN apt-get update && apt-get install -y \
@@ -51,8 +51,8 @@ RUN apt-get update && apt-get install -y \
 #     && rm go.tar.gz \
 #     && echo "export PATH=\$PATH:/usr/local/go/bin" >> /root/.zshrc
 
-# # Install JDK (latest version auto-detected)
-# RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/lists/*
+# Install JDK (latest version auto-detected)
+RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/lists/*
 
 # # Install Ruby, Jekyll, and Bundler
 # RUN apt-get update && apt-get install -y ruby-full && rm -rf /var/lib/apt/lists/* \
