@@ -19,11 +19,19 @@ RUN apt-get update && apt-get install -y \
 # Set Zsh as the default shell
 RUN chsh -s $(which zsh)
 
+# Create a non-root user and grant root access
+RUN useradd -ms /bin/zsh devuser \
+    && echo 'devuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Switch to the new user
+USER devuser
+WORKDIR /home/devuser
+
 # Install NVM (latest version auto-detected) and set up environment variables
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
     && export NVM_DIR="$HOME/.nvm" \
-    && echo "export NVM_DIR=\"$HOME/.nvm\"" >> /root/.zshrc \
-    && echo "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"" >> /root/.zshrc
+    && echo "export NVM_DIR=\"$HOME/.nvm\"" >> ~/.zshrc \
+    && echo "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"" >> ~/.zshrc
 
 # Install multiple versions of Node.js via NVM
 RUN bash -c 'source $HOME/.nvm/nvm.sh \
@@ -34,44 +42,41 @@ RUN bash -c 'source $HOME/.nvm/nvm.sh \
 # Install PNPM
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g pnpm'
 
-# # Set NPM registry
-# RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
+# Set NPM registry
+RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
 
 # Install PostgreSQL client
-RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update && sudo apt-get install -y postgresql-client && sudo rm -rf /var/lib/apt/lists/*
 
 # Install MySQL client
-RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update && sudo apt-get install -y mysql-client && sudo rm -rf /var/lib/apt/lists/*
 
 # Install Python
-RUN apt-get update && apt-get install -y \
+RUN sudo apt-get update && sudo apt-get install -y \
     python3 \
     python3-pip \
     python3-venv \
-    && ln -s /usr/bin/python3 /usr/bin/python \
-    && rm -rf /var/lib/apt/lists/*
+    && sudo ln -s /usr/bin/python3 /usr/bin/python \
+    && sudo rm -rf /var/lib/apt/lists/*
 
 # Install JDK (latest version auto-detected)
-RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update && sudo apt-get install -y default-jdk && sudo rm -rf /var/lib/apt/lists/*
 
-# # Install Ruby, Jekyll, and Bundler
-# RUN apt-get update && apt-get install -y ruby-full && rm -rf /var/lib/apt/lists/* \
-#     && gem install jekyll bundler
+# # Install Ruby and set up local gem installation directory
+# RUN sudo apt-get update && sudo apt-get install -y ruby-full && sudo rm -rf /var/lib/apt/lists/* \
+#     && echo 'export GEM_HOME=$HOME/gems' >> ~/.zshrc \
+#     && echo 'export PATH=$HOME/gems/bin:$PATH' >> ~/.zshrc \
+#     && mkdir -p $HOME/gems
+
+# # Install Jekyll and Bundler as non-root user
+# RUN bash -c 'source ~/.zshrc && gem install jekyll bundler'
 
 # # Install Go (latest version auto-detected)
 # RUN GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
 #     && wget https://dl.google.com/go/${GO_LATEST}.linux-amd64.tar.gz -O go.tar.gz \
-#     && tar -C /usr/local -xzf go.tar.gz \
+#     && sudo tar -C /usr/local -xzf go.tar.gz \
 #     && rm go.tar.gz \
-#     && echo "export PATH=\$PATH:/usr/local/go/bin" >> /root/.zshrc
-
-# # Create a non-root user and grant root access
-# RUN useradd -ms /bin/zsh devuser \
-#     && echo 'devuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-# # Switch to the new user
-# USER devuser
-# WORKDIR /home/devuser
+#     && echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.zshrc
 
 # Clean up
 RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
