@@ -25,7 +25,7 @@ RUN useradd -ms /bin/zsh devuser \
 
 # Switch to the new user
 USER devuser
-WORKDIR /home/devuser
+WORKDIR /workspace
 
 # Install NVM (latest version auto-detected) and set up environment variables
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
@@ -80,3 +80,6 @@ RUN bash -c 'source ~/.zshrc && gem install jekyll bundler'
 
 # Clean up
 RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Ensure .zshrc is sourced on login
+RUN echo "source ~/.zshrc" >> ~/.zprofile
