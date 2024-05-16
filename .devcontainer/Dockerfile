@@ -19,12 +19,12 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get install -y python3 python3-pip && \
     ln -s /usr/bin/python3 /usr/bin/python
 
-# Install Ruby and Jekyll
-RUN apt-get install -y ruby-full && \
-    gem install jekyll bundler
+# # Install Ruby and Jekyll
+# RUN apt-get install -y ruby-full && \
+#     gem install jekyll bundler
 
-# Install Go and Java
-RUN apt-get install -y golang-go openjdk-11-jdk
+# # Install Go and Java
+# RUN apt-get install -y golang-go openjdk-11-jdk
 
 
 # Install NVM
@@ -50,8 +50,8 @@ RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
 # Set the default npm registry
 RUN npm config set registry https://npm.test.io/
 
-# Install PostgreSQL server and client
-RUN apt-get install -y postgresql postgresql-client
+# # Install PostgreSQL server and client
+# RUN apt-get install -y postgresql postgresql-client
 
 # Create a non-root user
 RUN useradd -m developer -s /usr/bin/zsh && \
