@@ -47,8 +47,8 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | ba
 # Install multiple versions of Node.js via NVM
 RUN bash -c 'source $HOME/.nvm/nvm.sh \
     && curl -s https://nodejs.org/dist/index.json | jq "[.[] | select(.lts != false) | select(.version | split(\".\")[0] | ltrimstr(\"v\") | tonumber >= 12)] | unique_by(.version | split(\".\")[0]) | .[].version" \
-    | xargs -I {} bash -c \"source \$HOME/.nvm/nvm.sh && nvm install {}\" \
-    && bash -c \"source \$HOME/.nvm/nvm.sh && nvm alias default lts/*\"'
+    | xargs -I {} bash -c "source $HOME/.nvm/nvm.sh && nvm install {}" \
+    && bash -c "source $HOME/.nvm/nvm.sh && nvm alias default lts/*"'
 
 # Install PNPM
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g pnpm'
