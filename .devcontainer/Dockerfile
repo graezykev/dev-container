@@ -1,65 +1,61 @@
-# Use the latest Ubuntu LTS as a multi-architecture base
-FROM ubuntu:latest
+# Use the latest LTS version of Ubuntu
+FROM ubuntu:22.04
 
-# Avoid prompts from apt
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Install necessary tools
+# Install dependencies
 RUN apt-get update && apt-get install -y \
+    git \
     curl \
     wget \
-    git \
     zsh \
-    sudo \
     build-essential \
+    libssl-dev \
+    python3 \
+    python3-pip \
+    python3-venv \
+    ruby-full \
+    openjdk-11-jdk \
+    postgresql-client \
     software-properties-common \
-    jq
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install Python and create alias
-RUN apt-get install -y python3 python3-pip && \
-    ln -s /usr/bin/python3 /usr/bin/python
+# Set Python 3 as the default
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
-# # Install Ruby and Jekyll
-# RUN apt-get install -y ruby-full && \
-#     gem install jekyll bundler
+# Install Jekyll
+RUN gem install jekyll bundler
 
-# # Install Go and Java
-# RUN apt-get install -y golang-go openjdk-11-jdk
-
+# Install Go
+RUN wget https://golang.org/dl/go1.19.5.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go1.19.5.linux-amd64.tar.gz \
+    && rm go1.19.5.linux-amd64.tar.gz \
+    && echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.profile
 
 # Install NVM
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash && \
-    export NVM_DIR="$HOME/.nvm" && \
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
-# Fetch, process, and install Node.js LTS versions SINCE v12
-RUN echo "Fetching LTS versions of Node.js..." && \
-    LTS_VERSIONS=$(curl -s https://nodejs.org/dist/index.json | \
-      jq -r '[.[] | select(.lts != false) | .version | ltrimstr("v")] | map(select(split(".")[0] | tonumber >= 12)) | unique_by(split(".")[0])') && \
-    LTS_VERSIONS_ARRAY=($(echo $LTS_VERSIONS | jq -r '.[] | split(".")[0] + ".*"')) && \
-    echo "LTS versions to install: ${LTS_VERSIONS_ARRAY[@]}" && \
-    for version in "${LTS_VERSIONS_ARRAY[@]}"; do \
-        echo "Installing Node.js version $version..." && \
-        nvm install $version; \
-    done && \
-    nvm alias default $(nvm version-remote --lts)
+# Set environment variables for NVM
+ENV NVM_DIR=/root/.nvm
+ENV NODE_VERSION_FETCH_COMMAND='curl -s https://nodejs.org/dist/index.json | jq -r "[.[] | select(.lts != false) | .version | ltrimstr(\"v\")] | map(select(split(\".\")[0] | tonumber >= 12)) | unique_by(split(\".\")[0]) | .[] | split(\".\")[0] + \".*\""'
 
-# Install the latest stable version of PNPM
-RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
+# Install Node.js versions
+RUN bash -c 'source $NVM_DIR/nvm.sh && LTS_VERSIONS=$(eval $NODE_VERSION_FETCH_COMMAND) && for version in $LTS_VERSIONS; do nvm install $version; done && nvm alias default $(echo $LTS_VERSIONS | jq -r ".[-1]")'
 
-# Set the default npm registry
-RUN npm config set registry https://npm.test.io/
+# Install PNPM
+RUN bash -c 'source $NVM_DIR/nvm.sh && npm install -g pnpm'
 
-# # Install PostgreSQL server and client
-# RUN apt-get install -y postgresql postgresql-client
+# Set default NPM registry
+RUN bash -c 'source $NVM_DIR/nvm.sh && npm set registry https://npm.test.io/'
 
-# Create a non-root user
-RUN useradd -m developer -s /usr/bin/zsh && \
-    echo "developer ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/developer
+# Set default shell to Zsh
+RUN chsh -s $(which zsh)
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Set default user and workspace
-USER developer
-WORKDIR /home/developer
+# Set non-root user
+RUN useradd -m vscode -s /bin/zsh && usermod -aG sudo vscode
+USER vscode
+WORKDIR /home/vscode
+
+# Expose ports
+EXPOSE 8000-8999 443
