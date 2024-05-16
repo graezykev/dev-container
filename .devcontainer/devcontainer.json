@@ -1,6 +1,8 @@
 {
-  "name": "My Dev Container",
-  "dockerComposeFile": "docker-compose.yml",
+  "name": "Codespaces Dev Container",
+  "dockerComposeFile": [
+    "docker-compose.yml"
+  ],
   "service": "app",
   "workspaceFolder": "/workspace",
   "customizations": {
@@ -8,7 +10,8 @@
       "settings": {
         "editor.tabSize": 2,
         "editor.insertSpaces": true,
-        "editor.detectIndentation": false
+        "editor.detectIndentation": false,
+        "terminal.integrated.defaultProfile.linux": "zsh"
       },
       "extensions": [
         "dbaeumer.vscode-eslint@3.0.5",
@@ -18,28 +21,5 @@
       ]
     }
   },
-  "postCreateCommand": "sudo service postgresql start",
-  "remoteUser": "vscode",
-  "portsAttributes": {
-    "8000": {
-      "label": "Application"
-    },
-    "443": {
-      "label": "HTTPS"
-    }
-  },
-  "mounts": [
-    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
-  ],
-  "runArgs": [
-    "--user",
-    "vscode"
-  ],
-  "forwardPorts": [
-    8000,
-    443
-  ],
-  "remoteEnv": {
-    "NVM_DIR": "/home/vscode/.nvm"
-  }
+  "postCreateCommand": "sudo chsh -s $(which zsh) $(whoami)"
 }

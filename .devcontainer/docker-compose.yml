@@ -1,27 +1,23 @@
 version: '3.8'
+
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/workspace
+      - ..:/workspace
     ports:
-      - "8000-8999:8000-8999"
-      - "443:443"
+      - 8000-8999:8000-8999
+      - 443:443
     environment:
-      - NVM_DIR=/home/vscode/.nvm
-    command: zsh -c "while :; do sleep 2073600; done"
-    user: vscode
+      - NVM_DIR=/root/.nvm
+    command: /bin/zsh -c "while sleep 1000; do :; done"
+
   postgres:
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: password
     ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-volumes:
-  pgdata:
+      - 5432:5432
