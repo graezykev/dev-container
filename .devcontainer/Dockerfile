@@ -42,7 +42,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
     && export NVM_DIR="$HOME/.nvm" \
     && echo "export NVM_DIR=\"$HOME/.nvm\"" >> ~/.zshrc \
-    && echo "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"" >> ~/.zshrc
+    && echo "[ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"" >> ~/.zshrc
 
 # Install multiple versions of Node.js via NVM
 RUN bash -c 'source $HOME/.nvm/nvm.sh \
