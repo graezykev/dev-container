@@ -21,7 +21,7 @@
     }
   },
   "postCreateCommand": "echo 'Welcome to DEV Container!' && pnpm install",
-  "updateContentCommand": "echo updateContentCommand",
+  "updateContentCommand": "echo updateContentCommand && pnpm update",
   "postStartCommand": "echo postStartCommand",
   "postAttachCommand": "node index.js",
   "workspaceFolder": "/workspace",
