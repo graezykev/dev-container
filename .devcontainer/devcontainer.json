@@ -4,7 +4,6 @@
     "docker-compose.yml"
   ],
   "service": "app",
-  "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
       "settings": {
@@ -21,6 +20,7 @@
       ]
     }
   },
-  "postCreateCommand": "echo 'Welcome to DEV Container!'",
+  "postCreateCommand": "echo 'Welcome to DEV Container! Put your scripts here, such as `npm install`'",
+  "workspaceFolder": "/workspace",
   "remoteUser": "devuser"
 }

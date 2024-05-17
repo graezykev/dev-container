@@ -51,6 +51,7 @@ By running a Docker container which has all development software and configurati
   - detectIndentation: false
   - fontSize
   - fontFamily
+  - auto `npm install` or other initial scripts
 
 ## How
 

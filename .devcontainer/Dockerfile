@@ -33,9 +33,11 @@ RUN chsh -s $(which zsh) \
     && echo 'devuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
     && sudo chsh -s $(which zsh) devuser
 
+# Set the working directory
+WORKDIR /workspace
+
 # Switch to the new user
 USER devuser
-WORKDIR /workspace
 
 # Install Oh My Zsh with the "robbyrussell" theme
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
