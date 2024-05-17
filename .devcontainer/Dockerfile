@@ -35,9 +35,9 @@ RUN useradd -ms /bin/zsh devuser \
 USER devuser
 WORKDIR /workspace
 
-# Install Oh My Zsh for a beautiful prompt
+# Install Oh My Zsh with the "robbyrussell" theme
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
-    && sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="ys"/g' ~/.zshrc
+    && sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="robbyrussell"/g' ~/.zshrc
 
 # Install NVM (latest version auto-detected) and set up environment variables
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
