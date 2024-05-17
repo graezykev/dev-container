@@ -39,6 +39,7 @@ By running a Docker container which has all development software and configurati
   - Database such as PostgreSQL and its extensions
   - Customised Shell
     - Set Zsh as the default shell
+    - Shell prompt or themes <https://github.com/ohmyzsh/ohmyzsh/wiki/Themes>
   - Other customised softwares or settings
 - Pre-install VS Code extensions
   - specific extensions
