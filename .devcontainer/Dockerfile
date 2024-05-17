@@ -39,9 +39,13 @@ RUN chsh -s $(which zsh) \
 # Set the working directory
 WORKDIR /workspace
 
+# Ensure home directory is correctly set up
+RUN mkdir -p /home/$USERNAME && chown -R $USERNAME:$USERNAME /home/$USERNAME
+
 # Install Oh My Zsh with the "robbyrussell" theme
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
-    && sed -i 's/^ZSH_THEME=".*"/ZSH_THEME="robbyrussell"/' /home/$USERNAME/.zshrc
+    && su - $USERNAME -c "touch ~/.zshrc" \
+    && su - $USERNAME -c "sed -i 's/^ZSH_THEME=\".*\"/ZSH_THEME=\"robbyrussell\"/' ~/.zshrc"
 
 # Install NVM (latest version auto-detected) and set up environment variables
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
