@@ -11,6 +11,9 @@ RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime \
     && echo "Etc/UTC" > /etc/timezone \
     && apt-get update && apt-get install -y tzdata
 
+# Create systemd-network user to avoid systemd-network warnings
+RUN useradd -r -s /usr/sbin/nologin systemd-network
+
 # Update and install essential packages
 RUN apt-get update && apt-get install -y \
     git \
