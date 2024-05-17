@@ -63,7 +63,7 @@ RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g pnpm'
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g yarn'
 
 # Set NPM registry
-RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
+# RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/' # modify this url to your own one
 
 # Install PostgreSQL client
 RUN sudo apt-get update && sudo apt-get install -y postgresql-client && sudo rm -rf /var/lib/apt/lists/*

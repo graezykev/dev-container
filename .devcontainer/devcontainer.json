@@ -20,7 +20,10 @@
       ]
     }
   },
-  "postCreateCommand": "echo 'Welcome to DEV Container! Put your scripts here, such as `npm install`'",
+  "postCreateCommand": "echo 'Welcome to DEV Container!'",
+  "updateContentCommand": "pnpm install",
+  "postStartCommand": "",
+  "postAttachCommand": "node index.js",
   "workspaceFolder": "/workspace",
   "remoteUser": "devuser"
 }
