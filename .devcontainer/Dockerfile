@@ -1,6 +1,9 @@
 # Use the latest stable version of Ubuntu
 FROM ubuntu:latest
 
+# Define the username directly
+ENV USERNAME=devuser
+
 # Avoid interactive prompts during package installation
 ARG DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
@@ -27,17 +30,17 @@ RUN apt-get update && apt-get install -y \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
-# Set Zsh as the default shell for root and devuser
+# Set Zsh as the default shell for root and user
 RUN chsh -s $(which zsh) \
-    && useradd -ms /bin/zsh devuser \
-    && echo 'devuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-    && sudo chsh -s $(which zsh) devuser
+    && useradd -ms /bin/zsh $USERNAME \
+    && echo '$USERNAME ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+    && sudo chsh -s $(which zsh) $USERNAME
 
 # Set the working directory
 WORKDIR /workspace
 
 # Switch to the new user
-USER devuser
+USER $USERNAME
 
 # Install Oh My Zsh with the "robbyrussell" theme
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
