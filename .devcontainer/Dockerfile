@@ -90,19 +90,25 @@ RUN sudo apt-get update && sudo apt-get install -y ruby-full && sudo rm -rf /var
 # Install Jekyll and Bundler as non-root user
 RUN bash -c 'source ~/.zshrc && gem install jekyll bundler'
 
+# Switch to root to install Go
+USER root
+
 # Install Go (latest version auto-detected and architecture-specific)
 RUN ARCH=$(dpkg --print-architecture) \
     && GO_ARCH=amd64 \
     && if [ "$ARCH" = "arm64" ]; then GO_ARCH=arm64; fi \
     && GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
     && GO_VERSION=$(echo $GO_LATEST | grep -oE 'go[0-9]+\.[0-9]+\.[0-9]+') \
-    && wget https://dl.google.com/go/${GO_VERSION}.linux-${GO_ARCH}.tar.gz -O go.tar.gz \
-    && sudo tar -C /usr/local -xzf go.tar.gz \
-    && rm go.tar.gz \
-    && echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.zshrc
+    && wget https://dl.google.com/go/${GO_VERSION}.linux-${GO_ARCH}.tar.gz -O /tmp/go.tar.gz \
+    && tar -C /usr/local -xzf /tmp/go.tar.gz \
+    && rm /tmp/go.tar.gz \
+    && echo "export PATH=\$PATH:/usr/local/go/bin" >> /home/devuser/.zshrc
 
 # Clean up
-RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Ensure .zshrc is sourced on login
-RUN echo "source ~/.zshrc" >> ~/.zprofile
+RUN echo "source /home/devuser/.zshrc" >> /home/devuser/.zprofile
+
+# Switch back to the new user
+USER devuser
