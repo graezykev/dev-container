@@ -1,9 +1,6 @@
 # Use the latest stable version of Ubuntu
 FROM ubuntu:latest
 
-# Define the username directly
-ENV USERNAME=devuser
-
 # Avoid interactive prompts during package installation
 ARG DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
@@ -32,71 +29,66 @@ RUN apt-get update && apt-get install -y \
 
 # Set Zsh as the default shell for root and user
 RUN chsh -s $(which zsh) \
-    && useradd -ms /bin/zsh $USERNAME \
-    && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME \
-    && chsh -s $(which zsh) $USERNAME
+    && useradd -ms /bin/zsh devuser \
+    && echo 'devuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+    && sudo chsh -s $(which zsh) devuser
 
 # Set the working directory
 WORKDIR /workspace
 
-# Ensure home directory is correctly set up
-RUN mkdir -p /home/$USERNAME && chown -R $USERNAME:$USERNAME /home/$USERNAME
+# Switch to the new user
+USER devuser
 
 # Install Oh My Zsh with the "robbyrussell" theme
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
-    && su - $USERNAME -c "touch ~/.zshrc" \
-    && su - $USERNAME -c "sed -i 's/^ZSH_THEME=\".*\"/ZSH_THEME=\"robbyrussell\"/' ~/.zshrc"
+    && sed -i 's/^ZSH_THEME=".*"/ZSH_THEME="robbyrussell"/' ~/.zshrc
 
 # Install NVM (latest version auto-detected) and set up environment variables
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
-    && export NVM_DIR="/home/$USERNAME/.nvm" \
-    && echo "export NVM_DIR=\"/home/$USERNAME/.nvm\"" >> /home/$USERNAME/.zshrc \
-    && echo "[ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"" >> /home/$USERNAME/.zshrc
+    && export NVM_DIR="$HOME/.nvm" \
+    && echo "export NVM_DIR=\"$HOME/.nvm\"" >> ~/.zshrc \
+    && echo "[ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"" >> ~/.zshrc
 
 # Install multiple versions of Node.js via NVM
-RUN bash -c 'source /home/$USERNAME/.nvm/nvm.sh \
+RUN bash -c 'source $HOME/.nvm/nvm.sh \
     && curl -s https://nodejs.org/dist/index.json | jq "[.[] | select(.lts != false) | select(.version | split(\".\")[0] | ltrimstr(\"v\") | tonumber >= 12)] | unique_by(.version | split(\".\")[0]) | .[].version" \
-    | xargs -I {} bash -c "source /home/$USERNAME/.nvm/nvm.sh && nvm install {}" \
-    && bash -c "source /home/$USERNAME/.nvm/nvm.sh && nvm alias default lts/*"'
+    | xargs -I {} bash -c "source $HOME/.nvm/nvm.sh && nvm install {}" \
+    && bash -c "source $HOME/.nvm/nvm.sh && nvm alias default lts/*"'
 
 # Install PNPM
-RUN bash -c 'source /home/$USERNAME/.nvm/nvm.sh && npm install -g pnpm'
+RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g pnpm'
 
 # Install YARN
-RUN bash -c 'source /home/$USERNAME/.nvm/nvm.sh && npm install -g yarn'
+RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g yarn'
 
 # Set NPM registry
-RUN bash -c 'source /home/$USERNAME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
+RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
 
 # Install PostgreSQL client
-RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update && sudo apt-get install -y postgresql-client && sudo rm -rf /var/lib/apt/lists/*
 
 # Install MySQL client
-RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update && sudo apt-get install -y mysql-client && sudo rm -rf /var/lib/apt/lists/*
 
 # Install Python
-RUN apt-get update && apt-get install -y \
+RUN sudo apt-get update && sudo apt-get install -y \
     python3 \
     python3-pip \
     python3-venv \
-    && ln -s /usr/bin/python3 /usr/bin/python \
-    && rm -rf /var/lib/apt/lists/*
+    && sudo ln -s /usr/bin/python3 /usr/bin/python \
+    && sudo rm -rf /var/lib/apt/lists/*
 
 # Install JDK (latest version auto-detected)
-RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update && sudo apt-get install -y default-jdk && sudo rm -rf /var/lib/apt/lists/*
 
 # Install Ruby and set up local gem installation directory
-RUN apt-get update && apt-get install -y ruby-full && rm -rf /var/lib/apt/lists/* \
-    && echo 'export GEM_HOME=/home/$USERNAME/gems' >> /home/$USERNAME/.zshrc \
-    && echo 'export PATH=/home/$USERNAME/gems/bin:$PATH' >> /home/$USERNAME/.zshrc \
-    && mkdir -p /home/$USERNAME/gems
+RUN sudo apt-get update && sudo apt-get install -y ruby-full && sudo rm -rf /var/lib/apt/lists/* \
+    && echo 'export GEM_HOME=$HOME/gems' >> ~/.zshrc \
+    && echo 'export PATH=$HOME/gems/bin:$PATH' >> ~/.zshrc \
+    && mkdir -p $HOME/gems
 
 # Install Jekyll and Bundler as non-root user
-USER $USERNAME
-RUN bash -c 'source /home/$USERNAME/.zshrc && gem install jekyll bundler'
-
-# Switch back to root to install Go
-USER root
+RUN bash -c 'source ~/.zshrc && gem install jekyll bundler'
 
 # Install Go (latest version auto-detected and architecture-specific)
 RUN ARCH=$(dpkg --print-architecture) \
@@ -105,15 +97,12 @@ RUN ARCH=$(dpkg --print-architecture) \
     && GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
     && GO_VERSION=$(echo $GO_LATEST | grep -oE 'go[0-9]+\.[0-9]+\.[0-9]+') \
     && wget https://dl.google.com/go/${GO_VERSION}.linux-${GO_ARCH}.tar.gz -O go.tar.gz \
-    && tar -C /usr/local -xzf go.tar.gz \
+    && sudo tar -C /usr/local -xzf go.tar.gz \
     && rm go.tar.gz \
-    && echo "export PATH=\$PATH:/usr/local/go/bin" >> /home/$USERNAME/.zshrc
+    && echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.zshrc
 
 # Clean up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Ensure .zshrc is sourced on login
-RUN echo "source /home/$USERNAME/.zshrc" >> /home/$USERNAME/.zprofile
-
-# Switch back to the new user
-USER $USERNAME
+RUN echo "source ~/.zshrc" >> ~/.zprofile
