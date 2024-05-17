@@ -57,6 +57,9 @@ RUN bash -c 'source $HOME/.nvm/nvm.sh \
 # Install PNPM
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g pnpm'
 
+# Install YARN
+RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g yarn'
+
 # Set NPM registry
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
 
