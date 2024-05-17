@@ -27,12 +27,11 @@ RUN apt-get update && apt-get install -y \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
-# Set Zsh as the default shell
-RUN chsh -s $(which zsh)
-
-# Create a non-root user and grant root access
-RUN useradd -ms /bin/zsh devuser \
-    && echo 'devuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+# Set Zsh as the default shell for root and devuser
+RUN chsh -s $(which zsh) \
+    && useradd -ms /bin/zsh devuser \
+    && echo 'devuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+    && sudo chsh -s $(which zsh) devuser
 
 # Switch to the new user
 USER devuser
