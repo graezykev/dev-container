@@ -94,7 +94,8 @@ RUN ARCH=$(dpkg --print-architecture) \
     && GO_ARCH=amd64 \
     && if [ "$ARCH" = "arm64" ]; then GO_ARCH=arm64; fi \
     && GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
-    && wget https://dl.google.com/go/${GO_LATEST}.linux-${GO_ARCH}.tar.gz -O go.tar.gz \
+    && GO_VERSION=$(echo $GO_LATEST | grep -oE 'go[0-9]+\.[0-9]+\.[0-9]+') \
+    && wget https://dl.google.com/go/${GO_VERSION}.linux-${GO_ARCH}.tar.gz -O go.tar.gz \
     && sudo tar -C /usr/local -xzf go.tar.gz \
     && rm go.tar.gz \
     && echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.zshrc
