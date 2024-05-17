@@ -12,5 +12,8 @@
   "dependencies": {
     "express": "^4.19.2",
     "loadash": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
   }
 }
