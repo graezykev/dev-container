@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     zsh \
     sudo \
+    vim \
     && rm -rf /var/lib/apt/lists/*
 
 # Set Zsh as the default shell
@@ -82,9 +83,12 @@ RUN sudo apt-get update && sudo apt-get install -y ruby-full && sudo rm -rf /var
 # Install Jekyll and Bundler as non-root user
 RUN bash -c 'source ~/.zshrc && gem install jekyll bundler'
 
-# # Install Go (latest version auto-detected)
-# RUN GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
-#     && wget https://dl.google.com/go/${GO_LATEST}.linux-amd64.tar.gz -O go.tar.gz \
+# # Install Go (latest version auto-detected and architecture-specific)
+# RUN ARCH=$(dpkg --print-architecture) \
+#     && GO_ARCH=amd64 \
+#     && if [ "$ARCH" = "arm64" ]; then GO_ARCH=arm64; fi \
+#     && GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
+#     && wget https://dl.google.com/go/${GO_LATEST}.linux-${GO_ARCH}.tar.gz -O go.tar.gz \
 #     && sudo tar -C /usr/local -xzf go.tar.gz \
 #     && rm go.tar.gz \
 #     && echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.zshrc
