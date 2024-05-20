@@ -28,7 +28,6 @@ RUN apt-get update && apt-get install -y \
     zsh \
     sudo \
     vim \
-    --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Set Zsh as the default shell for root and devuser
@@ -63,7 +62,7 @@ RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g pnpm'
 # Install YARN
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g yarn'
 
-# Set NPM registry (modify this URL to your own)
+# Set NPM registry (modify this URL to your own one)
 # RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
 
 # Install PostgreSQL client
