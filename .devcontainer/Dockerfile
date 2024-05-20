@@ -28,6 +28,7 @@ RUN apt-get update && apt-get install -y \
     zsh \
     sudo \
     vim \
+    nginx \
     && rm -rf /var/lib/apt/lists/*
 
 # Set Zsh as the default shell for root and devuser
@@ -64,6 +65,10 @@ RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g yarn'
 
 # Set NPM registry (modify this URL to your own one)
 # RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
+
+# Install Rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+    && echo 'source $HOME/.cargo/env' >> ~/.zshrc
 
 # Install PostgreSQL client
 RUN sudo apt-get update && sudo apt-get install -y postgresql-client && sudo rm -rf /var/lib/apt/lists/*
