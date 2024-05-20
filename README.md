@@ -15,7 +15,7 @@ You can solve problems like this via Dev Containers:
 
 - What is PNPM and how to install it?
 
-- You don't have Git install yet?
+- You don't have Git installed yet?
 
 - I'm using Windows/Mac, how dare you ask me to run Linux specific commands!
   - You want me to get a virtual machine (VMWare, VirtualBox, etc.) and install Ubuntu?
@@ -36,7 +36,7 @@ By running a Docker container which has all development software and configurati
     - Because our historical projects rely on different Node.js version
   - PNPM, YARN
   - Python, Ruby, Go, Java, ...
-  - Database such as PostgreSQL and its extensions
+  - Databases such as PostgreSQL and its extensions
   - Customised Shell
     - Set Zsh as the default shell
     - Shell prompt or themes <https://github.com/ohmyzsh/ohmyzsh/wiki/Themes>
