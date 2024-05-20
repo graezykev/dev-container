@@ -73,10 +73,12 @@ Open A in VS Code, follow what it tells you.
 
 ## TLDR: Appendix
 
-- `postCreateCommand` -  If you want to install global npm packages or set environment variables, you would use this command.
+- `postCreateCommand`
 
   - When you create a new Codespace, the postCreateCommand will run right after the container is set up.
   - When you first open a project in a VS Code dev container, the postCreateCommand will run after the container is built or rebuilt.
+
+  If you want to install global npm packages or set environment variables, you would use this command.
 
 - `postStartCommand`
 
