@@ -24,6 +24,5 @@
   "updateContentCommand": "",
   "postStartCommand": "pnpm install",
   "postAttachCommand": "node index.js",
-  "workspaceFolder": "/workspace",
-  "remoteUser": "devuser"
+  "workspaceFolder": "/workspace"
 }
