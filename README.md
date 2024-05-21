@@ -102,6 +102,8 @@ Copy this to each project.
   - You are using a Codespace for your project, and you disconnect from it (e.g., by closing the browser tab or your laptop going to sleep). Later, you reconnect to the same Codespace.
   - You are working on a project in a VS Code dev container. You close VS Code or restart your computer, then later reopen VS Code and attach to the same running container.
 
+### part2: Build Docker Image
+
 ### part2: Install Additional Software (features)
 
 ### part2: Use Docker Compose
