@@ -24,28 +24,7 @@ const port2 = 8081
 
 app.get('/', (req, res) => {
 
-  // `psql -h postgres -U postgres -d postgres`
-  const client = new Client({
-    host: 'postgres',
-    port: 5432,
-    user: 'postgres',
-    password: 'postgres',
-    database: 'postgres'
-  })
-
-  client.connect()
-    .then(() => {
-      console.log('Connected to PostgreSQL')
-      res.send('Hello World Express! - PostgreSQL Connection Succeeds!')
-    })
-    .catch(err => {
-      console.error('Connection error', err.stack)
-      res.send('Hello World Express! - PostgreSQL Connection Fails!')
-    })
-    .finally(() => {
-      console.log('Disconnected to PostgreSQL')
-      client.end()
-    })
+  res.send('Hello World Express!')
 })
 
 app.listen(port2, () => {

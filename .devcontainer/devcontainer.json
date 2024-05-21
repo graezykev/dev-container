@@ -22,6 +22,5 @@
   "postCreateCommand": "echo 'DEV Container is Built!' && pnpm install",
   "updateContentCommand": "",
   "postStartCommand": "pnpm install",
-  "postAttachCommand": "node index.js",
-  "workspaceFolder": "/workspace"
+  "postAttachCommand": "node index.js"
 }
