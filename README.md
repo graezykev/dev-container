@@ -23,6 +23,22 @@ You can solve problems like this via Dev Containers:
 
 - I'm on day off today, my manager just ring me up because I made a huge mistake on the code published yesterday leading to memery leaks and users are complaining! I don't have my laptop right now, all I have is my wife's iPad, I want to fix the issue with just a web browser!
 
+## Easier and Faster Onboarding
+
+Pick what ever machine or system you like, Mac, Windows, Ubuntu, don't matter!
+
+Install Docker on the machine (without asking what Docker is), super easy.
+
+Install VS Code, just 2 to 3 clicks?
+
+Download the project A.
+
+Open A in VS Code, follow what it tells you.
+
+- the Dev Containers extension (`ms-vscode-remote.remote-containers`)
+- reopen in container
+- wait for the container to build, just several minites, it's all set! (only for one time, no need to build next time)
+
 ## What
 
 Create reproducible development environments, to use on any PC, anytime, anywhere.
@@ -55,23 +71,19 @@ By running a Docker container which has all development software and configurati
 
 ## How
 
-## Easier and Faster Onboarding
+## Steps
 
-Pick what ever machine or system you like, Mac, Windows, Ubuntu, don't matter!
+### Simple Dockerfile
 
-Install Docker on the machine (without asking what Docker is), super easy.
+### VS Code settings & extensions
 
-Install VS Code, just 2 to 3 clicks?
+### Reopen in Container
 
-Download the project A.
+Copy this to each project.
 
-Open A in VS Code, follow what it tells you.
+<https://code.visualstudio.com/docs/devcontainers/create-dev-container#_add-configuration-files-to-a-repository>
 
-- the Dev Containers extension (`ms-vscode-remote.remote-containers`)
-- reopen in container
-- wait for the container to build, just several minites, it's all set! (only for one time, no need to build next time)
-
-## TLDR: Appendix
+### (TLDR) Commands Explanation
 
 - `postCreateCommand`
 
@@ -89,3 +101,9 @@ Open A in VS Code, follow what it tells you.
 
   - You are using a Codespace for your project, and you disconnect from it (e.g., by closing the browser tab or your laptop going to sleep). Later, you reconnect to the same Codespace.
   - You are working on a project in a VS Code dev container. You close VS Code or restart your computer, then later reopen VS Code and attach to the same running container.
+
+### part2: Install Additional Software (features)
+
+### part2: Use Docker Compose
+
+### part3: Shared
