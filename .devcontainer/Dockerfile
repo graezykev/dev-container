@@ -50,6 +50,53 @@ RUN bash -c 'source $HOME/.nvm/nvm.sh \
 # Install PNPM
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g pnpm'
 
+# # Install YARN
+# RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install -g yarn'
+
+# # Set NPM registry (modify this URL to your own one)
+# # RUN bash -c 'source $HOME/.nvm/nvm.sh && npm config set registry https://npm.test.io/'
+
+# # Install Rust
+# RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+#     && echo 'source $HOME/.cargo/env' >> ~/.zshrc
+
+# # Install PostgreSQL client
+# RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
+
+# # Install MySQL client
+# RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt/lists/*
+
+# # Install Python
+# RUN apt-get update && apt-get install -y \
+#     python3 \
+#     python3-pip \
+#     python3-venv \
+#     && ln -s /usr/bin/python3 /usr/bin/python \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # Install JDK (latest version auto-detected)
+# RUN apt-get update && apt-get install -y default-jdk && rm -rf /var/lib/apt/lists/*
+
+# # Install Ruby and set up local gem installation directory
+# RUN apt-get update && apt-get install -y ruby-full && rm -rf /var/lib/apt/lists/* \
+#     && echo 'export GEM_HOME=$HOME/gems' >> ~/.zshrc \
+#     && echo 'export PATH=$HOME/gems/bin:$PATH' >> ~/.zshrc \
+#     && mkdir -p $HOME/gems
+
+# # Install Jekyll and Bundler as non-root user
+# RUN bash -c 'source ~/.zshrc && gem install jekyll bundler'
+
+# # Install Go (latest version auto-detected and architecture-specific)
+# RUN ARCH=$(dpkg --print-architecture) \
+#     && GO_ARCH=amd64 \
+#     && if [ "$ARCH" = "arm64" ]; then GO_ARCH=arm64; fi \
+#     && GO_LATEST=$(curl -sSL https://golang.org/VERSION?m=text) \
+#     && GO_VERSION=$(echo $GO_LATEST | grep -oE 'go[0-9]+\.[0-9]+\.[0-9]+') \
+#     && wget https://dl.google.com/go/${GO_VERSION}.linux-${GO_ARCH}.tar.gz -O go.tar.gz \
+#     && tar -C /usr/local -xzf go.tar.gz \
+#     && rm go.tar.gz \
+#     && echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.zshrc
+
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
