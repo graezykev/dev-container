@@ -1,9 +1,8 @@
 {
   "name": "Dev Container",
-  "dockerComposeFile": [
-    "docker-compose.yml"
-  ],
-  "service": "app",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "customizations": {
     "vscode": {
       "settings": {
