@@ -1,6 +1,11 @@
 {
   "name": "Dev Container",
   "image": "docker.io/graezykev/dev-container-base-image:latest",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "latest"
+    }
+  },
   "customizations": {
     "vscode": {
       "settings": {
