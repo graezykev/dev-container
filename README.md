@@ -89,6 +89,8 @@ Copy this to each project.
 
 ### (TLDR) Commands Explanation
 
+<https://containers.dev/implementors/json_reference/#lifecycle-scripts>
+
 - `postCreateCommand`
 
   - When you create a new Codespace, the postCreateCommand will run right after the container is set up.
@@ -115,6 +117,8 @@ Copy this to each project.
 
 ### part2: Install Additional Software (features)
 
+<https://containers.dev/features>
+
 ### part2: Use Docker Compose
 
 Let's imagine you're developing server applications relying on both Node.js and PostgreSQL.
@@ -125,6 +129,8 @@ And have PostgreSQL start automatically when the Docker container is started.
 But this can lead to unexpected behaviors if not handled correctly. For example, if your startup script exits for any reason, the container will stop unless it ends with an instruction to keep running, such as starting a shell or a daemon process.
 
 A more robust solution for development might involve using Docker Compose to manage both your application container and your PostgreSQL service in separate containers. It's often better to manage services like databases with separate containers or services, using Docker Compose or similar tools, especially in production environments.
+
+**env isolation**
 
 - Use docker compose to manage two containers, one for development, and the other one for database.
 - Only install PostgreSQL client on your development container, to connect the PostgreSQL server on the other container.
