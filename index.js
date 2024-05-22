@@ -17,7 +17,6 @@ server.listen(port1, hostname, () => {
 
 // Server 2 ==============================================================
 
-const { Client } = require('pg')
 const express = require('express')
 const app = express()
 const port2 = 8081
