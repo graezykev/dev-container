@@ -21,6 +21,6 @@
   },
   "postCreateCommand": "echo 'DEV Container is Built!' && pnpm install",
   "updateContentCommand": "",
-  "postStartCommand": "pnpm install",
-  "postAttachCommand": "nvm use 14 && node index.js"
+  "postStartCommand": "pnpm install && nvm use 14",
+  "postAttachCommand": "node index.js"
 }
