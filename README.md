@@ -126,6 +126,10 @@ A more robust solution for development might involve using Docker Compose to man
 - Use docker compose to manage two containers, one for development, and the other one for database.
 - Only install PostgreSQL client on your development container, to connect the PostgreSQL server on the other container.
 
+```sh
+psql -h postgres -U postgres -d postgres
+```
+
 ### part3: Shared
 
 ### part4: Develop on a remote Docker host
