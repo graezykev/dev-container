@@ -1,53 +1,69 @@
-// Server 1 ==============================================================
+const express = require('express');
+const { Pool } = require('pg');
 
-const http = require('http');
+const app = express();
+const port = 8081;
 
-const hostname = '0.0.0.0';
-const port1 = 8080;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World Node.js!\n');
+// PostgreSQL connection pool
+const pool = new Pool({
+  user: 'postgres',         // PostgreSQL username
+  host: 'postgres',         // PostgreSQL host (service name from docker-compose.yml)
+  database: 'postgres',     // PostgreSQL database name
+  password: 'postgres',     // PostgreSQL password
+  port: 5432,               // PostgreSQL port
 });
 
-server.listen(port1, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port1}/`);
+// Function to generate a random string of 10 characters
+const generateRandomString = () => {
+  return Math.random().toString(36).substring(2, 12);
+};
+
+// Function to initialize the database and create the "clients" table if it doesn't exist
+const initializeDb = async () => {
+  const client = await pool.connect();
+  try {
+    const createTableQuery = `
+      CREATE TABLE IF NOT EXISTS clients (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(100)
+      );
+    `;
+    await client.query(createTableQuery);
+  } finally {
+    client.release();
+  }
+};
+
+// Route to handle incoming requests
+app.get('/', async (req, res) => {
+  const client = await pool.connect();
+  try {
+    // Add a new client with a random name
+    const randomName = generateRandomString();
+    const insertClientQuery = `
+      INSERT INTO clients (name) VALUES ($1);
+    `;
+    await client.query(insertClientQuery, [randomName]);
+
+    // Retrieve all client names from the "clients" table
+    const selectClientsQuery = `
+      SELECT name FROM clients;
+    `;
+    const result = await client.query(selectClientsQuery);
+
+    // Display all client names on the webpage
+    const clientNames = result.rows.map(row => row.name).join('<br>');
+    res.send(`<h1>Client List</h1><p>${clientNames}</p>`);
+  } finally {
+    client.release();
+  }
 });
 
-// Server 2 ==============================================================
-
-const { Client } = require('pg')
-const express = require('express')
-const app = express()
-const port2 = 8081
-
-app.get('/', (req, res) => {
-
-  // `psql -h postgres -U postgres -d postgres`
-  const client = new Client({
-    host: 'postgres',
-    port: 5432,
-    user: 'postgres',
-    password: 'postgres',
-    database: 'postgres'
-  })
-
-  client.connect()
-    .then(() => {
-      console.log('Connected to PostgreSQL')
-      res.send('Hello World Express! - PostgreSQL Connection Succeeds!')
-    })
-    .catch(err => {
-      console.error('Connection error', err.stack)
-      res.send('Hello World Express! - PostgreSQL Connection Fails!')
-    })
-    .finally(() => {
-      console.log('Disconnected to PostgreSQL')
-      client.end()
-    })
-})
-
-app.listen(port2, () => {
-  console.log(`Example app listening on port ${port2}`)
-})
+// Initialize the database and start the server
+initializeDb().then(() => {
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`Server is running on http://0.0.0.0:${port}`);
+  });
+}).catch(err => {
+  console.error('Failed to initialize the database', err);
+});
