@@ -1,6 +1,9 @@
 {
   "name": "Dev Container",
-  "image": "docker.io/graezykev/dev-container-base-image:latest",
+  "dockerComposeFile": [
+    "docker-compose.yml"
+  ],
+  "service": "app",
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "latest"
