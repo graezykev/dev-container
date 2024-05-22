@@ -3,7 +3,7 @@ services:
   app:
     image: "docker.io/graezykev/dev-container-base-image:latest"
     volumes:
-      - ..:/workspace:cached
+      - ..:/workspace:cached  # Mount the parent directory into the container's /workspace directory
     ports:
       - 8000-8999:8000-8999
       - 443:443
@@ -12,10 +12,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
-      - NVM_DIR=$HOME/.nvm
-    command: /bin/zsh -c "while sleep 1000; do :; done"
+      - NVM_DIR=$HOME/.nvm  # Set NVM_DIR to the .nvm directory in the home directory
     depends_on:
       - postgres
+    command: /bin/zsh -c "while sleep 1000; do :; done"
 
   postgres:
     image: postgres:latest
@@ -25,10 +25,9 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data  # Named volume for persisting PostgreSQL data
     ports:
       - 5432:5432
 
-# For Data Persistence
 volumes:
-  postgres-data:
+  postgres-data:  # Define a named volume for PostgreSQL data persistence
