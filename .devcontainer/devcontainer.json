@@ -1,8 +1,6 @@
 {
   "name": "Dev Container",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+  "image": "docker.io/graezykev/dev-container-base-image:latest",
   "customizations": {
     "vscode": {
       "settings": {
