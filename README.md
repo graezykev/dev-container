@@ -4,6 +4,10 @@
 
 You can solve problems like this via Dev Containers:
 
+- My team has several full stack projects, these are historic projects relying on different versions of Node.js, (it's annoying but it's common in real scenarios), we're not able to upgrade them in time. Now every time a new member comes, we need this newbie to install NVM, as well as multiple versions of Node.js on top of that.
+
+- Lots of other softwares or tools a new member need to install and configure when he/she joins.
+
 - reducing the "it works on my machine" problem.
   - Look at this conversation between a newbie developer and his mentor:
     - I can't start this project! just ran into too many errors!
