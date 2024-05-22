@@ -108,6 +108,10 @@ Copy this to each project.
 
 ### part2: Build Docker Image
 
+- problems
+  - Building from a Dockerfile can be very long
+  - You need to rebuild the whole container even if you just want to upgrade one single version in the Dockerfile
+
 ### part2: Install Additional Software (features)
 
 ### part2: Use Docker Compose
