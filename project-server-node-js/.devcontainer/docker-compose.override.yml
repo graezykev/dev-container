@@ -1,6 +1,8 @@
 version: '3'
 services:
-  app:
+  project-a:
     extends:
-      file: ../../shared-dev-container/docker-compose.yml
+      file: ../shared-dev-container/docker-compose.yml
       service: shared-service
+    ports:
+      - 8001:8001

@@ -4,9 +4,6 @@ services:
     image: "docker.io/graezykev/dev-container-base-image:latest"
     volumes:
       - ..:/workspace:cached  # Mount the parent directory into the container's /workspace directory
-    ports:
-      - 8000-8999:8000-8999
-      - 443:443
     environment:
       - POSTGRES_HOST=postgres
       - POSTGRES_USER=postgres

@@ -4,7 +4,7 @@
     "../../shared-dev-container/docker-compose.yml",
     "./docker-compose.override.yml"
   ],
-  "service": "app",
+  "service": "project-b",
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "latest"
