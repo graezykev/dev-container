@@ -6,6 +6,8 @@
       "version": "latest"
     }
   },
+  "workspaceFolder": "/workspace",
+  "note": "Dont set `workspaceFolder` for Codespaces",
   "customizations": {
     "vscode": {
       "settings": {
