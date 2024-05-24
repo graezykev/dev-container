@@ -6,6 +6,7 @@
   ],
   "service": "project-b",
   "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
+  "note": "Dont set `workspaceFolder` for Codespaces",
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "latest"
