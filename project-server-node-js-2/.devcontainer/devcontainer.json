@@ -5,6 +5,7 @@
     "./docker-compose.override.yml"
   ],
   "service": "project-b",
+  "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "latest"
