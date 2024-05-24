@@ -10,6 +10,8 @@
     },
     "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
   },
+  "workspaceFolder": "/workspace",
+  "note": "Dont set `workspaceFolder` for Codespaces",
   "customizations": {
     "vscode": {
       "settings": {
