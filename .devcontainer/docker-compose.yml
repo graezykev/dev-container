@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: "docker.io/graezykev/dev-container-base-image:latest"
+    image: docker.io/graezykev/dev-container-base-image:latest
     volumes:
       - ..:/workspace:cached  # Mount the parent directory into the container's /workspace directory
     ports:
