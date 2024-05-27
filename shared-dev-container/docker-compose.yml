@@ -1,4 +1,3 @@
-version: '3'
 services:
   shared-service:
     image: graezykev/dev-container-base-image:latest # = docker.io/graezykev/dev-container-base-image:latest
