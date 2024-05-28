@@ -21,8 +21,8 @@
       ]
     }
   },
-  "postCreateCommand": "$(which zsh) -c 'source $HOME/.zshrc && pnpm install'",
+  "postCreateCommand": "echo 'Dev Container Built'",
   "updateContentCommand": "",
-  "postStartCommand": "$(which zsh) -c 'source $HOME/.zshrc && pnpm install'",
-  "postAttachCommand": "$(which zsh) -c 'source $HOME/.zshrc && nvm use 14 && node index.js'"
+  "postStartCommand": "echo 'Dev Container Started'",
+  "postAttachCommand": "echo 'Dev Container Attached'"
 }
