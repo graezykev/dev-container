@@ -21,7 +21,7 @@
       ]
     }
   },
-  "postCreateCommand": "echo 'Dev Container Built'",
+  "postCreateCommand": "echo 'Dev Container Built' && .devcontainer/post-create.sh",
   "updateContentCommand": "",
   "postStartCommand": "echo 'Dev Container Started'",
   "postAttachCommand": "echo 'Dev Container Attached'"
