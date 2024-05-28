@@ -7,7 +7,7 @@
     }
   },
   "workspaceFolder": "/workspace",
-  "note": "Dont set `workspaceFolder` for Codespaces",
+  "note": "Dont set `workspaceFolder` for Codespaces; Or use `localEnv` to set `workspaceFolder`",
   "customizations": {
     "vscode": {
       "settings": {
