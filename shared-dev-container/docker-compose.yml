@@ -4,10 +4,10 @@ services:
     volumes:
       - ..:/workspace:cached  # Mount the parent directory into the container's /workspace directory
     environment:
-      - POSTGRES_HOST=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
       - NVM_DIR=$HOME/.nvm  # Set NVM_DIR to the .nvm directory in the home directory
     depends_on:
       - postgres
@@ -17,9 +17,9 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres-data:/var/lib/postgresql/data  # Named volume for persisting PostgreSQL data
     ports:

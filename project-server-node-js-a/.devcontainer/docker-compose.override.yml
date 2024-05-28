@@ -1,7 +1,7 @@
 services:
   project-a:
     extends:
-      file: ${EXTEND_SERVICE}
+      file: ../shared-dev-container/docker-compose.yml
       service: shared-service
     ports:
       - 8001:8001
