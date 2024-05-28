@@ -4,6 +4,10 @@
 
 You can solve problems like this via Dev Containers:
 
+- My team has several full stack projects, these are historic projects relying on different versions of Node.js, (it's annoying but it's common in real scenarios), we're not able to upgrade them in time. Now every time a new member comes, we need this newbie to install NVM, as well as multiple versions of Node.js on top of that.
+
+- Lots of other softwares or tools a new member need to install and configure when he/she joins.
+
 - reducing the "it works on my machine" problem.
   - Look at this conversation between a newbie developer and his mentor:
     - I can't start this project! just ran into too many errors!
@@ -85,6 +89,8 @@ Copy this to each project.
 
 ### (TLDR) Commands Explanation
 
+<https://containers.dev/implementors/json_reference/#lifecycle-scripts>
+
 - `postCreateCommand`
 
   - When you create a new Codespace, the postCreateCommand will run right after the container is set up.
@@ -104,9 +110,34 @@ Copy this to each project.
 
 ### part2: Build Docker Image
 
+- problems
+  - Building from a Dockerfile can be very long
+    - The bottle neck will be on the downloading of the image
+  - You need to rebuild the whole container even if you just want to upgrade one single version in the Dockerfile
+
 ### part2: Install Additional Software (features)
 
+<https://containers.dev/features>
+
 ### part2: Use Docker Compose
+
+Let's imagine you're developing server applications relying on both Node.js and PostgreSQL.
+
+You may use installation commands in Dockerfile, or, use dev container features to install PostgreSQL in your container.
+And have PostgreSQL start automatically when the Docker container is started.
+
+But this can lead to unexpected behaviors if not handled correctly. For example, if your startup script exits for any reason, the container will stop unless it ends with an instruction to keep running, such as starting a shell or a daemon process.
+
+A more robust solution for development might involve using Docker Compose to manage both your application container and your PostgreSQL service in separate containers. It's often better to manage services like databases with separate containers or services, using Docker Compose or similar tools, especially in production environments.
+
+**env isolation**
+
+- Use docker compose to manage two containers, one for development, and the other one for database.
+- Only install PostgreSQL client on your development container, to connect the PostgreSQL server on the other container.
+
+```sh
+psql -h postgres -U postgres -d postgres
+```
 
 ### part3: Shared
 

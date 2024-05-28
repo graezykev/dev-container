@@ -4,6 +4,14 @@
     "docker-compose.yml"
   ],
   "service": "app",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "latest"
+    },
+    "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
+  },
+  "workspaceFolder": "/workspace",
+  "note": "Dont set `workspaceFolder` for Codespaces; Or use `localEnv` to set `workspaceFolder`",
   "customizations": {
     "vscode": {
       "settings": {
@@ -23,6 +31,5 @@
   "postCreateCommand": "echo 'DEV Container is Built!' && pnpm install",
   "updateContentCommand": "",
   "postStartCommand": "pnpm install",
-  "postAttachCommand": "node index.js",
-  "workspaceFolder": "/workspace"
+  "postAttachCommand": "nvm use 14 && node index.js"
 }
