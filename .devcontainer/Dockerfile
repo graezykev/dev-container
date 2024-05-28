@@ -31,6 +31,10 @@ RUN apt-get update && apt-get install -y \
 # Set Zsh as the default shell for root
 RUN chsh -s $(which zsh)
 
+# Set the default shell for all users
+RUN echo 'SHELL=/bin/zsh' >> /etc/environment \
+    && echo 'exec /bin/zsh -l' >> /etc/profile
+
 # Install Oh My Zsh with the "robbyrussell" theme
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
     && sed -i 's/^ZSH_THEME=".*"/ZSH_THEME="robbyrussell"/' ~/.zshrc
