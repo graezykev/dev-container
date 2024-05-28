@@ -4,4 +4,4 @@ services:
       file: ../shared-dev-container/docker-compose.yml
       service: shared-service
     ports:
-      - 8001:8001
+      - 8001:8000  # Maps port 8001 on the host to port 8000 in the container
