@@ -28,8 +28,8 @@
       ]
     }
   },
-  "postCreateCommand": "echo 'DEV Container is Built!' && pnpm install",
+  "postCreateCommand": "echo 'Dev Container Built' && .devcontainer/post-create.sh",
   "updateContentCommand": "",
-  "postStartCommand": "pnpm install",
-  "postAttachCommand": "nvm use 14 && node index.js"
+  "postStartCommand": "echo 'Dev Container Started'",
+  "postAttachCommand": "echo 'Dev Container Attached'"
 }
