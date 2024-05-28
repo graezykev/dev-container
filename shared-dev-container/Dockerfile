@@ -1,7 +1,9 @@
 # Use the latest stable version of Ubuntu
 FROM ubuntu:latest
 
-# Set the timezone to UTC
+# Avoid interactive prompts during package installation
+ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN=true
 ENV TZ=Etc/UTC
 
 # Preconfigure tzdata package
@@ -27,10 +29,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Set Zsh as the default shell for root
-RUN chsh -s $(which zsh) \
-    && echo 'SHELL=/bin/zsh' >> /etc/environment \
-    && echo 'exec /bin/zsh -l' >> /etc/profile \
-    && echo '[ -z "$ZSH_VERSION" ] && exec /bin/zsh -l' >> /etc/bash.bashrc
+RUN chsh -s $(which zsh)
 
 # Install Oh My Zsh with the "robbyrussell" theme
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
@@ -104,9 +103,9 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Ensure .zshrc is sourced on login
 RUN echo "source ~/.zshrc" >> ~/.zprofile
 
-# # Set the default shell for all users
-# RUN echo 'SHELL=/bin/zsh' >> /etc/environment \
-#     && echo 'exec /bin/zsh -l' >> /etc/profile
+# Set the default shell for all users
+RUN echo 'SHELL=/bin/zsh' >> /etc/environment \
+    && echo 'exec /bin/zsh -l' >> /etc/profile
 
 # Entrypoint
 ENTRYPOINT ["/bin/zsh", "-c", "source $HOME/.zshrc && exec \"$@\"", "--"]
