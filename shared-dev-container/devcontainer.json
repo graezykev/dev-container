@@ -10,8 +10,10 @@
     },
     "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
   },
-  "workspaceFolder": "/workspace",
-  "note": "Dont set `workspaceFolder` for Codespaces; Or use `localEnv` to set `workspaceFolder`",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "note1": "Dont set `workspaceFolder` when you run Dev Container on GitHub Codespaces;",
+  "note2": "Must Set `workspaceFolder` when you run Dev Container on a local VS Code;",
+  "note3": "Or, use `localEnv` etc. to set `workspaceFolder`",
   "customizations": {
     "vscode": {
       "settings": {
@@ -28,8 +30,8 @@
       ]
     }
   },
-  "postCreateCommand": "echo 'Dev Container Built' && .devcontainer/post-create.sh",
+  "postCreateCommand": ".devcontainer/post-create.sh",
   "updateContentCommand": "",
-  "postStartCommand": "echo 'Dev Container Started'",
-  "postAttachCommand": "echo 'Dev Container Attached'"
+  "postStartCommand": ".devcontainer/post-start.sh",
+  "postAttachCommand": ".devcontainer/post-attach.sh"
 }
