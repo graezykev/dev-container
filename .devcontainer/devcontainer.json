@@ -8,9 +8,10 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-  "note1": "Dont set `workspaceFolder` when you run Dev Container on GitHub Codespaces;",
-  "note2": "Must Set `workspaceFolder` when you run Dev Container on a local VS Code;",
-  "note3": "Or, use `localEnv` etc. to set `workspaceFolder`",
+  "postCreateCommand": ".devcontainer/post-create.sh",
+  "updateContentCommand": "",
+  "postStartCommand": ".devcontainer/post-start.sh",
+  "postAttachCommand": ".devcontainer/post-attach.sh",
   "customizations": {
     "vscode": {
       "settings": {
@@ -26,9 +27,5 @@
         "github.copilot"
       ]
     }
-  },
-  "postCreateCommand": ".devcontainer/post-create.sh",
-  "updateContentCommand": "",
-  "postStartCommand": ".devcontainer/post-start.sh",
-  "postAttachCommand": ".devcontainer/post-attach.sh"
+  }
 }
