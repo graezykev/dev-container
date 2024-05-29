@@ -5,7 +5,10 @@ services:
     #   dockerfile: Dockerfile
     image: graezykev/dev-container-base-image:latest # = docker.io/graezykev/dev-container-base-image:latest
     volumes:
-      - ..:/workspace:cached  # Mount the parent directory into the container's /workspace directory
+      # Mount the parent directory into the container's directory
+      # ..                        => directory on the host machine, i.e. `cd .. && pwd` => output: dev-container
+      # /workspaces/dev-container => directory in the container
+      - ..:/workspaces/dev-container:cached
     ports:
       # - 8000-8999:8000-8999
       - 8001:8000 # Maps port 8001 on the host to port 8000 in the container
