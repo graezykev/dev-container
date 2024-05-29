@@ -10,7 +10,6 @@
     },
     "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
   },
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "postCreateCommand": ".devcontainer/post-create.sh",
   "updateContentCommand": "",
