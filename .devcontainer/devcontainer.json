@@ -3,8 +3,8 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "workspaceFolder": "/workspace",
-  "note": "Dont set `workspaceFolder` for Codespaces; Or use `localEnv` to set `workspaceFolder`",
+  "avoid-workspaceFolder": "/workspace",
+  "note": "Dont set `workspaceFolder` in Codespaces; Or use `localEnv` to set `workspaceFolder`",
   "customizations": {
     "vscode": {
       "settings": {
