@@ -1,4 +1,4 @@
 #!/bin/zsh
-source $HOME/.zshrc && pnpm install
 echo 'DEV Container Created!'
+source $HOME/.zshrc && pnpm install
 exec "$@"
