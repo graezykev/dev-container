@@ -3,6 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "note1": "Dont set `workspaceFolder` when you run Dev Container on GitHub Codespaces;",
   "note2": "Must Set `workspaceFolder` when you run Dev Container on a local VS Code;",
