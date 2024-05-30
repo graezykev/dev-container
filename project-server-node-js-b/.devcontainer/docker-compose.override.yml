@@ -1,7 +1,0 @@
-services:
-  project-b:
-    extends:
-      file: ../shared-dev-container/docker-compose.yml
-      service: shared-service
-    ports:
-      - 8002:8000  # Maps port 8002 on the host to port 8000 in the container

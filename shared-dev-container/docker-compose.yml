@@ -5,7 +5,7 @@ services:
     #   dockerfile: Dockerfile
     image: graezykev/dev-container-base-image:latest # = docker.io/graezykev/dev-container-base-image:latest
     volumes:
-      - ..:/workspace:cached  # Mount the parent directory into the container's /workspace directory
+      - ..:/workspaces:cached  # Mount the parent directory into the container's /workspaces directory
     environment:
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_USER=${POSTGRES_USER}

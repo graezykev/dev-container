@@ -1,0 +1,9 @@
+services:
+  project-a-node-js:
+    extends:
+      # The `docker-compose` command runs using the **first path** specified in the `dockerComposeFile` array of devcontainer.json.
+      # i.e., `docker-compose` runs in the directory where `docker-compose.yml` is.
+      file: docker-compose.yml # == ./docker-compose.yml
+      service: shared-service
+    ports:
+      - 8001:8000  # Maps port 8001 on the host to port 8000 in the container
