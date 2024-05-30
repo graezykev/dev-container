@@ -1,7 +1,7 @@
 services:
   project-a-node-js:
     extends:
-      file: ../shared-dev-container/docker-compose.yml
+      file: docker-compose.yml # or file: `./docker-compose.yml` # docker compose is run in the directory where `docker-compose.yml` is
       service: shared-service
     ports:
       - 8001:8000  # Maps port 8001 on the host to port 8000 in the container
