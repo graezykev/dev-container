@@ -4,15 +4,18 @@
     "../../shared-dev-container/docker-compose.yml",
     "./docker-compose.override.yml"
   ],
-  "service": "project-b",
-  "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
-  "note": "Dont set `workspaceFolder` for Codespaces; Or use `localEnv` to set `workspaceFolder`",
+  "service": "project-b-node-js",
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "latest"
     },
     "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
   },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "postCreateCommand": "$(which zsh) -c 'source $HOME/.zshrc && pnpm install'",
+  "updateContentCommand": "",
+  "postStartCommand": "$(which zsh) -c 'source $HOME/.zshrc && pnpm install'",
+  "postAttachCommand": "$(which zsh) -c 'source $HOME/.zshrc && nvm use 14 && node index.js'",
   "customizations": {
     "vscode": {
       "settings": {
@@ -28,9 +31,5 @@
         "github.copilot"
       ]
     }
-  },
-  "postCreateCommand": "$(which zsh) -c 'source $HOME/.zshrc && pnpm install'",
-  "updateContentCommand": "",
-  "postStartCommand": "$(which zsh) -c 'source $HOME/.zshrc && pnpm install'",
-  "postAttachCommand": "$(which zsh) -c 'source $HOME/.zshrc && nvm use 14 && node index.js'"
+  }
 }

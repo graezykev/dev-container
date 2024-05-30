@@ -1,5 +1,5 @@
 services:
-  project-a:
+  project-a-node-js:
     extends:
       file: ../shared-dev-container/docker-compose.yml
       service: shared-service
