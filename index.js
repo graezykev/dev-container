@@ -23,7 +23,7 @@ const port2 = 8081
 
 app.get('/', (req, res) => {
 
-  res.send('Hello World Express!')
+  res.send('Hello World Express! ' + process.env.some_variables_you_want_to_set)
 })
 
 app.listen(port2, () => {
