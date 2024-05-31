@@ -6,11 +6,11 @@ const port = 8000;
 
 // PostgreSQL connection pool
 const pool = new Pool({
-  user: 'postgres',         // PostgreSQL username
-  host: 'postgres',         // PostgreSQL host (service name from docker-compose.yml)
-  database: 'postgres',     // PostgreSQL database name
-  password: 'postgres',     // PostgreSQL password
-  port: 5432,               // PostgreSQL port
+  user: process.env.POSTGRES_USER,             // PostgreSQL username
+  host: process.env.POSTGRES_HOST,             // PostgreSQL host (service name from docker-compose.yml)
+  database: process.env.POSTGRES_DB,           // PostgreSQL database name
+  password: process.env.POSTGRES_PASSWORD,     // PostgreSQL password
+  port: 5432,                                  // PostgreSQL port
 });
 
 // Function to generate a random string of 10 characters
