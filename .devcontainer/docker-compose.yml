@@ -12,6 +12,9 @@ services:
     ports:
       # - 8000-8999:8000-8999
       - 8001:8000 # Maps port 8001 on the host to port 8000 in the container
+    # env_file:
+    #   - .env # This is a default setting
+    #   - ...  # Put other xxx.env files here so you can reference the variables by ${var}, such as ${POSTGRES_HOST}
     environment:
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_USER=${POSTGRES_USER}
