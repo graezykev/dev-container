@@ -23,7 +23,11 @@ Copy my `.devcontainer` folder here <https://github.com/graezykev/dev-container/
 git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git part-1-use-docker-file
 ```
 
-## VS Code
+### Simple Dockerfile
+
+### VS Code settings & extensions
+
+## Open Project in VS Code
 
 `File` -> `Open Folder...` -> Choose **your-project-folder**.
 
@@ -37,15 +41,9 @@ Enjoy all Applications and Extensions installed inside the container and unified
 
 ## Configurations Explanation
 
-### Build
+### Building
 
 `build` -> `dockerfile`
-
-### `workspaceFolder`
-
-`${localWorkspaceFolderBasename}` - `path/to/your-project-folder`
-
-Will explain more at Part 2.
 
 ### TLDR: Lifecycle Commands Explanation
 

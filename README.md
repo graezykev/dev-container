@@ -77,29 +77,12 @@ By running a Docker container which has all development software and configurati
 
 ## Steps
 
-### Simple Dockerfile
+### part1: Basic Usage - Use Dockerfile
 
-### VS Code settings & extensions
+### part2: Use Docker Image & Features & Environment Variables
 
-### Reopen in Container
+### part3: Full Stack Dev - Use Docker Compose & Database
 
-Copy this to each project.
+### part4: Remote Dev - Develop on a remote Docker host
 
-<https://code.visualstudio.com/docs/devcontainers/create-dev-container#_add-configuration-files-to-a-repository>
-
-### part2: Build Docker Image
-
-- problems
-  - Building from a Dockerfile can be very long
-    - The bottle neck will be on the downloading of the image
-  - You need to rebuild the whole container even if you just want to upgrade one single version in the Dockerfile
-
-### part2: Install Additional Software (features)
-
-### part2: Use Docker Compose
-
-`docker compose` will automatically pick up a file called `.env` in the folder containing the `docker-compose.yml`.
-
-### part3: Shared
-
-### part4: Develop on a remote Docker host
+### part5: Shared Container Configure
