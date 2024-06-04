@@ -71,78 +71,18 @@ By running a Docker container which has all development software and configurati
   - detectIndentation: false
   - fontSize
   - fontFamily
-  - auto `npm install` or other initial scripts
+  - auto run `npm install` or other initial scripts
 
 ## How
 
 ## Steps
 
-### Simple Dockerfile
+### part1: Basic Usage - Use Dockerfile
 
-### VS Code settings & extensions
+### part2: Use Docker Image & Features & Environment Variables
 
-### Reopen in Container
+### part3: Full Stack Dev - Use Docker Compose & Database
 
-Copy this to each project.
+### part4: Remote Dev - Develop on a remote Docker host
 
-<https://code.visualstudio.com/docs/devcontainers/create-dev-container#_add-configuration-files-to-a-repository>
-
-### (TLDR) Commands Explanation
-
-<https://containers.dev/implementors/json_reference/#lifecycle-scripts>
-
-- `postCreateCommand`
-
-  - When you create a new Codespace, the postCreateCommand will run right after the container is set up.
-  - When you first open a project in a VS Code dev container, the postCreateCommand will run after the container is built or rebuilt.
-
-  If you want to install global npm packages or set environment variables, you would use this command.
-
-- `postStartCommand`
-
-  - You are working on a project in a Codespace. You stop the Codespace at the end of the day. The next day, you start the Codespace again to continue your work.
-  - You are developing an application in a VS Code dev container. You close VS Code or restart your computer, which stops the container. Later, you reopen VS Code and the container starts again.
-
-- `postAttachCommand`
-
-  - You are using a Codespace for your project, and you disconnect from it (e.g., by closing the browser tab or your laptop going to sleep). Later, you reconnect to the same Codespace.
-  - You are working on a project in a VS Code dev container. You close VS Code or restart your computer, then later reopen VS Code and attach to the same running container.
-
-### part2: Build Docker Image
-
-- problems
-  - Building from a Dockerfile can be very long
-    - The bottle neck will be on the downloading of the image
-  - You need to rebuild the whole container even if you just want to upgrade one single version in the Dockerfile
-
-### part2: Install Additional Software (features)
-
-<https://containers.dev/features>
-
-### part2: Use Docker Compose
-
-Let's imagine you're developing server applications relying on both Node.js and PostgreSQL.
-
-You may use installation commands in Dockerfile, or, use dev container features to install PostgreSQL in your container.
-And have PostgreSQL start automatically when the Docker container is started.
-
-But this can lead to unexpected behaviors if not handled correctly. For example, if your startup script exits for any reason, the container will stop unless it ends with an instruction to keep running, such as starting a shell or a daemon process.
-
-A more robust solution for development might involve using Docker Compose to manage both your application container and your PostgreSQL service in separate containers. It's often better to manage services like databases with separate containers or services, using Docker Compose or similar tools, especially in production environments.
-
-`docker compose` will automatically pick up a file called `.env` in the folder containing the `docker-compose.yml`.
-
-**env isolation**
-
-- Use docker compose to manage two containers, one for development, and the other one for database.
-- Only install PostgreSQL client on your development container, to connect the PostgreSQL server on the other container.
-
-```sh
-psql -h postgres -U postgres -d postgres
-```
-
-### part3: Shared
-
-The `dockerComposeFile` property specifies the paths to one or more Docker Compose files. When building the dev container, the `docker-compose` command runs using the **first path** specified in the array.
-
-### part4: Develop on a remote Docker host
+### part5: Shared Container Configure
