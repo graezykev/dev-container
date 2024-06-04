@@ -15,6 +15,8 @@ Configure `image` in `devcontainer.json`.
 
 Install additional Softwares.
 
+<https://containers.dev/features>
+
 ## `workspaceMount` & `workspaceFolder`
 
 `${localWorkspaceFolder}`
