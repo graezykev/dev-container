@@ -47,6 +47,8 @@ Enjoy all Applications and Extensions installed inside the container and unified
 
 ### TLDR: Lifecycle Commands Explanation
 
+<https://containers.dev/implementors/json_reference/#lifecycle-scripts>
+
 - `postCreateCommand`
 
   - When you create a new Codespace, the postCreateCommand will run right after the container is set up.
