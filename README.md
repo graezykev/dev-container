@@ -77,14 +77,15 @@ By running a Docker container which has all development software and configurati
 
 ## Steps
 
-### Simple Dockerfile
+### part1: Basic Usage - Use Dockerfile
 
-### VS Code settings & extensions
+### part2: Use Docker Image & Features & Environment Variables
 
-### Reopen in Container
+### part3: Full Stack Dev - Use Docker Compose & Database
 
-Copy this to each project.
+### part4: Remote Dev - Develop on a remote Docker host
 
+<<<<<<< HEAD
 <https://code.visualstudio.com/docs/devcontainers/create-dev-container#_add-configuration-files-to-a-repository>
 
 ### (TLDR) Commands Explanation
@@ -144,3 +145,6 @@ psql -h postgres -U postgres -d postgres
 ### part3: Shared
 
 ### part4: Develop on a remote Docker host
+=======
+### part5: Shared Container Configure
+>>>>>>> part-2-use-image-and-features
