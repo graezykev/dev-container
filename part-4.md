@@ -37,6 +37,10 @@ Install Docker on the remote machine.
 - Mac
 - Windows
 
+<https://docs.docker.com/engine/install/ubuntu/>
+
+<https://docs.docker.com/engine/install/linux-postinstall/>
+
 ![install docker in remote machine](./images/part-4/tunnel-install-docker.gif)
 
 ### Install Code CLI
