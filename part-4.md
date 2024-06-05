@@ -127,14 +127,21 @@ Open it via `Open Folder` and `Reopen in Container` in VS Code, you'll be prompt
 
 ![docker installation prompt](./images/part-4/tunnel-open-folder-and-reopen-in-container-and-prompt-to-install-docker.gif)
 
+![before reopen in container - no python & no node.js & no docker image & no docker process]()
+
 Open VS Code's `Command Palette` and choose `Reopen in Container`.
 
 ![reopen in container](./images/part-4/tunnel-reopen-in-container-and-build.gif)
+
 Wait for the building.
+
+![open folder and reopen in container and build](./images/part-4/tunnel-open-folder-and-reopen-in-container-and-build.gif)
 
 Enjoy the dev environment, ports, extensions and settings.
 
-![alfter container built](./images/part-4/tunnel-after-build.gif)
+![alfter container built - dev environment && port mapping & lifecycle scripts & extensions & settings](./images/part-4/tunnel-after-build.png)
+
+![alfter container built - dev environment](./images/part-4/tunnel-after-build-2.png)
 
 ### Work Everywhere
 
