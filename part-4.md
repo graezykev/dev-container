@@ -81,7 +81,7 @@ Visit the **vscode.dev URL** on your Dev Machine I mentioned before, via:
 
 ![visit vscode.dev URL on a web browser](./images/part-4/visit-vscode-url-in-browser.gif)
 
-![install vscode remot dev extension](./images/part-4/vscode-remote-extension.gif)
+![install vscode remot dev extension](./images/part-4/vscode-remote-extension.png)
 
 ![visit vscode.dev URL on a VS Code client](./images/part-4/visit-vscode-url-in-vscode.gif)
 
