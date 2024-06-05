@@ -43,6 +43,29 @@ Install Docker on the remote machine.
 
 ![install docker in remote machine](./images/part-4/tunnel-install-docker.gif)
 
+```console
+developer@ubuntu:~$ # Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+developer@ubuntu:~$ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+developer@ubuntu:~$ sudo usermod -aG docker developer
+
+developer@ubuntu:~$ sudo reboot
+
+```
+
 ### Install Code CLI
 
 Launch the remote machine and download VS Code CLI here <https://code.visualstudio.com/#alt-downloads> according to the operating system.
@@ -70,6 +93,7 @@ You'll need some step to set up the tunnel:
 
 ![vscode.dev Create a secure tunnel](./images/part-4/create-tunnel-steps.png)
 
+![login and authorize with code](./images/part-4/tunnel-login-with-code.gif)
 At last, this CLI will output a **vscode.dev URL** tied to this remote machine, like `https://vscode.dev/tunnel/<machine_name>/<folder_name>`
 
 ### Connect to the Remote Machine
