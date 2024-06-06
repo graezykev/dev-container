@@ -116,7 +116,7 @@ You'll need some steps to set up the tunnel:
 
 At last, this CLI will output a **vscode.dev URL** tied to this remote machine, like `https://vscode.dev/tunnel/<machine_name>/<folder_name>`
 
-### Connect (from Dev Machine)
+### Connect to Remote Machine
 
 Connecting to the remote machine from your Dev Machine I mentioned before, you have 2 options:
 
