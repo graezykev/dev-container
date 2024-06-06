@@ -1,6 +1,10 @@
 # Develop on a remote Docker host
 
-How it works.
+Here comes one of my favorite part of **Remote Development**.
+
+In the previous parts we use a stand alone PC to build DEV containers as well as developing. In this part I would like to introduce how to develop when you're not at office or even have no working PCs at your disposal.
+
+VS Code team actually elaborate how it works.
 
 ![remote docker host](./images/part-4/server-arch-latest.png)
 
@@ -98,50 +102,55 @@ At last, this CLI will output a **vscode.dev URL** tied to this remote machine, 
 
 ### Connect to the Remote Machine
 
-Visit the **vscode.dev URL** on your Dev Machine I mentioned before, via:
+Connecting to the Remote Machine on your Dev Machine I mentioned before, you have 2 options:
 
-- A web browser.
-- A VS Code client. But install [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extension pack first (search `vscode-remote-extensionpack`).
+> Either way you choose, when try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
 
-![visit vscode.dev URL on a web browser](./images/part-4/visit-vscode-url-in-browser.gif)
+- Directly visit the **vscode.dev URL** in a web browser.
 
-![install vscode remot dev extension](./images/part-4/vscode-remote-extension.png)
+  ![visit vscode.dev URL on a web browser](./images/part-4/visit-vscode-url-in-browser.gif)
 
-![visit vscode.dev URL on a VS Code client](./images/part-4/visit-vscode-url-in-vscode.gif)
+- Use a VS Code client.
 
-> When opening a vscode.dev URL for the first time, you'll be prompted to log into your GitHub account at a `https://github.com/login/oauth/authorize...` URL.
+  - 1. Install [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extension pack first (search `remote dev`).
+  - 2. Use VS Code's `Command Palette` and choose `Connect to Tunnel`.
+  - 3. Login and verify with Github/Microsoft account (you used in the last step).
+  - 4. Choose the remote machine name (you created in the last step).
+  - 5. Wait for the connection and check the connection.
 
-See the left bottom, and the terminal.
+I recorded the steps below:
+
+![visit vscode.dev URL on a VS Code client](./images/part-4/install-extension-and-visit-remote-machine-in-vscode.gif)
+
+Once the remote machine is connected, on the left bottom corner of VS Code, you can see the name of the remote machine, and you have a control of it in the terminal.
 
 ![remote machine and terminal](./images/part-4/tunnel-connected.png)
 
 ### Clone your Project
 
-Clone your project to a folder.
+Clone your project to a folder. You can use my project for testing.
 
 ```sh
 git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 ```
 
-Open it via `Open Folder` and `Reopen in Container` in VS Code, you'll be prompted that the remote machine needs to install Docker first.
+### Build the Dev Container
 
-![docker installation prompt](./images/part-4/tunnel-open-folder-and-reopen-in-container-and-prompt-to-install-docker.gif)
+We have a `.devcontainer` and its configurations in the project we just cloned. Before building the container, we're still unable to use the container environment. We need several steps to achieve this:
 
-![before reopen in container - no python & no node.js & no docker image & no docker process]()
+- 1. Use VS Code's `Open Folder` to open the project.
+- 2. Use VS Code's `Command Palette` and choose `Reopen in Container`.
+- 3. Wait for the building.
 
-Open VS Code's `Command Palette` and choose `Reopen in Container`.
+I recorded the steps below:
 
-![reopen in container](./images/part-4/tunnel-reopen-in-container-and-build.gif)
+![open folder and reopen in container and build](./images/part-4/clone-project-and-open-folder-and-reopen-in-container-and-build.gif)
 
-Wait for the building.
+After the container is built, enjoy the dev environment, ports, extensions and settings.
 
-![open folder and reopen in container and build](./images/part-4/tunnel-open-folder-and-reopen-in-container-and-build.gif)
+![after container built - port mapping & lifecycle scripts & extensions & settings](./images/part-4/tunnel-after-build.png)
 
-Enjoy the dev environment, ports, extensions and settings.
-
-![alfter container built - dev environment && port mapping & lifecycle scripts & extensions & settings](./images/part-4/tunnel-after-build.png)
-
-![alfter container built - dev environment](./images/part-4/tunnel-after-build-2.png)
+![alfter container built - installed softwares](./images/part-4/tunnel-after-build-2.png)
 
 ### Work Everywhere
 
