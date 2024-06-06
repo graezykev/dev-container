@@ -71,6 +71,8 @@ curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-
 tar -xf vscode_cli.tar.gz
 ```
 
+> You can also try my fully automatic shell script to install the CLI <https://gist.github.com/graezykev/b7c981c4966d49e580cf1fddc0c52559>
+
 After it's uncompressed you'll find the executable binary file:
 
 ![code exec bin](./images/part-4/vs-code-bin.png)
