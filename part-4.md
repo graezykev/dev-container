@@ -2,7 +2,7 @@
 
 Here comes my favorite part, **Remote Development**.
 
-In the previous parts we stay in a stand alone PC to do everything, building Dev containers, and developing. In this part I would like to introduce how to develop when you're not at office or even have no working PC at your disposal.
+In the previous parts we stay in a stand alone PC to do everything, building dev containers, and developing. In this part I would like to introduce how to develop when you're not at office or even have no working PC at your disposal.
 
 This is how VS Code team elaborate the remote development architecture:
 
@@ -118,7 +118,7 @@ At last, this CLI will output a **vscode.dev URL** tied to this remote machine, 
 
 ### Connect to Remote Machine
 
-Connecting to the remote machine from your Dev Machine I mentioned before, you have 2 options:
+Connecting to the remote machine from your dev machine I mentioned before, you have 2 options:
 
 > Either way you choose, when try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
 
@@ -142,7 +142,7 @@ Once the remote machine is connected, on the left bottom corner of VS Code, you 
 
 ![remote machine and terminal](./images/part-4/tunnel-connected.png)
 
-At this point, we have only connected to this remote machine, next step we're going to use this remote machine to clone codes and build Dev container on top of it so as to enjoy the truely unify dev environment.
+At this point, we have only connected to this remote machine, next step we're going to use this remote machine to clone codes and build dev container on top of it so as to enjoy the truely unify dev environment.
 
 ### Clone your Project
 
@@ -154,7 +154,7 @@ git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 
 ### Build the Dev Container
 
-> Unfortunately, at the time I write this, we're still unable to build a Dev container via **VS Code web**, you need to make this step in a **native VS Code client**.
+> Unfortunately, at the time I write this, we're still unable to build a dev container via **VS Code web**, you need to make this step in a **native VS Code client**.
 
 The container isn't built yet, we're still unable to use the container environment. We need several steps to achieve this:
 
@@ -170,7 +170,15 @@ After the container is built, enjoy the dev environment, ports, extensions and s
 
 ![after container built - port mapping & lifecycle scripts & extensions & settings](./images/part-4/tunnel-after-build.png)
 
+Lifecycle commands in `devcontainer.json` are run after is's build.
+
+The Node.js programme is listening port 8000 on the remote machine's dev container, but the port is mapped to you dev machine so you can visit it through `localhost:8000`
+
+VS Code extensions we specify in `devcontainer.json` are not actually installed on the dev machine, but in the dev container which stands on the remote machine.
+
 ![alfter container built - installed softwares](./images/part-4/tunnel-after-build-2.png)
+
+The remote machine has no Node.js or Python installed, but you can enjoy these softwares in the dev container built in this remote machine.
 
 ### Work Everywhere
 
