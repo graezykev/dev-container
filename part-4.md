@@ -30,19 +30,19 @@ One for serving the code and dev environment, we call it a **Remote Machine**.
 
 The other one for developing, which can be much more lightweight, we call it a **Dev Machine**.
 
-- Remote Machine
+- **Remote Machine**
 
   It can be your desktop / laptop in your office, it can be a Virtual Machine, it can also be cloud machines such as AWS EC2 ...
 
   In my following guide I use a Ubuntu Linux server to test.
 
-- Dev Machine
+- **Dev Machine**
 
   This is another desktop, laptop, iPad, Surface Tablet, Android Tablet, mobile phone ...
 
   > I list mobile phone here because in reality you can visit VS Code web via a web browser, although no one really want to do that, just for some super urgent scenarios.
 
-- A GitHub / Microsoft account
+- **GitHub / Microsoft account**
 
   This is the "bridge" to connect the dev machine to the remote machine via [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server).
 
