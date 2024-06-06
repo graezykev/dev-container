@@ -8,7 +8,7 @@ This is how VS Code team elaborate the remote development architecture:
 
 ![remote docker host](./images/part-4/server-arch-latest.png)
 
-The VS Code on the left side can be a **native client** installed on you development machine (a desktop, laptop, tablet etc.), or can be **VS Code web** in any web browers. This is why I say theoretically you can work everywhere as long as you have a web browser and Internet accessibility.
+The VS Code on the left side can be a **native client** installed on you development machine (a desktop, laptop, tablet etc.), or a **VS Code web** you visit in any web browers. This is why I say theoretically you can work everywhere as long as you have a web browser and Internet accessibility.
 
 There're primary two ways of remote development:
 
