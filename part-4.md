@@ -40,7 +40,7 @@ The other one for developing, which can be much more lightweight, we call it a *
 
   This is another desktop, laptop, iPad, Surface Tablet, Android Tablet, mobile phone ...
 
-  > I list mobile phone here because in reality you can visit VS Code web via a web browser, although no one really want to do that, just for some super urgent scenarios.
+  > I list mobile phone here because in reality you can visit VS Code web via a web browser, although no one really wants to do that, just for some super urgent scenarios.
 
 - **GitHub / Microsoft account**
 
