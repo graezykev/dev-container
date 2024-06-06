@@ -54,7 +54,7 @@ I mentioned about installing Docker in [Part 1:](./part-1.md), which is relative
 
 Once we finish the installation of Docker, we can move on to the next step.
 
-What's interesting is that **you can also skip installing Docker for now**, because actually you can install Docker after step 4 (Connect to Remote Machine), as you'll have a terminal to run shell scripts in this remote machine.
+What's interesting is that **you can also skip installing Docker for now**, because actually you can install Docker at the end of [step 4 (Connect to Remote Machine)](#4-connect-to-remote-machine), as you'll have a terminal to run the installation shell commands on the remote machine, from the dev machine.
 
 ### 2. Install Code CLI (Remote Machine)
 
