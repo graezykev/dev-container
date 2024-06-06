@@ -1,39 +1,51 @@
-# Develop on a remote Docker host
+# Dev Container - part 4: Develop on a Remote Docker Host
 
-Here comes one of my favorite part of **Remote Development**.
+Here comes my favorite part, **Remote Development**.
 
-In the previous parts we use a stand alone PC to build DEV containers as well as developing. In this part I would like to introduce how to develop when you're not at office or even have no working PCs at your disposal.
+In the previous parts we stay in a stand alone PC to do everything, building Dev containers, and developing. In this part I would like to introduce how to develop when you're not at office or even have no working PC at your disposal.
 
-VS Code team actually elaborate how it works.
+This is how VS Code team elaborate the remote development architecture:
 
 ![remote docker host](./images/part-4/server-arch-latest.png)
 
-**VS Code** on the left can be a client installed on you development machine (a desktop, laptop, tablet etc.), or can be visit via vscode web in any web browers, this is why I say theoretically you can work everywhere as long as you have a web browser and Internet accessibility.
+The VS Code on the left side can be a **native client** installed on you development machine (a desktop, laptop, tablet etc.), or can be **VS Code web** in any web browers. This is why I say theoretically you can work everywhere as long as you have a web browser and Internet accessibility.
 
-There're two ways of remote development:
+There're primary two ways of remote development:
 
 - Connect to remote and virtual machines with Visual Studio Code via SSH.
 - Connect to a remote machine via a secure tunnel, without configuring SSH.
 
-I going to guide you through the second way, which is simpler and enables you to work anywhere without a PC. I won't elaborate the concepts of such as [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server) although we're leveraging the ability of them.
+I going to guide you through the second way, which is simpler, has no lengthy, laborious jobs of installing and configuring SSH server and client, and it enables us to work anywhere without a PC.
+
+I won't elaborate the concepts of [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server) although we're leveraging the ability of it.
 
 ## Developing with Remote Tunnels
 
 ### Prepare
 
-- A Remote Machine
+In the paradigm of remote development, we need at least two devices.
 
-Your Desktop PC / Laptop / Virtual Machine / AWS EC2 ...
+One for serving the code and dev environment, we call it a **Remote Machine**.
 
-- A Dev Machine
+The other one for developing, which can be much more lightweight, we call it a **Dev Machine**.
 
-Your another Desktop PC / Laptop / iPad / Surface Tablet / Android Tablet / Mobile Phone ...
+- Remote Machine
 
-> I enlist cellphone here because in reality you can visit vscode web via a web browser, although no one really want to do that, just for some super urgent scenarios.
+  It can be your desktop / laptop in your office, it can be a Virtual Machine, it can also be cloud machines such as AWS EC2 ...
 
-- A GitHub account or Microsoft account
+  In my following guide I use a Ubuntu Linux server to test.
 
-### Install Docker
+- Dev Machine
+
+  This is another desktop, laptop, iPad, Surface Tablet, Android Tablet, mobile phone ...
+
+  > I list mobile phone here because in reality you can visit VS Code web via a web browser, although no one really want to do that, just for some super urgent scenarios.
+
+- A GitHub / Microsoft account
+
+  This is the "bridge" to connect the dev machine to the remote machine via [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server).
+
+### Install Docker (on Remote Machine)
 
 Install Docker on the remote machine.
 
@@ -70,39 +82,42 @@ developer@ubuntu:~$ sudo reboot
 
 ```
 
-### Install Code CLI
+### Install Code CLI (on Remote Machine)
 
-Launch the remote machine and download VS Code CLI here <https://code.visualstudio.com/#alt-downloads> according to the operating system.
+Launch the remote machine to download and uncompress VS Code CLI here <https://code.visualstudio.com/#alt-downloads>, according to the operating system of your remote machine.
 
 ![download vs code cli](./images/part-4/download-vs-code-cli.png)
 
-As I'm using Ubuntu Linux, I download and uncompress it via the following commands:
+As I'm using Ubuntu Linux, I download and uncompress it via the following commands (modify the ):
 
 ```sh
 curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
 tar -xf vscode_cli.tar.gz
 ```
 
-After it's uncompressed you'll find the executable bin file:
+After it's uncompressed you'll find the executable binary file:
 
 ![code exec bin](./images/part-4/vs-code-bin.png)
 
-### Create Secure Tunnel
+### Create Secure Tunnel (on Remote Machine)
+
+Run the binary file to create a secure tunnel:
 
 ```sh
 ./code tunnel --accept-server-license-terms
 ```
 
-You'll need some step to set up the tunnel:
+You'll need some steps to set up the tunnel:
 
-![vscode.dev Create a secure tunnel](./images/part-4/create-tunnel-steps.png)
+![steps to create a secure tunnel](./images/part-4/create-tunnel-steps.png)
 
-![login and authorize with code](./images/part-4/tunnel-login-with-code.gif)
+> Here, use the GitHub / Microsoft account I mentioned before.
+
 At last, this CLI will output a **vscode.dev URL** tied to this remote machine, like `https://vscode.dev/tunnel/<machine_name>/<folder_name>`
 
-### Connect to the Remote Machine
+### Connect (from Dev Machine)
 
-Connecting to the Remote Machine on your Dev Machine I mentioned before, you have 2 options:
+Connecting to the remote machine from your Dev Machine I mentioned before, you have 2 options:
 
 > Either way you choose, when try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
 
