@@ -126,9 +126,11 @@ Once the remote machine is connected, on the left bottom corner of VS Code, you 
 
 ![remote machine and terminal](./images/part-4/tunnel-connected.png)
 
+At this point, we have only connected to this remote machine, next step we're going to use this remote machine to clone codes and build Dev container on top of it so as to enjoy the truely unify dev environment.
+
 ### Clone your Project
 
-Clone your project to a folder. You can use my project for testing.
+Clone your project (which has a `.devcontainer` folder and its configurations). You can use my project for testing.
 
 ```sh
 git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
@@ -136,7 +138,9 @@ git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 
 ### Build the Dev Container
 
-We have a `.devcontainer` and its configurations in the project we just cloned. Before building the container, we're still unable to use the container environment. We need several steps to achieve this:
+> Unfortunately, at the time I write this, we're still unable to build a Dev container via **VS Code web**, you need to make this step in a **native VS Code client**.
+
+The container isn't built yet, we're still unable to use the container environment. We need several steps to achieve this:
 
 - 1. Use VS Code's `Open Folder` to open the project.
 - 2. Use VS Code's `Command Palette` and choose `Reopen in Container`.
@@ -153,6 +157,14 @@ After the container is built, enjoy the dev environment, ports, extensions and s
 ![alfter container built - installed softwares](./images/part-4/tunnel-after-build-2.png)
 
 ### Work Everywhere
+
+Now you're able to work everywhere you like as long as you have access to Internet!
+
+You can use a spare laptop (with Windows, Mac or Linux OS) to install a VS Code and connect to the remote machine.
+
+If you don't like to install anything, why don't you just use a tablet device such as iPad to visit the **vscode.dev URL** and start your development.
+
+In some extremly urgent cases, you can even use a mobile phone to visit the **vscode.dev URL** and make some tiny code changes or run some scripts on the remote machine!
 
 ## Docs
 
