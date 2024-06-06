@@ -13,6 +13,7 @@ The VS Code on the left side can be a **native client** installed on you develop
 There're primary two ways of remote development:
 
 - Connect to remote and virtual machines with Visual Studio Code via SSH.
+
 - Connect to a remote machine via a secure tunnel, without configuring SSH.
 
 I'm going to guide you through the second way, which is simpler, has no lengthy, laborious jobs of installing and configuring SSH server and client, and it enables us to work anywhere without a PC.
