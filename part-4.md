@@ -1,4 +1,4 @@
-# Dev Container - part 4: Develop on a Remote Docker Host
+# Dev Container - Part 4: Develop on a Remote Docker Host
 
 Here comes my favourite part, **Remote Development**.
 
@@ -46,44 +46,17 @@ The other one is for developing, which can be much more lightweight, we call it 
 
   This is the "bridge" to connect the dev machine to the remote machine via [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server).
 
-### 1. Install Docker (on Remote Machine)
+### 1. Install Docker (Remote Machine)
 
-Install Docker on the remote machine.
+We need to install Docker on the remote machine, which is no need for the dev machine.
 
-- Linux
-- Mac
-- Windows
+I mentioned about installing Docker in [Part 1:](./part-1.md), which is relatively very easy and straightforward, especially when you're using Mac/Windows PC as your remote machine, even if you are using headless systems such as a Ubuntu Linux server, that is also within a few commands.
 
-<https://docs.docker.com/engine/install/ubuntu/>
+Once we finish the installation of Docker, we can move on to the next step.
 
-<https://docs.docker.com/engine/install/linux-postinstall/>
+What's interesting is that **you can also skip installing Docker for now**, because actually you can install Docker after step 4 (Connect to Remote Machine), as you'll have a terminal to run shell scripts in this remote machine.
 
-![install docker in remote machine](./images/part-4/tunnel-install-docker.gif)
-
-```console
-developer@ubuntu:~$ # Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-# Add the repository to Apt sources:
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-
-developer@ubuntu:~$ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-developer@ubuntu:~$ sudo usermod -aG docker developer
-
-developer@ubuntu:~$ sudo reboot
-
-```
-
-### 2. Install Code CLI (on Remote Machine)
+### 2. Install Code CLI (Remote Machine)
 
 Launch the remote machine to download and uncompress VS Code CLI here <https://code.visualstudio.com/#alt-downloads>, according to the operating system of your remote machine.
 
@@ -143,6 +116,10 @@ Once the remote machine is connected, on the left bottom corner of VS Code, you 
 ![remote machine and terminal](./images/part-4/tunnel-connected.png)
 
 At this point, we have only connected to this remote machine, in the next step, we're going to use this remote machine to clone codes and build a dev container on top of it so as to enjoy a truly unified dev environment.
+
+As I mentioned in [step 1](#1-install-docker-remote-machine), you can actually install Docker in this tep:
+
+![install docker in remote machine](./images/part-4/tunnel-install-docker.gif)
 
 ### 5. Clone your Project
 
