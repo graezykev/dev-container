@@ -48,7 +48,7 @@ The other one is for developing, which can be much more lightweight, we call it 
 
 ### 1. Install Docker (Remote Machine)
 
-We need to install Docker on the remote machine, which is no need for the dev machine.
+We need to install Docker on the remote machine, however, no need for the dev machine.
 
 I mentioned about installing Docker in [Part 1:](./part-1.md), which is relatively very easy and straightforward, especially when you're using Mac/Windows PC as your remote machine, even if you are using headless systems such as a Ubuntu Linux server, that is also within a few commands.
 
