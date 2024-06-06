@@ -22,7 +22,7 @@ I won't elaborate on the concepts of [**Visual Studio Code Server**](https://cod
 
 ## Developing with Remote Tunnels
 
-### Prepare
+### 0. Prepare
 
 In the paradigm of remote development, we need at least two devices.
 
@@ -46,7 +46,7 @@ The other one is for developing, which can be much more lightweight, we call it 
 
   This is the "bridge" to connect the dev machine to the remote machine via [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server).
 
-### Install Docker (on Remote Machine)
+### 1. Install Docker (on Remote Machine)
 
 Install Docker on the remote machine.
 
@@ -83,7 +83,7 @@ developer@ubuntu:~$ sudo reboot
 
 ```
 
-### Install Code CLI (on Remote Machine)
+### 2. Install Code CLI (on Remote Machine)
 
 Launch the remote machine to download and uncompress VS Code CLI here <https://code.visualstudio.com/#alt-downloads>, according to the operating system of your remote machine.
 
@@ -100,7 +100,7 @@ After it's uncompressed you'll find the executable binary file:
 
 ![code exec bin](./images/part-4/vs-code-bin.png)
 
-### Create Secure Tunnel (on Remote Machine)
+### 3. Create Secure Tunnel (on Remote Machine)
 
 Run the binary file to create a secure tunnel:
 
@@ -116,7 +116,7 @@ You'll need some steps to set up the tunnel:
 
 At last, this CLI will output a **vscode.dev URL** tied to this remote machine, like `https://vscode.dev/tunnel/<machine_name>/<folder_name>`
 
-### Connect to Remote Machine
+### 4. Connect to Remote Machine
 
 Connecting to the remote machine from your dev machine I mentioned before, you have 2 options:
 
@@ -144,7 +144,7 @@ Once the remote machine is connected, on the left bottom corner of VS Code, you 
 
 At this point, we have only connected to this remote machine, in the next step, we're going to use this remote machine to clone codes and build a dev container on top of it so as to enjoy a truly unified dev environment.
 
-### Clone your Project
+### 5. Clone your Project
 
 Clone your project (which has a `.devcontainer` folder and its configurations). You can use my project for testing.
 
@@ -152,7 +152,7 @@ Clone your project (which has a `.devcontainer` folder and its configurations). 
 git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 ```
 
-### Build the Dev Container
+### 6. Build the Dev Container
 
 > Unfortunately, at the time I write this, we're still unable to build a dev container via **VS Code web**, you need to make this step in a **native VS Code client**.
 
@@ -180,7 +180,7 @@ VS Code extensions we specify in `devcontainer.json` are not actually installed 
 
 The remote machine has no Node.js or Python installed, but you can enjoy these softwares in the dev container built into this remote machine.
 
-### Work Everywhere
+## Work Everywhere
 
 Now you're able to work anywhere you like as long as you have access to the Internet!
 
