@@ -50,7 +50,7 @@ The other one is for developing, which can be much more lightweight, we call it 
 
 We need to install Docker on the remote machine, however, no need for the dev machine.
 
-I mentioned about installing Docker in [Part 1:](./part-1.md), which is relatively very easy and straightforward, especially when you're using Mac/Windows PC as your remote machine, even if you are using headless systems such as a Ubuntu Linux server, that is also within a few commands.
+I mentioned how to install Docker in [Part 1:](./part-1.md), which is relatively easy and straightforward, especially when you're using Mac/Windows PC, even if you are using headless systems such as a Ubuntu Linux server, that is also within a few commands.
 
 Once we finish the installation of Docker, we can move on to the next step.
 
@@ -58,11 +58,13 @@ What's interesting is that **you can also skip installing Docker for now**, beca
 
 ### 2. Install Code CLI (Remote Machine)
 
-Launch the remote machine to download and uncompress VS Code CLI here <https://code.visualstudio.com/#alt-downloads>, according to the operating system of your remote machine.
+Launch the remote machine to **download and uncompress** VS Code CLI here <https://code.visualstudio.com/download>, according to the operating system of your remote machine.
 
 ![download vs code cli](./images/part-4/download-vs-code-cli.png)
 
-As I'm using Ubuntu Linux, I download and uncompress it via the following commands (modify the ):
+If you're using Windows/Mac/Linux PC, you can click the link to download and uncompress.
+
+As I'm using Ubuntu Linux, I do it via the following commands (replace `cli-alpine-x64` with `cli-alpine-arm64` or `cli-linux-armhf`):
 
 ```sh
 curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
@@ -73,9 +75,9 @@ After it's uncompressed you'll find the executable binary file:
 
 ![code exec bin](./images/part-4/vs-code-bin.png)
 
-### 3. Create Secure Tunnel (on Remote Machine)
+### 3. Create Secure Tunnel (Remote Machine)
 
-Run the binary file to create a secure tunnel:
+Run the binary file to start creating a secure tunnel:
 
 ```sh
 ./code tunnel --accept-server-license-terms
@@ -87,19 +89,19 @@ You'll need some steps to set up the tunnel:
 
 > Here, use the GitHub / Microsoft account I mentioned before.
 
-At last, this CLI will output a **vscode.dev URL** tied to this remote machine, like `https://vscode.dev/tunnel/<machine_name>/<folder_name>`
+At the end, this CLI will output a **vscode.dev URL** tied to this remote machine, like `https://vscode.dev/tunnel/<machine_name>/<folder_name>`
 
 ### 4. Connect to Remote Machine
 
-Connecting to the remote machine from your dev machine I mentioned before, you have 2 options:
+Now you can connect to the remote machine, using the dev machine I mentioned above. You have 2 options:
 
 > Either way you choose, when you try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
 
-- Directly visit the **vscode.dev URL** in a web browser.
+- 1. Directly visit the **vscode.dev URL** from a web browser.
 
   ![visit vscode.dev URL on a web browser](./images/part-4/visit-vscode-url-in-browser.gif)
 
-- Use a VS Code client.
+- 2. Use a VS Code client.
 
   - 1. Install [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extension pack first (search `remote dev`).
   - 2. Use VS Code's `Command Palette` and choose `Connect to Tunnel`.
@@ -111,19 +113,19 @@ I recorded the steps below:
 
 ![visit vscode.dev URL on a VS Code client](./images/part-4/install-extension-and-visit-remote-machine-in-vscode.gif)
 
-Once the remote machine is connected, on the left bottom corner of VS Code, you can see the name of the remote machine, and you have a control of it in the terminal.
+Once the remote machine is connected, on the left bottom corner of VS Code (client or web), you can see the name of the remote machine, and you have a control of the remote machine from the terminal.
 
 ![remote machine and terminal](./images/part-4/tunnel-connected.png)
 
-At this point, we have only connected to this remote machine, in the next step, we're going to use this remote machine to clone codes and build a dev container on top of it so as to enjoy a truly unified dev environment.
-
-As I mentioned in [step 1](#1-install-docker-remote-machine), you can actually install Docker in this tep:
+As I mentioned in [step 1](#1-install-docker-remote-machine), you can actually install Docker in this terminal, because it connects to the remote machine.
 
 ![install docker in remote machine](./images/part-4/tunnel-install-docker.gif)
 
+At this point, we have only connected to this remote machine. In the next step, we're going to use this remote machine to clone codes and build a dev container on top of it, so as to enjoy a truly unified dev environment.
+
 ### 5. Clone your Project
 
-Clone your project (which has a `.devcontainer` folder and its configurations). You can use my project for testing.
+Clone your project (which has a `.devcontainer` folder as well as its configurations). You can use my project for testing.
 
 ```sh
 git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
@@ -131,9 +133,9 @@ git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 
 ### 6. Build the Dev Container
 
-> Unfortunately, at the time I write this, we're still unable to build a dev container via **VS Code web**, you need to make this step in a **native VS Code client**.
+> Unfortunately, at the time I write this, we're still unable to build a dev container via **VS Code web**, you need to take this step in a **native VS Code client**.
 
-The container isn't built yet, we're still unable to use the container environment. We need several steps to achieve this:
+The dev container isn't built yet, we're still unable to use the container environment. We need several steps to achieve this:
 
 - 1. Use VS Code's `Open Folder` to open the project.
 - 2. Use VS Code's `Command Palette` and choose `Reopen in Container`.
@@ -143,19 +145,19 @@ I recorded the steps below:
 
 ![open folder and reopen in container and build](./images/part-4/clone-project-and-open-folder-and-reopen-in-container-and-build.gif)
 
-After the container is built, enjoy the dev environment, ports, extensions and settings.
+After the container is built, enjoy the dev environment, ports mapping, VS Code extensions, settings etc.
+
+Lifecycle commands in `devcontainer.json` are also run in the container after it's built.
 
 ![after container built - port mapping & lifecycle scripts & extensions & settings](./images/part-4/tunnel-after-build.png)
 
-Lifecycle commands in `devcontainer.json` are run after it's built.
+The Node.js program is listening to port 8000 on the remote machine's dev container, and the port is mapped directly to your dev machine, so you can visit it through `localhost:8000`.
 
-The Node.js program is listening to port 8000 on the remote machine's dev container, but the port is mapped to your dev machine so you can visit it through `localhost:8000`
-
-VS Code extensions we specify in `devcontainer.json` are not actually installed on the dev machine, but in the dev container which stands on the remote machine.
+Besides, VS Code extensions we specify in `devcontainer.json` are not actually installed on the dev machine, but on the remote machine's dev container.
 
 ![alfter container built - installed softwares](./images/part-4/tunnel-after-build-2.png)
 
-The remote machine has no Node.js or Python installed, but you can enjoy these softwares in the dev container built into this remote machine.
+Furthermore, although the remote machine actually has no Node.js or Python installed, but you can enjoy those pre-installed softwares in the dev container built into this remote machine.
 
 ## Work Everywhere
 
@@ -165,4 +167,4 @@ You can use a spare laptop (with Windows, Mac or Linux OS) to install a VS Code 
 
 If you don't like to install anything, why don't you just use a tablet device such as iPad to visit the **vscode.dev URL** and start your development.
 
-In some extremely urgent cases, you can even use a mobile phone to visit the **vscode.dev URL** and make some tiny code changes or run some scripts on the remote machine!
+In some extremely urgent cases, you can even use a mobile phone to visit the **vscode.dev URL** and make some tiny code changes or run some commands on the remote machine!
