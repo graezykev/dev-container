@@ -121,7 +121,7 @@ Once the remote machine is connected, on the left bottom corner of VS Code (clie
 
 ![remote machine and terminal](./images/part-4/tunnel-connected.png)
 
-As I mentioned in [step 1](#1-install-docker-remote-machine), you can actually install Docker in this terminal, because it connects to the remote machine.
+As I mentioned in [step 1](#1-install-docker-remote-machine), you can install Docker in this terminal, because it connects to the remote machine. In the example below I install Docker from VS Code client's terminal, you can even do it from VS Code web.
 
 ![install docker in remote machine](./images/part-4/tunnel-install-docker.gif)
 
