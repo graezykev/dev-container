@@ -99,8 +99,6 @@ At the end, this CLI will output a **vscode.dev URL** tied to this remote machin
 
 Now you can connect to the remote machine, using the dev machine I mentioned above. You have 2 options:
 
-> Either way you choose, when you try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
-
 - 1. Directly visit the **vscode.dev URL** from a web browser.
 
   ![visit vscode.dev URL on a web browser](./images/part-4/visit-vscode-url-in-browser.gif)
@@ -116,6 +114,8 @@ Now you can connect to the remote machine, using the dev machine I mentioned abo
 I recorded the steps below:
 
 ![visit vscode.dev URL on a VS Code client](./images/part-4/install-extension-and-visit-remote-machine-in-vscode.gif)
+
+> Either way you choose, when you try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
 
 Once the remote machine is connected, on the left bottom corner of VS Code (client or web), you can see the name of the remote machine, and you have control of the remote machine from the terminal.
 
