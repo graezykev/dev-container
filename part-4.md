@@ -2,7 +2,7 @@
 
 Here comes my favourite part, **Remote Development**.
 
-In the previous parts we stay in a stand-alone PC to do everything, building dev containers, and developing. In this part I would like to introduce how to develop when you're not at the office or even have no working PC at your disposal.
+In the previous parts, we stay in a stand-alone PC to do everything, building dev containers, and developing. In this part, I would like to introduce how to develop when you're not at the office or even have no working PC at your disposal.
 
 This is how the VS Code team elaborate on the remote development architecture:
 
@@ -40,7 +40,7 @@ The other one is for developing, which can be much more lightweight, we call it 
 
   This is another desktop, laptop, iPad, Surface Tablet, Android Tablet, mobile phone ...
 
-  > I list mobile phones here because in reality you can visit VS Code web via a web browser, although no one really wants to do that, just for some super urgent scenarios.
+  > I list mobile phones here because, in reality, you can visit VS Code web via a web browser, although no one really wants to do that, just for some super urgent scenarios.
 
 - **GitHub / Microsoft account**
 
@@ -62,7 +62,7 @@ Launch the remote machine to **download and uncompress** VS Code CLI here <https
 
 ![download vs code cli](./images/part-4/download-vs-code-cli.png)
 
-If you're using Windows/Mac/Linux PC, you can click the link to download and uncompress.
+If you're using a Windows/Mac/Linux PC, you can click the link to download and uncompress.
 
 As I'm using Ubuntu Linux, I do it via the following commands (replace `cli-alpine-x64` with `cli-alpine-arm64` or `cli-linux-armhf`):
 
@@ -115,7 +115,7 @@ I recorded the steps below:
 
 ![visit vscode.dev URL on a VS Code client](./images/part-4/install-extension-and-visit-remote-machine-in-vscode.gif)
 
-Once the remote machine is connected, on the left bottom corner of VS Code (client or web), you can see the name of the remote machine, and you have a control of the remote machine from the terminal.
+Once the remote machine is connected, on the left bottom corner of VS Code (client or web), you can see the name of the remote machine, and you have control of the remote machine from the terminal.
 
 ![remote machine and terminal](./images/part-4/tunnel-connected.png)
 
@@ -159,7 +159,7 @@ Besides, VS Code extensions we specify in `devcontainer.json` are not actually i
 
 ![alfter container built - installed softwares](./images/part-4/tunnel-after-build-2.png)
 
-Furthermore, although the remote machine actually has no Node.js or Python installed, but you can enjoy those pre-installed softwares in the dev container built into this remote machine.
+Furthermore, although the remote machine actually has no Node.js or Python installed, you can enjoy the pre-installed software in the dev container built into this remote machine.
 
 ## Work Everywhere
 
@@ -167,6 +167,6 @@ Now you're able to work anywhere you like as long as you have access to the Inte
 
 You can use a spare laptop (with Windows, Mac or Linux OS) to install a VS Code and connect to the remote machine.
 
-If you don't like to install anything, why don't you just use a tablet device such as iPad to visit the **vscode.dev URL** and start your development.
+If you don't like to install anything, why don't you just use a tablet device such as an iPad to visit the **vscode.dev URL** and start your development.
 
 In some extremely urgent cases, you can even use a mobile phone to visit the **vscode.dev URL** and make some tiny code changes or run some commands on the remote machine!
