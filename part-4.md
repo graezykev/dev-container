@@ -117,7 +117,7 @@ I recorded the steps below:
 
 > Either way you choose, when you try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
 
-Once the remote machine is connected, on the left bottom corner of VS Code (client or web), you can see the name of the remote machine, and you have control of the remote machine from the terminal.
+Once the remote machine is connected, on the left bottom corner of VS Code (client or web), you can see the name of the remote machine (`my-remote-ubuntu` in my example), and you have control of the remote machine from the terminal.
 
 ![remote machine and terminal](./images/part-4/tunnel-connected.png)
 
