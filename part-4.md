@@ -30,21 +30,21 @@ One for serving the code and dev environment, we call it a **Remote Machine**.
 
 The other one is for developing, which can be much more lightweight, we call it a **Dev Machine**.
 
-We need to prepare 3 things before we can develop remotely.
+We need to prepare 3 things before setting up remote development:
 
-- **Remote Machine**
+- 1. **Remote Machine**
 
   It can be your desktop/laptop in your office, it can be a Virtual Machine, and it can also be a cloud machine such as AWS EC2 ...
 
   In my following guide, I use a Ubuntu Linux server to test.
 
-- **Dev Machine**
+- 2. **Dev Machine**
 
   This is another desktop, laptop, iPad, Surface Tablet, Android Tablet, mobile phone ...
 
   > I list mobile phones here because, in reality, you can visit VS Code web via a web browser, although no one really wants to do that, just for some super urgent scenarios.
 
-- **GitHub / Microsoft account**
+- 3. **GitHub / Microsoft account**
 
   This is the "bridge" to connect the dev machine to the remote machine via [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server).
 
