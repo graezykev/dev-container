@@ -1,6 +1,6 @@
 # Dev Container - Part 4: Develop on a Remote Docker Host
 
-Here comes my favourite part, **Remote Development**.
+Here comes my favourite part, **Remote Development**, or more fashionably, cloud development.
 
 In the previous parts, we stay in a stand-alone PC to do everything, building dev containers, and developing. In this part, I would like to introduce how to develop when you're not at the office or even have no working PC at your disposal.
 
@@ -29,6 +29,8 @@ In the paradigm of remote development, we need at least two devices.
 One for serving the code and dev environment, we call it a **Remote Machine**.
 
 The other one is for developing, which can be much more lightweight, we call it a **Dev Machine**.
+
+We need to prepare 3 things before we can develop remotely.
 
 - **Remote Machine**
 
