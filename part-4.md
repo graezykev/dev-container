@@ -60,7 +60,7 @@ What's interesting is that **you can also skip installing Docker for now**, beca
 
 ### 2. Install Code CLI (Remote Machine)
 
-Launch the remote machine to **download and uncompress** VS Code CLI here <https://code.visualstudio.com/download>, according to the operating system of your remote machine.
+Launch the remote machine to **download and uncompress** VS Code CLI here <https://code.visualstudio.com/download>, according to the operating system you use.
 
 ![download vs code cli](./images/part-4/download-vs-code-cli.png)
 
