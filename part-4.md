@@ -46,7 +46,7 @@ We need to prepare 3 things before setting up remote development:
 
 - 3. **GitHub / Microsoft account**
 
-  This is the "bridge" to connect the dev machine to the remote machine via [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server).
+  This is the "bridge" to connect the dev machine to the remote machine through [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server).
 
 ### 1. Install Docker (Remote Machine)
 
