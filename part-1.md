@@ -58,7 +58,7 @@ sudo reboot # restart the system
 docker -v # varify the installation
 ```
 
-![ubuntu install doker](./images/part-1/docker-installed.gif)
+![ubuntu install doker](./images/part-1/install-docker-ubuntu.gif)
 
 ## Project Setup
 
