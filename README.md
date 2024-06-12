@@ -103,6 +103,8 @@ Dev Container can help us to achieve including but not limited to:
 - Automatic workflows:
   - automatically run `npm install` or `npm start` for your project or other workflow scripts you want
 
+- Developing outside your office without a computer!
+
 ## Steps for Dev Containers
 
 I have several guides on how to set up and use Dev Container, check them out one by one!
