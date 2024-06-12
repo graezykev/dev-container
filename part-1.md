@@ -8,11 +8,11 @@ I have some "must use" VS Code extensions when they developing this project, and
 
 What's more, as we have some coding conventions everyone need to stick to, like using 2 spaces to indent our code (instead of a `Tab` or 4 spaces etc.), I want my teammates to achieve this even without knowing the conventions.
 
-## Install VS Code
+## 1. Install VS Code
 
 [JetBrains WebStorm](https://www.jetbrains.com/help/webstorm/connect-to-devcontainer.html) also support Dev Containers, but I haven't tried before, in my posts I primary focus on VS Code.
 
-## Install **Docker**
+## 2. Install **Docker**
 
 Installing Docker is quit easy and fast, I suggest you follow the [officail guide](https://docs.docker.com/engine/install/).
 
@@ -60,7 +60,7 @@ docker -v # varify the installation
 
 ![ubuntu install doker](./images/part-1/install-docker-ubuntu.gif)
 
-## Project Setup
+## 3. Project Setup
 
 If you're looking to have a quick glance, you can just clone my demo project here <https://github.com/graezykev/dev-container/tree/part-1-use-docker-file> and go to the next step.
 
@@ -166,15 +166,15 @@ Edit `devcontainer.json` to add the following configuration:
 
 I specify some useful VS Code extensions here, like `ESLint`, `Prettier` and `Git` visualising tools, in your own scenario you may add your own extensions. We can even specify the version of an extension such as `@3.0.5`.
 
-## Build Dev Container
+## 4. Build Dev Container
 
 This step is to build the Dev Container based on what we configured in the last step.
 
-### Open Project in VS Code
+### 4.1 Open Project in VS Code
 
 `File` -> `Open Folder...` -> Choose **your project folder** in the last step, such as `part-1-use-docker-file` in my demo project.
 
-### VS Code settings & extensions
+### 4.2 VS Code settings & extensions
 
 VS Code will show a prompt to ask you to install the Extension of Dev Containers(`ms-vscode-remote.remote-containers`).
 
@@ -182,7 +182,7 @@ VS Code will show a prompt to ask you to install the Extension of Dev Containers
 
 Click the "Install" button and wait for the installation.
 
-### Reopen in Container
+### 4.3 Reopen in Container
 
 After the extension is installed, VS Code will show another prompt to ask you to "Reopen" you project in a container, which means, to build your Dev Container.
 
@@ -194,13 +194,13 @@ This is the whole process I recorded:
 
 ![img](./images/part-1/dev-container-install-extension-and-build.gif)
 
-### Build Dev Container
+### 4.4 Build Dev Container
 
 Next we need to wait for the building. Building (or rebuilding) may take some time, depens on how much works you define in `Dockerfile`, how fast you Internet is, and how good your computers performance is.  But we only need to build for the first time we "Reopen in Container", as long as we have nothing changed in `.devcontainer`, VS Code won't ask us to rebuild.
 
 After the building finish, enjoy all Applications and Extensions installed inside the container and unified Settings! (TODO)
 
-## Configurations Explanation
+## 5. Appendix: Configurations Explanation
 
 ### Building
 
