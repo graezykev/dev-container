@@ -27,13 +27,13 @@ I saw so many JavaScript developers using ESLint and Prettier extensions to auto
 
 As an experienced developer, you must have lots of other extensions want to recommend to your teammates, but asking them to install them one by one is not an easy thing, let alone in some cases you may ask them to install a specific version of an extension ...
 
-## Editor Setting for Code Convention
+## Editor Setting
 
 Every team has its own code convention, some use 2 spaces as indention, some use 4 spaces, while others may prefer a real "tab".
 
 Whatever convention you're using, a team leader needs to reduce your teammates's pain to follow it, what if you're using the "2 spaces" convention, but your new colleague's editor auto inserts 4 spaces when he hits the `Tab` key ...
 
-## Emergency
+## Emergency Situation
 
 You're on a day off today, your manager just rang you up because you made a huge mistake on the code published yesterday leading to memory leaks and users are complaining! This issue requires just a tiny change in the code to fix but you don't have your laptop right now, all you have is your wife's iPad!
 
