@@ -99,11 +99,11 @@ By running a Docker container which has all development software and configurati
 
 I have several guides on how to set up and use Dev Container, check them out one by one!
 
-- Part 1: Basic Setups and Usage
-- Part 2: Image, Features, Workspace, Environment Variables
-- Part 3: Full Stack Dev - Docker Compose & Database
-- Part 4: Remote Dev - Develop on a Remote Docker Host
-- Part 5: Multiple Projects & Shared Container Configure
+- [Part 1: Basic Setups and Usage](./part-1.md)
+- [Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
+- [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
+- [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
+- [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
 
 ## Appendix: Related Docs
 
