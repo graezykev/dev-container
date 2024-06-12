@@ -52,7 +52,7 @@ We need to prepare 3 things before setting up remote development:
 
 We need to install Docker on the remote machine, however, no need for the dev machine.
 
-I mentioned how to install Docker in [Part 1:](./part-1.md), which is relatively easy and straightforward, especially when you're using Mac/Windows PC, even if you are using headless systems such as a Ubuntu Linux server, that is also within a few commands.
+I mentioned how to install Docker in [Part 1:](./part-1.md#2-install-docker), which is relatively easy and straightforward, especially when you're using Mac/Windows PC, even if you are using headless systems such as a Ubuntu Linux server, that is also within a few commands.
 
 Once we finish the installation of Docker, we can move on to the next step.
 
