@@ -12,7 +12,9 @@ All these initial setups can be seamlessly shared by defining a Dev Container fo
 
 ## 1. Install VS Code
 
-[JetBrains WebStorm](https://www.jetbrains.com/help/webstorm/connect-to-devcontainer.html) also supports Dev Containers, but I haven't tried it before, in this guide I primarily focus on VS Code.
+In this guide, I primarily focus on VS Code, so first thing first, install the VS Code client on your computer.
+
+> [JetBrains WebStorm](https://www.jetbrains.com/help/webstorm/connect-to-devcontainer.html) also supports Dev Containers, but I haven't tried it before.
 
 ## 2. Install **Docker**
 
@@ -200,7 +202,9 @@ This is the whole process I recorded:
 
 ### 4.4 Dev Container Built
 
-Next, we need to wait for the building.
+Moving forward, I'm going to call the computer we're using as a "**host machine**". VS Code client and Docker engine are installed on the host machine, while the container (Dev Container) is built and run on top of it.
+
+After "Reopen in Container", we need to wait for the building.
 
 Building (or rebuilding) may take some time, depending on how many tasks you define in `Dockerfile`, how fast your Internet is, and how good your computer performance is. But we only need to build for the first time we "Reopen in Container", as long as we have nothing changed in `.devcontainer` in the future, VS Code won't ask us to **rebuild**.
 
