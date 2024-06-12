@@ -1,5 +1,7 @@
 # Dev Container - Part 2: Image, Features, Workspace, Environment Variables
 
+In our [last guide](./part-1.md), I introduced how to use a `.devcontainer` and a `devcontainer.json` as well as a `Dockerfile` to configure and build a basic Dev Container.
+
 - problems
   - Building from a Dockerfile can be very long
     - The bottle neck will be on the downloading of the image
