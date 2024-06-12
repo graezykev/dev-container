@@ -12,13 +12,13 @@ All these initial setups can be seamlessly shared by defining a Dev Container fo
 
 ## 1. Install VS Code
 
-[JetBrains WebStorm](https://www.jetbrains.com/help/webstorm/connect-to-devcontainer.html) also supports Dev Containers, but I haven't tried before, in my posts I primarily focus on VS Code.
+[JetBrains WebStorm](https://www.jetbrains.com/help/webstorm/connect-to-devcontainer.html) also supports Dev Containers, but I haven't tried it before, in this guide I primarily focus on VS Code.
 
 ## 2. Install **Docker**
 
 Installing Docker is quite easy and fast, I suggest you follow the [official guide](https://docs.docker.com/engine/install/).
 
-If you are using a Windows or Mac system, it's super straightforward with a few clicks to install.
+If you are using a Windows or Mac system, it's super straightforward with a few clicks to install with `.ext` or `.dmg`.
 
 Even if you're using Linux, it's also effortless within a few Linux commands.
 
