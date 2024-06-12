@@ -1,42 +1,57 @@
 # Dev Container - Why Do I Need It
 
-## Table of Contents
+## It Works on My Machine
 
-- Why Do I Need It
-- Part 1: Basic Setups and Usage
-- Part 2: Image, Features, Workspace, Environment Variables
-- Part 3: Full Stack Dev - Docker Compose & Database
-- Part 4: Remote Dev - Develop on a Remote Docker Host
-- Part 5: Multiple Projects & Shared Container Configure
+Look at this conversation between a newbie developer and his mentor:
 
-## Why
+- Hi, mentor, I can't start this project! Just ran into too many errors!
+- It works on my machine! Oops! I'm using `Node.js` v14, what about you?
+- v18.
+- Switch it back to v14, it's easy, just run `nvm use 14`.
+- Sorry what's NVM?
+- ...
 
-You can solve problems like this via Dev Containers:
+## Software and Software Versions Management
 
-- My team has several full stack projects, these are historic projects relying on different versions of Node.js, (it's annoying but it's common in real scenarios), we're not able to upgrade them in time. Now every time a new member comes, we need this newbie to install NVM, as well as multiple versions of Node.js on top of that.
+My team has several full stack projects, these are historic projects relying on different versions of `Node.js`, we're not able to upgrade them in time (it's annoying but it's common in real scenarios).
 
-- Lots of other softwares or tools a new member need to install and configure when he/she joins.
+Now every time a new member comes, we need this newbie to install `NVM`, as well as multiple versions of `Node.js` on top of that.
 
-- reducing the "it works on my machine" problem.
-  - Look at this conversation between a newbie developer and his mentor:
-    - I can't start this project! just ran into too many errors!
-    - It works on my machine! Oops! I'm using Node.js V14, what about you?
-    - V18.
-    - Switch it back to V14, it's easy, just run `nvm use 14`.
-    - Sorry what's NVM?
-    - ...
+## VS Code Extensions
 
-- What is PNPM and how to install it?
+VS Code extensions can sometimes crucially improve our development efficiency and speed.
 
-- You don't have Git installed yet?
+I saw so many JavaScript developers using ESLint and Prettier extensions to auto-format their code and auto-fix some code convention problems with just hitting `Command + s` (`Control + s`):
 
-- I'm using Windows/Mac, how dare you ask me to run Linux specific commands!
-  - You want me to get a virtual machine (VMWare, VirtualBox, etc.) and install Ubuntu?
-  - Nah! It's not that irritating! Use Dev Container!
+![auto format](./images/auto-format-extension.gif)
 
-- I'm on day off today, my manager just ring me up because I made a huge mistake on the code published yesterday leading to memery leaks and users are complaining! I don't have my laptop right now, all I have is my wife's iPad, I want to fix the issue with just a web browser!
+As a experienced developer, you must have lots of other extensions want to recommend to you teammates, but ask them to install one by one is not an easy thing, let alone in some cases you may ask them to install a specific version of an extension ...
+
+## Editor Setting for Code Convention
+
+Every team has its own code convention, some use 2 spaces as indention, some use 4 space, while others may prefer a real "tab".
+
+Whatever convention you're using, a team leader needs to reduce your teammates's pain to follow it, what if you're using the "2 spaces" convention, but your new colleague's editor auto insert 4 spaces when he hit the `Tab` key ...
+
+## Emergency
+
+I'm on day off today, my manager just ring me up because I made a huge mistake on the code published yesterday leading to memery leaks and users are complaining! I don't have my laptop right now, all I have is my wife's iPad, I want to fix the issue with just a web browser!
+
+## Setting up Working Environemt is Painful
+
+There are lots of softwares or tools a new member need to install and configure when he/she joins, this may even take more than 2 days and event. Think about those network issues, firewall issues, dependencies and dependency's dependencies, can be a nightmare to a new commer.
+
+What's worse, you may ask your teammates to start your project by running Unix-like commands, but a new member is using a Windows PC.
 
 ## Easier and Faster Onboarding
+
+All the problems above can be solve by using Dev Containers.
+
+If you are a backend developer, or you have experience on containers like Docker, Dev Containers is nothing new to you!
+
+Even if you never used containers before, you don't need to dive deep into the concepts because using Dev Containers in VS Code is very simple with no requirement of understanding what is Docker.
+
+Here is what a new comer needs to do to involve himself/herself to your developement team:
 
 Pick what ever machine or system you like, Mac, Windows, Ubuntu, don't matter!
 
@@ -44,15 +59,11 @@ Install Docker on the machine (without asking what Docker is), super easy.
 
 Install VS Code, just 2 to 3 clicks?
 
-Download the project A.
+Download/Clone the project.
 
-Open A in VS Code, follow what it tells you.
+Open the project in VS Code, follow the prompt to build and enjoy the development!
 
-- the Dev Containers extension (`ms-vscode-remote.remote-containers`)
-- reopen in container
-- wait for the container to build, just several minites, it's all set! (only for one time, no need to build next time)
-
-## What
+## What is Dev Container
 
 Create reproducible development environments, to use on any PC, anytime, anywhere.
 
@@ -82,21 +93,17 @@ By running a Docker container which has all development software and configurati
   - fontFamily
   - auto run `npm install` or other initial scripts
 
-## How
+## Steps for Dev Containers
 
-## Steps
+I have several guides on how to set up and use Dev Container, check out one by one!
 
-### part1: Basic Usage - Use Dockerfile
+- Part 1: Basic Setups and Usage
+- Part 2: Image, Features, Workspace, Environment Variables
+- Part 3: Full Stack Dev - Docker Compose & Database
+- Part 4: Remote Dev - Develop on a Remote Docker Host
+- Part 5: Multiple Projects & Shared Container Configure
 
-### part2: Use Docker Image & Features & Environment Variables
-
-### part3: Full Stack Dev - Use Docker Compose & Database
-
-### part4: Remote Dev - Develop on a remote Docker host
-
-### part5: Shared Container Configure
-
-## Related Docs
+## Appendix: Related Docs
 
 - [Dev Containers tutorial](https://code.visualstudio.com/docs/devcontainers/tutorial)
   - How it works
