@@ -1,6 +1,6 @@
 # Dev Container - Part 1: Basic Setups and Usage
 
-I wrote about the [reasons why I want to use Dev Containers](./README.md) in my last post. In this post I'm going to guide you through setting up a simple Dev Container.
+I wrote about [the reasons why I want to use Dev Containers](./README.md) in my last post. In this post I'm going to guide you through setting up a simple Dev Container.
 
 Imagine we have a `Node.js` project, I want anyone who wants to develop this project (like newly joined colleagues) without manually installing `Node.js` (`Python`, `Go Lang`, or other projects are similar).
 
