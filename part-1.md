@@ -110,7 +110,8 @@ This is a simple `Dockerfile` that base on an `Ubuntu` Linux system, as well as 
 FROM ubuntu:24.04
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install nodejs npm
+RUN apt-get install nodejs
+RUN apt-get install npm
 # RUN apt-get install -y python3
 ```
 
