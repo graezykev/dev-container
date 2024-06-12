@@ -172,7 +172,7 @@ This step is to build the Dev Container based on what we configured in the last 
 
 ### 4.1 Open Project in VS Code
 
-`File` -> `Open Folder...` -> Choose **your project folder** in the last step, such as `part-1-use-docker-file` in my demo project.
+`File` -> `Open Folder...` -> Choose **your project folder** in the last step, such as `part-1-use-docker-file` in my demo project or `your-project-folder` in the demo we just created.
 
 ### 4.2 VS Code settings & extensions
 
