@@ -69,7 +69,7 @@ If you are a backend developer, or you have experience with containers like Dock
 
 ![dev container architecture](./images/architecture-containers.png)
 
-Even if you never used containers before, you don't need to dive deep into the concepts because using Dev Containers in VS Code is very simple with no requirement of understanding what Docker is.
+Even if you never used containers before, you don't need to dive deep into the concepts because using Dev Containers in VS Code is very simple with no requirement of understanding what a container is or what Docker is (even though you need to install it).
 
 Create reproducible development environments, to use on any PC, anytime, anywhere.
 
