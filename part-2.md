@@ -1,4 +1,4 @@
-# Part 2
+# Dev Container - Part 2: Image, Features, Workspace, Environment Variables
 
 - problems
   - Building from a Dockerfile can be very long
