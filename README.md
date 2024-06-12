@@ -63,6 +63,8 @@ Here is what a newcomer needs to do to involve himself/herself with the developm
 
 ## What is Dev Container
 
+So what on earth is Dev Container? How does it work under the hood?
+
 If you are a backend developer, or you have experience with containers like Docker, Dev Containers is nothing new to you!
 
 Even if you never used containers before, you don't need to dive deep into the concepts because using Dev Containers in VS Code is very simple with no requirement of understanding what Docker is.
