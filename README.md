@@ -71,33 +71,37 @@ If you are a backend developer, or you have experience with containers like Dock
 
 Even if you never used containers before, you don't need to dive deep into the concepts because using Dev Containers in VS Code is very simple with no requirement of understanding what a container is or what Docker is (even though you need to install it).
 
-Create reproducible development environments, to use on any PC, anytime, anywhere.
+Dev Container works by running a Docker container which has all development software, configurations, VS Code extensions, VS Code Settings etc.
 
-By running a Docker container which has all development software and configurations.
+The container creates reproducible development environments, to use on any PC, anytime, anywhere.
 
-- Pre-install, Pre-configure:
-  - Operating system (the latest stable LTS Ubuntu)
-  - Git
-  - Node.js and its multiple versions
-    - Because our historical projects rely on different Node.js version
+Dev Container can help us to achieve including but not limited to:
+
+- Pre-install and pre-configure systems and software:
+  - Operating system (such as the latest stable LTS Ubuntu)
+  - Install Git, wget, curl etc.
+  - NVM and Node.js with its multiple versions
   - PNPM, YARN
   - Python, Ruby, Go, Java, ...
   - Databases such as PostgreSQL and its extensions
   - Customised Shell
-    - Set Zsh as the default shell
-    - Shell prompt or themes <https://github.com/ohmyzsh/ohmyzsh/wiki/Themes>
+    - such as setting `Zsh` as the default shell
+    - Shell prompt or themes like <https://github.com/ohmyzsh/ohmyzsh/wiki/Themes>
   - Other customised software or settings
-- Pre-install VS Code extensions
+
+- Pre-install VS Code extensions:
   - specific extensions
-  - specific versions (pre-release version)
+  - specific versions of the extensions  (even a pre-release version)
   - self-made extensions
-- Pre-configure VS Code
-  - tabSize: 2
-  - insertSpaces: true
-  - detectIndentation: false
-  - fontSize
-  - fontFamily
-  - auto run `npm install` or other initial scripts
+
+- Pre-configure VS Code Settings:
+  - tab size: 2
+  - auto insert spaces on hitting the tab key: true
+  - font size
+  - font family
+
+- Automatic workflows:
+  - automatically run `npm install` or `npm start` for your project or other workflow scripts you want
 
 ## Steps for Dev Containers
 
