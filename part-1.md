@@ -28,7 +28,7 @@ Even if you're using Linux, it's also effortless within a few Linux commands.
 - Mac: Install **Docker Desktop** within a few clicks <https://docs.docker.com/desktop/install/mac-install/>.
 - Linux PC: Install **Docker Engine** within a few Linux comnands <https://docs.docker.com/engine/install/ubuntu/>.
 
-For example, I'm using Ubuntu Linux, I install Docker Engine by the following commands according to [this guide](https://docs.docker.com/engine/install/ubuntu/), and I have a full record of the installation below.
+For example, I'm using Ubuntu Linux, I install Docker Engine by the following commands according to [this guide](https://docs.docker.com/engine/install/ubuntu/):
 
 ```sh
 # Add Docker's official GPG key:
@@ -61,6 +61,8 @@ sudo reboot # restart the system
 ```sh
 docker -v # varify the installation
 ```
+
+I have a full record of the installation:
 
 ![ubuntu install doker](./images/part-1/install-docker-ubuntu.gif)
 
