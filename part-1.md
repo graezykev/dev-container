@@ -220,21 +220,32 @@ Similarly, the VS Code extensions  we specified in `devcontainer.json` are not i
 
 ![vs code extensions installed in dev container](./images/part-1/vs-code-extensions-installed-in-dev-container.png)
 
-## Appendix 1: Configurations Explanation
+## Next Step
 
-### Building
+## Appendix 1: Explanation on some Basic Configurations
 
-`build` -> `dockerfile`
+### Building Entry Point
 
-### Forwarding ports
+The `build` -> `dockerfile` field defined in `devcontainer.json` is the entry point of the Dev Container, VS Code automatically use what you specify here to build a Docker image and run the image after it's built.
+
+### Forwarding Ports
+
+In our previous `devcontainer.json` we have a configuration `"forwardPorts": [8080]` which is used to forward ports from the container to the host machine.
+
+As I mentioned, the `Node.js` and other environment settings are actually inside the container but not sit on the host machine, so the `Node.js` server we started by `node index.js` is also run inside the container, if we want to visit the server from the host machine's browser (or the host machine's VS Code), we need to forward the port `8080` in the container to the host machine.
+
+`"forwardPorts": [8080]` is an abbreviation for `"forwardPorts": ["8080:8080"]`, you can make your own adjustment like `"forwardPorts": ["port-on-host:port-in-container"]`.
+
+Learn more about `forwardPorts` here <https://containers.dev/implementors/json_reference/#general-properties>.
 
 ## Appendix 2: Lifecycle Commands Explanation
 
-<https://containers.dev/implementors/json_reference/#lifecycle-scripts>
+We have used `postStartCommand` in the prvious demo, here I would like to introduce more about some Lifecycle scripts you can use in `devcontainer.json`. For full introduction, refer to this officail document: <https://containers.dev/implementors/json_reference/#lifecycle-scripts>.
 
 - `postCreateCommand`
 
   - When you create a new Codespace, the postCreateCommand will run right after the container is set up.
+
   - When you first open a project in a VS Code dev container, the postCreateCommand will run after the container is built or rebuilt.
 
   If you want to install global npm packages or set environment variables, you would use this command.
@@ -242,9 +253,11 @@ Similarly, the VS Code extensions  we specified in `devcontainer.json` are not i
 - `postStartCommand`
 
   - You are working on a project in a Codespace. You stop the Codespace at the end of the day. The next day, you start the Codespace again to continue your work.
+
   - You are developing an application in a VS Code dev container. You close VS Code or restart your computer, which stops the container. Later, you reopen VS Code and the container starts again.
 
 - `postAttachCommand`
 
   - You are using a Codespace for your project, and you disconnect from it (e.g., by closing the browser tab or your laptop going to sleep). Later, you reconnect to the same Codespace.
+
   - You are working on a project in a VS Code dev container. You close VS Code or restart your computer, then later reopen VS Code and attach to the same running container.
