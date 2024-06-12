@@ -136,7 +136,8 @@ To optimise the workflow, add an auto-run command line to `devcontainer.json`:
   "build": {
     "dockerfile": "Dockerfile"
   },
-+ "postStartCommand": "node index.js"
++ "postStartCommand": "node index.js",
++ "forwardPorts": [8080]
 }
 ```
 
@@ -197,15 +198,35 @@ This is the whole process I recorded:
 
 ### 4.4 Dev Container Built
 
-Next we need to wait for the building. Building (or rebuilding) may take some time, depens on how much works you define in `Dockerfile`, how fast you Internet is, and how good your computers performance is.  But we only need to build for the first time we "Reopen in Container", as long as we have nothing changed in `.devcontainer`, VS Code won't ask us to rebuild.
+Next we need to wait for the building.
 
-After the building finish, enjoy all Applications and Extensions installed inside the container and unified Settings! (TODO)
+Building (or rebuilding) may take some time, depens on how many tasks you define in `Dockerfile`, how fast you Internet is, and how good your computers performance is. But we only need to build for the first time we "Reopen in Container", as long as we have nothing changed in `.devcontainer` in the future, VS Code won't ask us to **rebuild**.
+
+After the building finish, enjoy all Applications and Extensions installed inside the container and unified Settings!
+
+Once the Dev Container is built, or every time the container is started (such as you restart VS Code), the `postStartCommand` we specified in `devcontainer.json` with a command of `node index.js` is run, and start our `Node.js` server!
+
+![server started by postStartCommand](./images/part-1/post-start-command.png)
+
+This `Node.js` engine is actually install inside the the Dev Container but not on your host machine.
+
+According to what we wrote in `Dockerfile` and `devcontainer.json`, we initiate an Ubuntu system with `Node.js` installed, we can check from the terminal console , you may not have `Node.js` installed or have a different version of it installed on your host machine:
+
+![nodejs installed inside dev container](./images/part-1/nodejs-installed-inside-dev-container.png)
+
+This `Node.js` is installed inside the Dev Container, but not on your host machine, which looks like a separate "sandbox" environment for you run  `Node.js` programs inside it.
+
+Similarly, the VS Code extensions  we specified in `devcontainer.json` are not install in you VS Code client on you host machine, but inside the Dev Container, if you open another project in this host machine, you won't find these extensions.
+
+![vs code extensions installed in dev container](./images/part-1/vs-code-extensions-installed-in-dev-container.png)
 
 ## Appendix 1: Configurations Explanation
 
 ### Building
 
 `build` -> `dockerfile`
+
+### Forwarding ports
 
 ## Appendix 2: Lifecycle Commands Explanation
 
