@@ -200,13 +200,13 @@ Next we need to wait for the building. Building (or rebuilding) may take some ti
 
 After the building finish, enjoy all Applications and Extensions installed inside the container and unified Settings! (TODO)
 
-## 5. Appendix: Configurations Explanation
+## Appendix 1: Configurations Explanation
 
 ### Building
 
 `build` -> `dockerfile`
 
-### TLDR: Lifecycle Commands Explanation
+## Appendix 2: Lifecycle Commands Explanation
 
 <https://containers.dev/implementors/json_reference/#lifecycle-scripts>
 
