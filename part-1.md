@@ -1,4 +1,4 @@
-# Part 1: Basic Setups and Usage
+# Dev Container - Part 1: Basic Setups and Usage
 
 I wrote about the [reason why I want to use Dev Containers](./README.md) in my last post.
 
@@ -221,6 +221,10 @@ Similarly, the VS Code extensions  we specified in `devcontainer.json` are not i
 ![vs code extensions installed in dev container](./images/part-1/vs-code-extensions-installed-in-dev-container.png)
 
 ## Next Step
+
+Next, we're going to optimise this Dev Container by using a reuseable docker image as an entry point, and add some extra software without using a `Dockerfile`.
+
+[Dev Container - Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
 
 ## Appendix 1: Explanation on some Basic Configurations
 
