@@ -49,10 +49,6 @@ What's worse, you may ask this newcomer to start your project by running Unix-li
 
 All the problems above can be solved by using Dev Containers.
 
-If you are a backend developer, or you have experience with containers like Docker, Dev Containers is nothing new to you!
-
-Even if you never used containers before, you don't need to dive deep into the concepts because using Dev Containers in VS Code is very simple with no requirement of understanding what is Docker.
-
 Here is what a newcomer needs to do to involve himself/herself with the development team as fast as possible and as easy as possible:
 
 - 1. Pick whatever machine or system he/she likes, Mac, Windows, Ubuntu, don't matter!
@@ -66,6 +62,10 @@ Here is what a newcomer needs to do to involve himself/herself with the developm
 - 5. Open the project in VS Code, follow the prompt to build a Dev Container, and enjoy the development!
 
 ## What is Dev Container
+
+If you are a backend developer, or you have experience with containers like Docker, Dev Containers is nothing new to you!
+
+Even if you never used containers before, you don't need to dive deep into the concepts because using Dev Containers in VS Code is very simple with no requirement of understanding what Docker is.
 
 Create reproducible development environments, to use on any PC, anytime, anywhere.
 
