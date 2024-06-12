@@ -14,9 +14,49 @@ What's more, as we have some coding conventions everyone need to stick to, like 
 
 ## Install **Docker**
 
+Installing Docker is quit easy and fast, I suggest you follow the [officail guide](https://docs.docker.com/engine/install/).
+
+If you are using Windows or Mac system, it's super straightforward with a few clicks to install.
+
+Even you're using Linux, it's also very easy within a few Linux comnands.
+
 - Windows PC: Install **Docker Desktop** within a few clicks <https://docs.docker.com/desktop/install/windows-install/>.
 - Mac: Install **Docker Desktop** within a few clicks <https://docs.docker.com/desktop/install/mac-install/>.
 - Linux PC: Install **Docker Engine** within a few Linux comnands <https://docs.docker.com/engine/install/ubuntu/>.
+
+For example, I'm using a Ubuntu Linux, I install Docker Engine by the following commands according to [this guide](https://docs.docker.com/engine/install/ubuntu/):
+
+```sh
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+```sh
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+```sh
+sudo usermod -aG docker $USER # replace $USER with your Linux login user name
+```
+
+```sh
+sudo reboot # restart the system
+```
+
+```sh
+docker -v # varify the installation
+```
 
 ## Project Setup
 
@@ -62,7 +102,7 @@ server.listen(port1, hostname, () => {
 
 If you want to start the Node.js program, you'll have to install the `Node.js` software.
 
-This is the simple `Dockerfile` that base on an `Ubuntu` Linux system, as well as `Node.js` installed:
+This is a simple `Dockerfile` that base on an `Ubuntu` Linux system, as well as `Node.js` installed:
 
 ```dockerfile
 FROM ubuntu:24.04
@@ -136,15 +176,23 @@ This step is to build the Dev Container based on what we configured in the last 
 
 VS Code will show a prompt to ask you to install the Extension of Dev Containers(`ms-vscode-remote.remote-containers`).
 
-![img]()
+![dev container installation prompt](./images/part-1/dev-container-extension-installation-prompt.png)
 
-### Start Building
+Click the "Install" button and wait for the installation.
+
+### Reopen in Container
 
 After the extension is installed, VS Code will show another prompt to ask you to "Reopen" you project in a container, which means, to build your Dev Container.
 
-Let's click `Reopen in Container`.
+![reopen in container prompt](./images/part-1/reopen-in-container-prompt.png)
 
-![img]()
+Click `Reopen in Container`.
+
+This is the whole process I recorded:
+
+![img](./images/part-1/dev-container-install-extension-and-build.gif)
+
+### Build Dev Container
 
 Next we need to wait for the building. Building (or rebuilding) may take some time, depens on how much works you define in `Dockerfile`, how fast you Internet is, and how good your computers performance is.  But we only need to build for the first time we "Reopen in Container", as long as we have nothing changed in `.devcontainer`, VS Code won't ask us to rebuild.
 
