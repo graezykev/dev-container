@@ -2,11 +2,11 @@
 
 I wrote about the [reason why I want to use Dev Containers](./README.md) in my last post.
 
-In this guide, Let's imagine we have a `Node.js` project, I want anyone who wants to develop this project without manually installing `Node.js`.
+Imagine we have a `Node.js` project, I want anyone who wants to develop this project (like newly joined colleagues) without manually installing `Node.js`.
 
-I have some "must use" VS Code extensions when they are developing this project, and when they are involved in this project, there is no need for them to proofread every extension's name and install them manually.
+Besides, we have some "must use" VS Code extensions when they are developing this project, as it's painful for them to proofread every extension's name and install them manually, it would be great if there is a way to automatically install the extensions without noticing them!
 
-Moreover, as we have some coding conventions everyone needs to stick to, like using 2 spaces to indent our code (instead of a `Tab` or 4 spaces etc.), I want my teammates to achieve this even without knowing the conventions.
+Moreover, we have some coding conventions everyone needs to stick to, like using 2 spaces to indent our code (instead of a `Tab` or 4 spaces etc.), I want my teammates to achieve this even without knowing the conventions.
 
 ## 1. Install VS Code
 
