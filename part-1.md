@@ -82,7 +82,7 @@ cd your-project-folder && \
 mkdir .devcontainer && \
 touch .devcontainer/devcontainer.json && \
 touch .devcontainer/Dockerfile && \
-touch touch index.js
+touch index.js
 ```
 
 Let's rewrite the `Node.js` which can produce a "Hello World" web page:
@@ -194,7 +194,7 @@ This is the whole process I recorded:
 
 ![img](./images/part-1/dev-container-install-extension-and-build.gif)
 
-### 4.4 Build Dev Container
+### 4.4 Dev Container Built
 
 Next we need to wait for the building. Building (or rebuilding) may take some time, depens on how much works you define in `Dockerfile`, how fast you Internet is, and how good your computers performance is.  But we only need to build for the first time we "Reopen in Container", as long as we have nothing changed in `.devcontainer`, VS Code won't ask us to rebuild.
 
