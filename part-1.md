@@ -22,7 +22,7 @@ Installing Docker is quite easy and fast, I suggest you follow the [official gui
 
 If you are using a Windows or Mac system, it's super straightforward with a few clicks to install with `.ext` or `.dmg`.
 
-Even if you're using Linux, it's also effortless within a few Linux commands.
+Even if you're using Linux, it's also effortless with a few Linux commands.
 
 - Windows PC: Install **Docker Desktop** within a few clicks <https://docs.docker.com/desktop/install/windows-install/>.
 - Mac: Install **Docker Desktop** within a few clicks <https://docs.docker.com/desktop/install/mac-install/>.
