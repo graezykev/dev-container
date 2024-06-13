@@ -71,11 +71,11 @@ If you are a backend developer, or you have experience with containers like Dock
 
 Even if you never used containers before, you don't need to dive deep into the concepts because using Dev Containers in VS Code is very simple with no requirement of understanding what a container is or what Docker is (even though you need to install it).
 
-Dev Container works by running a Docker container which has all development software, configurations, VS Code extensions, VS Code Settings etc.
+Dev Container works by running a Docker container which has all development software, configurations, VS Code extensions, VS Code Settings etc., while sharing the environments with the Local OS (or host machine) via VS Code.
 
 The container creates reproducible development environments, to use on any PC, anytime, anywhere.
 
-Dev Container can help us to achieve including but not limited to:
+Dev Container can help us to achieve what is including but not limited to:
 
 - Pre-install and pre-configure systems and software:
   - Operating system (such as the latest stable LTS Ubuntu)
