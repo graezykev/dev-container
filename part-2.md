@@ -34,8 +34,9 @@ We can regard Docker Hub as a free file server to serve our built, ready-to-use 
 
 ### Build & Push Image
 
-- Build an image via the `Dockerfile`.
-- Push the image to Docker Hub.
+As we have a `Dockerfile` in our [last guide](./part-1.md), building and pushing a Docker image is quite simple, and you also need to sign up for a free account on Docker Hub.
+
+I don't want to go into too much detail here, but if you're not familiar with Docker, check out this [guide to register, build and push](https://github.com/graezykev/docker-build-push-101).
 
 ### Configure Image
 
