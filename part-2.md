@@ -56,11 +56,55 @@ That's all! When our new teammates use "Open in Container" in VS Code to open ou
 
 ## Features
 
-Install additional Software.
+Using an image to create Dev Containers can be much faster if we have a hefty `Dockerfile` because we only need to build this image once (or rebuild it if we modify it).
 
-Add some sprinkles to your ice cream!
+However, it's yet ideal when you consider scenarios like this:
 
-<https://containers.dev/features>
+```dir
+.
+├── project-go-lang
+├── project-node-js-1
+├── project-node-js-2
+├── project-postgresql
+├── project-python
+└── project-rust
+```
+
+You have multiple tech stacks in different projects, are you going to write a `Dockerfile` to pre-install all of the `Node.js`, `Go`, `python` etc. and build an image to use in each project?
+
+No! You don't do this.
+
+I only pre-install and pre-configure the "most used" software in the image. For divergent tech stack projects, install extra software in their own project.
+
+Adding extra software to a Dev Container is super easy you can specify them in `devcontainer.json` by the `features` field. You can add different software to different projects with the same image.
+
+Add `python` engine to `devcontainer.json` in Project A:
+
+```diff
+  "image": "docker.io/your-user-name/your-image-name",
++ "features": {
++   "ghcr.io/devcontainers/features/python:1": {
++     "version": "latest"
++   }
++ }
+```
+
+Add `Go` language engine to `devcontainer.json` in Project B:
+
+```diff
+  "image": "docker.io/your-user-name/your-image-name",
++ "features": {
++   "ghcr.io/devcontainers/features/go:1": {}
++ }
+```
+
+...
+
+Find out all ready-to-use features here <https://containers.dev/features>.
+
+With the configurations above, different projects can use the same image and the features you add in their own `devcontainer.json` to create different (by similar) Dev Containers.
+
+Adding features is like adding sprinkles to your ice cream!
 
 ## `workspaceMount` & `workspaceFolder`
 
