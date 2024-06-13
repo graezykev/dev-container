@@ -56,7 +56,7 @@ Specify this image in `devcontainer.json` and remove the `Dockerfile` from it:
 + "image": "docker.io/your-user-name/your-image-name"
 ```
 
-> Check out my demo here https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json
+> Check out my demo here https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L3
 > 
 > Besides, `"image": "your-user-name/your-image-name"` also works. 
 
@@ -68,7 +68,7 @@ Using an image to create Dev Containers can be much faster if we have a hefty `D
 
 However, it's yet to be ideal when you consider scenarios like this:
 
-```dir
+```
 .
 ├── project-go-lang
 ├── project-node-js-1
@@ -114,11 +114,37 @@ With the configurations above, different projects can use the same image and the
 
 Adding features is like adding sprinkles to your ice cream!
 
-## `workspaceMount` & `workspaceFolder`
+## Workspace
 
-`${localWorkspaceFolder}`
+If you look at the `devcontainer.json` in [my demo](https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L13-L14), I have 2 lines:
 
-`${localWorkspaceFolderBasename}`
+```json
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+```
+
+The 2 configurations are not necessary for most cases but I still like to explain what they are.
+
+If you have experience with containers, it's all about the "`mount`" concept.
+
+Well, `workspaceMount` and `workspaceFolder` always come together, to understand them, let me explain the variables of `${localWorkspaceFolder}` and `${localWorkspaceFolderBasename}` first.
+
+`${localWorkspaceFolder}` and `${localWorkspaceFolderBasename}` are some pre-defined variables in `devcontainer.json` for Dev Container.
+
+Let's say, you have a project `project-a` in your host machine and you're going to build a Dev Container:
+
+```
+.
+└── path
+    └── to
+        └── project-a
+            └── .devcontainer
+                ├── Dockerfile
+                └── devcontainer.json
+```
+
+In this case, `${localWorkspaceFolder}` represents the whole absolute path of `/path/to/project-a`, and `${localWorkspaceFolderBasename}` represents the project folder name `project-a`.
+
 
 ## Environment Variables
 
