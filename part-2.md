@@ -1,5 +1,20 @@
 # Dev Container - Part 2: Image, Features, Workspace, Environment Variables
 
+This is the second guide of the Dev Container series:
+
+- [Part 0: Dev Container - Why I Need It](./README.md)
+- [Part 1: Quick Start - Basic Setups and Usage](./part-1.md)
+- Part 2: Image, Features, Workspace, Environment Variables
+- [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
+- [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
+- [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
+
+> Check out my demo for this guide:
+>
+> ```sh
+> git clone -b part-2-use-image-and-feature https://github.com/graezykev/dev-container.git part-2-use-image-and-feature
+> ```
+
 In our [last guide](./part-1.md), I introduced a "Quick Start" on how to use a `.devcontainer` and a `devcontainer.json` as well as a `Dockerfile` to configure and build a basic Dev Container.
 
 I'm going to optimise the process by adding reusable images and extra software in this guide.
