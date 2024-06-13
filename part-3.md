@@ -1,3 +1,19 @@
+# Dev Container - Part 3: Full Stack Dev - Docker Compose & Database
+
+This is the third guide of the Dev Container series:
+
+- [Part 0: Dev Container - Why I Need It](./README.md)
+- [Part 1: Quick Start - Basic Setups and Usage](./part-1.md)
+- [Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
+- Part 3: Full Stack Dev - Docker Compose & Database
+- [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
+- [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
+
+> Check out my demo for this guide:
+>
+> ```sh
+> git clone -b part-3-use-docker-compose-and-db https://github.com/graezykev/dev-container.git
+> ```
 
 Let's imagine you're developing server applications relying on both Node.js and PostgreSQL.
 
