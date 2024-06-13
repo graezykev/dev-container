@@ -1,5 +1,20 @@
 # Dev Container - Part 1: Quick Start - Basic Setups and Usage
 
+This is the first guide of the Dev Container series:
+
+- [Part 0: Dev Container - Why I Need It](./README.md)
+- Part 1: Quick Start - Basic Setups and Usage
+- [Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
+- [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
+- [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
+- [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
+
+> Check out my demo for this guide:
+>
+> ```sh
+> git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git part-1-use-docker-file
+> ```
+
 I wrote about [the reasons why I want to use Dev Containers](./README.md) in my last post. In this post I'm going to guide you through setting up a simple Dev Container.
 
 Imagine we have a `Node.js` project, I want anyone who wants to develop this project (like newly joined colleagues) without manually installing `Node.js` (`Python`, `Go Lang`, or other projects are similar).
