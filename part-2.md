@@ -58,7 +58,7 @@ That's all! When our new teammates use "Open in Container" in VS Code to open ou
 
 Using an image to create Dev Containers can be much faster if we have a hefty `Dockerfile` because we only need to build this image once (or rebuild it if we modify it).
 
-However, it's yet ideal when you consider scenarios like this:
+However, it's yet to be ideal when you consider scenarios like this:
 
 ```dir
 .
