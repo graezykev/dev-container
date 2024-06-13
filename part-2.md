@@ -129,6 +129,8 @@ If you have experience with containers, it's all about the "`mount`" concept.
 
 Well, `workspaceMount` and `workspaceFolder` always come together, to understand them, let me explain the variables of `${localWorkspaceFolder}` and `${localWorkspaceFolderBasename}` first.
 
+### Pre-defined Variables
+
 `${localWorkspaceFolder}` and `${localWorkspaceFolderBasename}` are some pre-defined variables in `devcontainer.json` for Dev Container.
 
 Let's say, you have a project `project-a` in your host machine and you're going to build a Dev Container:
@@ -147,6 +149,8 @@ Let's say, you have a project `project-a` in your host machine and you're going 
 
 In this case, `${localWorkspaceFolder}` represents the whole absolute path of `/path/to/project-a`, and `${localWorkspaceFolderBasename}` represents the project folder name `project-a`.
 
+### workspaceMount & workspaceFolder
+
 So, put the values back into the configurations, we get `"workspaceMount": "source=/path/to/project-a,target=/workspaces/project-a, ...`, split the configure into 2 parts:
 
 - `source=/path/to/project-a`
@@ -161,6 +165,8 @@ Similarly, we can get the value of `workspaceFolder` - `"workspaceFolder": "/wor
 **When we connect to the container in VS Code, the default source code location will be set to `workspaceFolder`.**
 
 **And, the `postStartCommand` (we mentioned in the [last guide](./part-1.md)) is also run within `workspaceFolder`**.
+
+### When to Use
 
 As I said, in most cases we don't set `workspaceMount` and `workspaceFolder`.
 
