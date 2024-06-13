@@ -177,6 +177,17 @@ You may set `"workspaceMount": "source=/path/to,target=/workspaces, ...` so you 
 
 ## Environment Variables
 
-`runArgs`
+I have a configuration of the `runArgs` field in the `devcontainer.json` in [my demo](https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L9-L12):
+
+```json
+  "runArgs": [
+    "--env-file",
+    "${localWorkspaceFolder}/.devcontainer/.env"
+  ]
+```
+
+Well, if you have ever used `.env` in any case, this is general for the same purpose.
+
+Environment variables in Dev Containers are useful for various scenarios.
 
 Use variables inside the container via Linux commands, `Shell` scripts, or `Node.js` etc.
