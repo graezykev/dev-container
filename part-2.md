@@ -2,7 +2,7 @@
 
 In our [last guide](./part-1.md), I introduced a "Quick Start" on how to use a `.devcontainer` and a `devcontainer.json` as well as a `Dockerfile` to configure and build a basic Dev Container.
 
-Here I'm going to optimise the process by adding reusable images and extra software.
+I'm going to optimise the process by adding reusable images and extra software in this guide.
 
 > Check out my demo for this guide:
 >
