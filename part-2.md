@@ -57,6 +57,7 @@ Specify this image in `devcontainer.json` and remove the `Dockerfile` from it:
 ```
 
 > Check out my demo here https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json
+> 
 > Besides, `"image": "your-user-name/your-image-name"` also works. 
 
 That's all! When our new teammates use "Open in Container" in VS Code to open our project, the image will be auto-downloaded and cloned and started as a Dev Container in their machines.
