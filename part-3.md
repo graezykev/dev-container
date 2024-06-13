@@ -1,3 +1,4 @@
+# Dev Container - Part 3: Full Stack Dev - Docker Compose & Database
 
 Let's imagine you're developing server applications relying on both Node.js and PostgreSQL.
 
