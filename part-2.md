@@ -151,7 +151,7 @@ In this case, `${localWorkspaceFolder}` represents the whole absolute path of `/
 
 ### workspaceMount & workspaceFolder
 
-So, put the values back into the configurations, we get `"workspaceMount": "source=/path/to/project-a,target=/workspaces/project-a, ...`, split the configure into 2 parts:
+So, put the values back into the configurations, we get `"workspaceMount": "source=/path/to/project-a,target=/workspaces/project-a, ...`, divide the configuration into 2 parts:
 
 - `source=/path/to/project-a`
 - `target=/workspaces/project-a`
