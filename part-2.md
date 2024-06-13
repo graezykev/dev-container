@@ -170,9 +170,9 @@ Similarly, we can get the value of `workspaceFolder` - `"workspaceFolder": "/wor
 
 As I said, in most cases we don't set `workspaceMount` and `workspaceFolder`.
 
-But in some scenarios, for example, `project-a` needs to use some code in `project-b` or `project-c`.
+But in some scenarios, for example, `project-a` needs to use some code in `project-b` or `project-c` (only read configurations of reference code from them but do not want to modify them).
 
-You may set `"workspaceMount": "source=/path/to,target=/workspaces, ...` so you can mount `project-a`, `project-b` and `project-c` into the container, and you set `"workspaceFolder": "/workspaces/project-a"` so you only modify `project-a`'s code.
+You may set `"workspaceMount": "source=/path/to,target=/workspaces, ...` so you can mount `project-a`, `project-b` and `project-c` (they are all under `/path/to`) into the container, and you set `"workspaceFolder": "/workspaces/project-a"` so you only modify `project-a`'s code.
 
 ## Environment Variables
 
