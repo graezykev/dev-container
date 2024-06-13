@@ -78,18 +78,18 @@ The container creates reproducible development environments, to use on any PC, a
 Dev Container can help us to achieve what is including but not limited to:
 
 - Pre-install and pre-configure systems and software:
-  - Operating system (such as the latest stable LTS Ubuntu)
-  - Install Git, wget, curl etc.
-  - NVM and Node.js with its multiple versions
-  - PNPM, YARN
-  - Python, Ruby, Go, Java, ...
-  - Databases such as PostgreSQL and its extensions
-  - Customised Shell
+  - Operating system (such as the latest stable LTS `Ubuntu`)
+  - Install `Git`, `wget`, `curl` etc.
+  - `NVM` and `Node.js` with its multiple versions
+  - `PNPM`, `YARN`
+  - `Python`, `Ruby`, `Go`, `Java`, `Rust` ...
+  - Databases such as `PostgreSQL` and its extensions
+  - Customised `Shell`
     - such as setting `Zsh` as the default shell
     - Shell prompt or themes like <https://github.com/ohmyzsh/ohmyzsh/wiki/Themes>
   - Other customised software or settings
 
-- Pre-install VS Code extensions:
+- Pre-install VS Code `extensions`:
   - specific extensions
   - specific versions of the extensions  (even a pre-release version)
   - self-made extensions
@@ -99,11 +99,12 @@ Dev Container can help us to achieve what is including but not limited to:
   - auto insert spaces on hitting the tab key: true
   - font size
   - font family
+  - ...
 
-- Automatic workflows:
+- Automatic workflow scripts:
   - automatically run `npm install` or `npm start` for your project or other workflow scripts you want
 
-- Developing outside your office without a PC!
+- Develop outside of your office without a PC!
 
 ## Steps to Use Dev Containers
 
