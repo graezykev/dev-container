@@ -190,6 +190,24 @@ Well, if you have ever used `.env` in any case, this is general for the same pur
 
 Environment variables in Dev Containers are useful for various scenarios.
 
+You can set environment variables to manage configuration settings specific to your application or development environment. For example, database connection strings, API keys, or feature flags can be stored as environment variables.
+
+Environment variables allow you to securely store sensitive information, such as passwords or API tokens, without hardcoding them in your code.
+
+By using environment variables, you can keep secrets separate from your codebase and avoid accidentally exposing them in version control.
+
+Moreover, creating separate environment variable files for development, testing, and production environments are very common use case.
+
+### How to Set Environment Variables
+
+Setting environment variables is super easy too.
+
+You can just create a `.env` file, put the key/value pairs in it, (this is usually done by CI/CD systems' automatic script etc.) and reference it via `runArgs` in `devcontainer.json`.
+
+All the key/value pairs will be injected into the container as system variables:
+
 ![use arguments, variables in dev container](./images/part-2/dev-container-env-variables-1.png)
 
-Use variables inside the container via Linux commands, `Shell` scripts, or `Node.js` etc.
+After the container is built and run, the variables can be used inside the container via Linux commands, Shell scripts, or `Node.js` etc.
+
+In our [next guide](./part-3.md), we're going to use environment variables to serve passwords and user names for the database and avoid exposing them in version control.
