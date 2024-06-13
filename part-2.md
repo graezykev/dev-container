@@ -137,14 +137,36 @@ Let's say, you have a project `project-a` in your host machine and you're going 
 .
 └── path
     └── to
-        └── project-a
-            └── .devcontainer
-                ├── Dockerfile
-                └── devcontainer.json
+        ├── project-a
+        │   └── .devcontainer
+        │       ├── Dockerfile
+        │       └── devcontainer.json
+        ├── project-b
+        └── project-c
 ```
 
 In this case, `${localWorkspaceFolder}` represents the whole absolute path of `/path/to/project-a`, and `${localWorkspaceFolderBasename}` represents the project folder name `project-a`.
 
+So, put the values back into the configurations, we get `"workspaceMount": "source=/path/to/project-a,target=/workspaces/project-a, ...`, split the configure into 2 parts:
+
+- `source=/path/to/project-a`
+- `target=/workspaces/project-a`
+
+This means we mount the folder `/path/to/project-a` in the host machine to the folder `/workspaces/project-a` of the container.
+
+**Whatever you change `/path/to/project-a` in the host machine, you're making the same change in the `/workspaces/project-a` of the container, and vice versa**.
+
+Similarly, we can get the value of `workspaceFolder` - `"workspaceFolder": "/workspaces/project-a"`, which points to the `target` of `workspaceMount`.
+
+**When we connect to the container in VS Code, the default source code location will be set to `workspaceFolder`.**
+
+**And, the `postStartCommand` (we mentioned in the [last guide](./part-1.md)) is also run within `workspaceFolder`**.
+
+As I said, in most cases we don't set `workspaceMount` and `workspaceFolder`.
+
+But in some scenarios, for example, `project-a` needs to use some code in `project-b` or `project-c`.
+
+You may set `"workspaceMount": "source=/path/to,target=/workspaces, ...` so you can mount `project-a`, `project-b` and `project-c` into the container, and you set `"workspaceFolder": "/workspaces/project-a"` so you only modify `project-a`'s code.
 
 ## Environment Variables
 
