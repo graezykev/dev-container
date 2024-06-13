@@ -108,7 +108,7 @@ Add `Go` language engine to `devcontainer.json` in Project B:
 
 ...
 
-Find out all ready-to-use features here <https://containers.dev/features>.
+Find out all ready-to-use available Dev Container features here <https://containers.dev/features>, you can also [make your own feature](https://github.com/devcontainers/feature-starter).
 
 With the configurations above, different projects can use the same image and the features you add in their own `devcontainer.json` to create different (by similar) Dev Containers.
 
