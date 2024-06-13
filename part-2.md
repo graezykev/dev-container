@@ -20,21 +20,44 @@ They may end up installing different versions of `Node.js` depending on when the
 
 To address these kinds of issues, I would prefer to provide a relatively fixed "clone" of an environment with a fixed version of software installed, like installing Go lang v1.22.4 in this environment and prevent newcomers from upgrading it unconsciously.
 
-Or, in terms of my last `Node.js` example, I would pre-install multiple versions of `Node.js` engine in this clone-able environment, and my new teammates only need to switch whichever version between them.
+Or, in terms of my last `Node.js` example, I would pre-install multiple versions of the `Node.js` engine in this clone-able environment, and my new teammates only need to switch whichever version between them.
 
 The term for this clone-able environment is "Docker image", or "image".
 
-The newcomer just needs to "clone" (download) an image, and run it like starting an operating system (but much faster), the bottle-neck of which will be on the downloading speed of the image.
+The newcomer just needs to "clone" (download) an image, and run it like starting an operating system (but much faster), the bottleneck of which will be on the downloading speed of the image.
 
-## Build an Image
+## Use an Image
 
-Build a docker image from `Dockerfile`.
+What we need to do for the newcomers is build a Docker image from a basic `Dockerfile`, and push the image to a "cloud warehouse" - [Docker Hub](https://hub.docker.com/).
 
-Configure `image` in `devcontainer.json`.
+We can regard Docker Hub as a free file server to serve our built, ready-to-use Docker image, and anyone can download the image from it to re-use.
+
+### Build & Push Image
+
+- Build an image via the `Dockerfile`.
+- Push the image to Docker Hub.
+
+### Configure Image
+
+Specify this image in `devcontainer.json` and remove the `Dockerfile` from it:
+
+```diff
+- "build": {
+-   "dockerfile": "Dockerfile"
+- }
++ "image": "docker.io/your-user-name/your-image-name"
+```
+
+> Check out my demo here https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json
+> Besides, `"image": "your-user-name/your-image-name"` also works. 
+
+That's all! When our new teammates use "Open in Container" in VS Code to open our project, the image will be auto-downloaded and cloned and started as a Dev Container in their machines.
 
 ## Features
 
-Install additional Softwares.
+Install additional Software.
+
+Add some sprinkles to your ice cream!
 
 <https://containers.dev/features>
 
