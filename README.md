@@ -110,7 +110,7 @@ Dev Container can help us to achieve what is including but not limited to:
 
 I have several posts on how to set up and use Dev Container, check them out one by one! Each guide is short.
 
-- [Part 1: Basic Setups and Usage](./part-1.md)
+- [Part 1: Quick Start - Basic Setups and Usage](./part-1.md)
 - [Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
 - [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
