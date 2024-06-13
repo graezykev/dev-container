@@ -32,13 +32,13 @@ What we need to do for the newcomers is build a Docker image from a basic `Docke
 
 We can regard Docker Hub as a free file server to serve our built, ready-to-use Docker image, and anyone can download the image from it to re-use.
 
-### Build & Push Image
+### 1. Build & Push Image
 
 As we have a `Dockerfile` in our [last guide](./part-1.md), building and pushing a Docker image is quite simple, and you also need to sign up for a free account on Docker Hub.
 
 I don't want to go into too much detail here, but if you're not familiar with Docker, check out this [guide to register, build and push](https://github.com/graezykev/docker-build-push-101).
 
-### Configure Image
+### 2. Configure Image
 
 Specify this image in `devcontainer.json` and remove the `Dockerfile` from it:
 
