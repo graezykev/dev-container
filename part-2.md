@@ -2,6 +2,13 @@
 
 In our [last guide](./part-1.md), I introduced a "Quick Start" on how to use a `.devcontainer` and a `devcontainer.json` as well as a `Dockerfile` to configure and build a basic Dev Container.
 
+Here I'm going to optimise the process by adding reusable images and extra software.
+
+> Check out my demo:
+> ```sh
+> git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git part-1-use-docker-file
+> ```
+
 ## Problem
 
 Defining a `Dockerfile` in our `.devcontainer` folder and using it to build a Dev Container can sometimes be very long, especially when you have multiple software to pre-install in the container.
