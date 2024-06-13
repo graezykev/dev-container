@@ -4,9 +4,9 @@ In our [last guide](./part-1.md), I introduced a "Quick Start" on how to use a `
 
 Here I'm going to optimise the process by adding reusable images and extra software.
 
-> Check out my demo:
+> Check out my demo for this guide:
 > ```sh
-> git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git part-1-use-docker-file
+> git clone -b part-2-use-image-and-features https://github.com/graezykev/dev-container.git part-2-use-image-and-features
 > ```
 
 ## Problem
