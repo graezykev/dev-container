@@ -190,4 +190,6 @@ Well, if you have ever used `.env` in any case, this is general for the same pur
 
 Environment variables in Dev Containers are useful for various scenarios.
 
+![use arguments, variables in dev container](./images/part-2/dev-container-env-variables-1.png)
+
 Use variables inside the container via Linux commands, `Shell` scripts, or `Node.js` etc.
