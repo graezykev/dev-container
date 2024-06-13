@@ -1,14 +1,29 @@
-# Dev Container - Part 4: Develop on a Remote Docker Host
+# Dev Container - Part 4: Remote Dev - Develop on a Remote Docker Host
 
-Here comes my favourite part, **Remote Development**.
+This is the fourth guide of the Dev Container series:
 
-In the previous parts we stay in a stand-alone PC to do everything, building dev containers, and developing. In this part I would like to introduce how to develop when you're not at the office or even have no working PC at your disposal.
+- [Part 0: Dev Container - Why I Need It](./README.md)
+- [Part 1: Quick Start - Basic Setups and Usage](./part-1.md)
+- [Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
+- [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
+- Part 4: Remote Dev - Develop on a Remote Docker Host
+- [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
+
+> Check out my demo for this guide:
+>
+> ```sh
+> git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git part-4-remote-dev
+> ```
+
+Here comes my favourite part, **Remote Development**, or more fashionably, cloud development.
+
+In the previous parts, we stay in a stand-alone PC to do everything, building dev containers, and developing. In this part, I would like to introduce how to develop when you're not at the office or even have no working PC at your disposal.
 
 This is how the VS Code team elaborate on the remote development architecture:
 
 ![remote docker host](./images/part-4/server-arch-latest.png)
 
-The VS Code on the left side can be a **native client** installed on your development machine (a desktop, laptop, tablet etc.), or a **VS Code web** you visit in any web browser. This is why I say theoretically you can work everywhere as long as you have a web browser and Internet accessibility.
+The VS Code on the left side can be a **native client** installed on your development machine (a desktop, laptop, tablet etc.) or a **VS Code web** you visit in any web browser. This is why I say theoretically you can work everywhere as long as you have a web browser and Internet accessibility.
 
 There're primary two ways of remote development:
 
@@ -30,27 +45,29 @@ One for serving the code and dev environment, we call it a **Remote Machine**.
 
 The other one is for developing, which can be much more lightweight, we call it a **Dev Machine**.
 
-- **Remote Machine**
+We need to prepare 3 things before setting up remote development:
+
+- 1. **Remote Machine**
 
   It can be your desktop/laptop in your office, it can be a Virtual Machine, and it can also be a cloud machine such as AWS EC2 ...
 
   In my following guide, I use a Ubuntu Linux server to test.
 
-- **Dev Machine**
+- 2. **Dev Machine**
 
   This is another desktop, laptop, iPad, Surface Tablet, Android Tablet, mobile phone ...
 
-  > I list mobile phones here because in reality you can visit VS Code web via a web browser, although no one really wants to do that, just for some super urgent scenarios.
+  > I list mobile phones here because, in reality, you can visit VS Code web via a web browser, although no one really wants to do that, just for some super urgent scenarios.
 
-- **GitHub / Microsoft account**
+- 3. **GitHub / Microsoft account**
 
-  This is the "bridge" to connect the dev machine to the remote machine via [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server).
+  This is the "bridge" to connect the dev machine to the remote machine through [**Visual Studio Code Server**](https://code.visualstudio.com/docs/remote/vscode-server), to verify your identity and prevent others from connecting to your remote machine.
 
 ### 1. Install Docker (Remote Machine)
 
 We need to install Docker on the remote machine, however, no need for the dev machine.
 
-I mentioned how to install Docker in [Part 1:](./part-1.md), which is relatively easy and straightforward, especially when you're using Mac/Windows PC, even if you are using headless systems such as a Ubuntu Linux server, that is also within a few commands.
+I mentioned how to install Docker in [Part 1:](./part-1.md#2-install-docker), which is relatively easy and straightforward, especially when you're using Mac/Windows PC, even if you are using headless systems such as a Ubuntu Linux server, that is also within a few commands.
 
 Once we finish the installation of Docker, we can move on to the next step.
 
@@ -58,11 +75,11 @@ What's interesting is that **you can also skip installing Docker for now**, beca
 
 ### 2. Install Code CLI (Remote Machine)
 
-Launch the remote machine to **download and uncompress** VS Code CLI here <https://code.visualstudio.com/download>, according to the operating system of your remote machine.
+Launch the remote machine to **download and uncompress** VS Code CLI here <https://code.visualstudio.com/download>, according to the operating system you use.
 
 ![download vs code cli](./images/part-4/download-vs-code-cli.png)
 
-If you're using Windows/Mac/Linux PC, you can click the link to download and uncompress.
+If you're using a Windows/Mac/Linux PC, you can click the link to download and uncompress.
 
 As I'm using Ubuntu Linux, I do it via the following commands (replace `cli-alpine-x64` with `cli-alpine-arm64` or `cli-linux-armhf`):
 
@@ -70,6 +87,8 @@ As I'm using Ubuntu Linux, I do it via the following commands (replace `cli-alpi
 curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
 tar -xf vscode_cli.tar.gz
 ```
+
+> You can also try my fully automatic shell script to install the CLI <https://gist.github.com/graezykev/b7c981c4966d49e580cf1fddc0c52559>
 
 After it's uncompressed you'll find the executable binary file:
 
@@ -95,8 +114,6 @@ At the end, this CLI will output a **vscode.dev URL** tied to this remote machin
 
 Now you can connect to the remote machine, using the dev machine I mentioned above. You have 2 options:
 
-> Either way you choose, when you try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
-
 - 1. Directly visit the **vscode.dev URL** from a web browser.
 
   ![visit vscode.dev URL on a web browser](./images/part-4/visit-vscode-url-in-browser.gif)
@@ -113,11 +130,13 @@ I recorded the steps below:
 
 ![visit vscode.dev URL on a VS Code client](./images/part-4/install-extension-and-visit-remote-machine-in-vscode.gif)
 
-Once the remote machine is connected, on the left bottom corner of VS Code (client or web), you can see the name of the remote machine, and you have a control of the remote machine from the terminal.
+> Either way you choose, when you try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
+
+Once the remote machine is connected, on the left bottom corner of VS Code (client or web), you can see the name of the remote machine (`my-remote-ubuntu` in my example), and you have control of the remote machine from the terminal.
 
 ![remote machine and terminal](./images/part-4/tunnel-connected.png)
 
-As I mentioned in [step 1](#1-install-docker-remote-machine), you can actually install Docker in this terminal, because it connects to the remote machine.
+As I mentioned in [step 1](#1-install-docker-remote-machine), you can install Docker in this terminal, because it connects to the remote machine. In the example below I install Docker from VS Code client's terminal following this [guide](https://docs.docker.com/engine/install/ubuntu/#installation-methods), you can even do it from VS Code web.
 
 ![install docker in remote machine](./images/part-4/tunnel-install-docker.gif)
 
@@ -157,7 +176,7 @@ Besides, VS Code extensions we specify in `devcontainer.json` are not actually i
 
 ![alfter container built - installed softwares](./images/part-4/tunnel-after-build-2.png)
 
-Furthermore, although the remote machine actually has no Node.js or Python installed, but you can enjoy those pre-installed softwares in the dev container built into this remote machine.
+Furthermore, although the remote machine actually has no Node.js or Python installed, you can enjoy the pre-installed software in the dev container built into this remote machine.
 
 ## Work Everywhere
 
@@ -165,6 +184,6 @@ Now you're able to work anywhere you like as long as you have access to the Inte
 
 You can use a spare laptop (with Windows, Mac or Linux OS) to install a VS Code and connect to the remote machine.
 
-If you don't like to install anything, why don't you just use a tablet device such as iPad to visit the **vscode.dev URL** and start your development.
+If you don't like to install anything, why don't you just use a tablet device such as an iPad to visit the **vscode.dev URL** and start your development.
 
 In some extremely urgent cases, you can even use a mobile phone to visit the **vscode.dev URL** and make some tiny code changes or run some commands on the remote machine!
