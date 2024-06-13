@@ -5,6 +5,7 @@ In our [last guide](./part-1.md), I introduced a "Quick Start" on how to use a `
 Here I'm going to optimise the process by adding reusable images and extra software.
 
 > Check out my demo for this guide:
+>
 > ```sh
 > git clone -b part-2-use-image-and-features https://github.com/graezykev/dev-container.git part-2-use-image-and-features
 > ```
@@ -56,9 +57,9 @@ Specify this image in `devcontainer.json` and remove the `Dockerfile` from it:
 + "image": "docker.io/your-user-name/your-image-name"
 ```
 
-> Check out my demo here https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L3
-> 
-> Besides, `"image": "your-user-name/your-image-name"` also works. 
+> Check out my demo here <https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L3>
+>
+> Besides, `"image": "your-user-name/your-image-name"` also works.
 
 That's all! When our new teammates use "Open in Container" in VS Code to open our project, the image will be auto-downloaded and cloned and started as a Dev Container in their machines.
 
@@ -68,7 +69,7 @@ Using an image to create Dev Containers can be much faster if we have a hefty `D
 
 However, it's yet to be ideal when you consider scenarios like this:
 
-```
+```txt
 .
 ├── project-go-lang
 ├── project-node-js-1
@@ -135,7 +136,7 @@ Well, `workspaceMount` and `workspaceFolder` always come together, to understand
 
 Let's say, you have a project `project-a` in your host machine and you're going to build a Dev Container:
 
-```
+```txt
 .
 └── path
     └── to
