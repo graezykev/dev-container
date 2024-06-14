@@ -185,7 +185,17 @@ In this way, we can use port `8001` (on host machine) to visit container `app`'s
 
 We have a `depends_on` in `docker-compose.yml` that points to container `postgres`, meaning we're going to start `postgres` at the same time with `app`.
 
-## III. Add Database Client (optional)
+## III. Full-Stack Development
+
+Every preparing job has been done now let's built the Dev Containers (use VS Code's "Open in Container"), and start our full-stack development.
+
+I have a demo `Node.js` server in [my demo](https://github.com/graezykev/dev-container/blob/part-3-use-docker-compose-and-db/index.js).
+
+This is a program that connects to the database (in another container) with the username and password we pass from `.env`, as well as write new datas into the database every time.
+
+![docker compose environment variables](./images/part-3/dev-container-env-variables-2.png)
+
+## VI. Add Database Client (optional)
 
 If you want to use `psql` command line in container `app` to connect to the PostgreSQL server in container `postgres`, we can install PostgreSQL client (but not server) via Dev Container Features in `devcontainer.json`:
 
@@ -196,17 +206,7 @@ If you want to use `psql` command line in container `app` to connect to the Post
 ```
 
 ```sh
-psql -h postgres -U postgres -d postgres
+psql -h postgres -U postgres -d postgres # or `psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB`
 ```
 
 ![connect to database from app container]()
-
-## IV. Start Full-Stack Development
-
-Every preparing job has been done now let's built the Dev Containers (use VS Code's "Open in Container"), and start our full-stack development.
-
-I have a demo `Node.js` server in [my demo](https://github.com/graezykev/dev-container/blob/part-3-use-docker-compose-and-db/index.js).
-
-This is a program that connects to the database (in another container) with the username and password we pass from `.env`, as well as write new datas into the database every time.
-
-![docker compose environment variables](./images/part-3/dev-container-env-variables-2.png)
