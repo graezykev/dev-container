@@ -14,6 +14,11 @@ This is the third guide of the Dev Container series:
 > ```sh
 > git clone -b part-3-use-docker-compose-and-db https://github.com/graezykev/dev-container.git
 > ```
+>
+> You can also use GitHub's Codespaces to run my demo (switch to branch `part-3-use-docker-compose-and-db`):
+> ![Run demo in Codespaces](./images/part-3/run-in-codespaces.png)
+
+## Introduction
 
 Imagine you're developing server applications relying on both `Node.js` and `PostgreSQL`.
 
@@ -212,3 +217,7 @@ psql -h postgres -U postgres -d postgres # or `psql -h $POSTGRES_HOST -U $POSTGR
 ```
 
 ![connect to database from app container]()
+
+## Next
+
+Our [next guide](./part-4.md) will be focusing on how to develop remotely.
