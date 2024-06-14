@@ -111,6 +111,12 @@ volumes:
   postgres-data:  
 ```
 
+But notice that if we're using Docker Compose we also need to eliminate the `workspaceMount` in `devcontainer.json`:
+
+```diff
+- "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+```
+
 First, let's look at the `volumes` under container `app` whose value is `..:/workspaces/dev-container...`, which is separated by the colon `:`.
 
 The `..` in front of the colon stands for the path on the host machine, while `/workspaces/dev-container` behind the colon stands for the path in the container.
