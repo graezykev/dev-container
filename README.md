@@ -108,7 +108,7 @@ Dev Container can help us to achieve what is including but not limited to:
 
 ## Steps to Use Dev Containers
 
-I have several guides on how to set up and use Dev Container, each guide is short, I recommend you to check them out one by one.
+I have several guides on how to set up and use Dev Container, each guide is short, and I recommend you to check them out one by one.
 
 - Part 0: Dev Container - Why I Need It
 - [Part 1: Quick Start - Basic Setups and Usage](./part-1.md)
