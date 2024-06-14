@@ -96,7 +96,7 @@ As to the container for the database, I use the official image `postgres:latest`
 
 ### 3. Define `volumes`
 
-Volume is pretty similar to workspace mounting we mentioned in [Part 2](./part-2.md#workspace).
+Volume is pretty similar to the workspace mounting we mentioned in [Part 2](./part-2.md#workspace).
 
 ```yml
 services:
@@ -111,7 +111,7 @@ volumes:
   postgres-data:  
 ```
 
-First, let's look at the `volumes` under container `app` whose value is `..:/workspaces/dev-container...`, which is seperate by the colon `:`.
+First, let's look at the `volumes` under container `app` whose value is `..:/workspaces/dev-container...`, which is separated by the colon `:`.
 
 The `..` in front of the colon stands for the path on the host machine, while `/workspaces/dev-container` behind the colon stands for the path in the container.
 
@@ -119,7 +119,7 @@ The absolute path of the Docker Compose file is `/path/to/dev-container/.devcont
 
 That is to say, we mount `/path/to/dev-container/` on the host machine to `/workspaces/dev-container` in the container. Whatever you change `/path/to/dev-container/` on the host machine, you're making the same change in the `/workspaces/dev-container` of the container, and vice versa.
 
-Next look at the `volumes` under container `postgres` whose value is `postgres-data:/var/lib/postgresql/data`.
+Next, look at the `volumes` under container `postgres` whose value is `postgres-data:/var/lib/postgresql/data`.
 
 We don't have a path on the host machine to serve data for the database, so we create a "virtual volume" via the configuration:
 
@@ -128,11 +128,11 @@ volumes:
   postgres-data:  
 ```
 
-`postgres-data` is the name, that's what we use in `postgres-data:/var/lib/postgresql/data` (also seperate by the colon), this valume is mounted to container `postgres`'s path `/var/lib/postgresql/data`.
+`postgres-data` is the name, that's what we use in `postgres-data:/var/lib/postgresql/data` (also separated by the colon), this volume is mounted to container `postgres`'s path `/var/lib/postgresql/data`.
 
 Creating a virtual volume enables the persistence of the database data and the ability to share between multiple applications.
 
-Let's say, for some reason you may delete the container `postgres`, but the data save in the volume `postgres-data` still exist and is reusable when you recreate another database with the same volume.
+Let's say, for some reason, you may delete the container `postgres`, but the data saved in the volume `postgres-data` still exists and is reusable when you create another database with the same volume.
 
 ### 4. Environment variables
 
