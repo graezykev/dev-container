@@ -9,12 +9,12 @@ This is the third guide of the Dev Container series:
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
 - [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
 
-> Check out my demo for this guide:
->
-> ```sh
-> git clone -b part-3-use-docker-compose-and-db https://github.com/graezykev/dev-container.git
-> ```
->
+I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/part-3-use-docker-compose-and-db) for this guide:
+
+```sh
+git clone -b part-3-use-docker-compose-and-db https://github.com/graezykev/dev-container.git
+```
+
 > You can also use GitHub's Codespaces to run my demo (switch to branch `part-3-use-docker-compose-and-db`):
 > ![Run demo in Codespaces](./images/part-3/run-in-codespaces.png)
 
