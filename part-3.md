@@ -130,7 +130,7 @@ volumes:
 
 `postgres-data` is the name, that's what we use in `postgres-data:/var/lib/postgresql/data` (also seperate by the colon), this valume is mounted to container `postgres`'s path `/var/lib/postgresql/data`.
 
-Creating a virtual volume enables the persistence of the database and the ability to share between multiple applications.
+Creating a virtual volume enables the persistence of the database data and the ability to share between multiple applications.
 
 For exmaple, in some scenarios you may delete the container `postgres`, but the data save in the volume `postgres-data` still exist and is reusable when you recreate another database with the same volume.
 
