@@ -30,7 +30,7 @@ For example, if your database startup script exits for any reason, the container
 
 ## Environment Isolation
 
-A more robust solution for development might involve using `Docker Compose` to manage both your application container and your PostgreSQL service in **separate** containers. It's often better to manage services like databases with separate containers or services, using Docker Compose or similar tools, especially in production environments.
+A more robust solution for development might involve using [Docker Compose](https://docs.docker.com/compose/) to manage both your application container and your PostgreSQL service in **separate** containers. It's often better to manage services like databases with separate containers or services, using Docker Compose or similar tools, especially in production environments.
 
 That is to say, use Docker Compose to manage two containers, one for development, and the other one for database. Only install the PostgreSQL client on your development container, to connect the PostgreSQL server on the other container.
 
