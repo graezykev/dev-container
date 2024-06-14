@@ -15,8 +15,9 @@ I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/pa
 git clone -b part-2-use-image-and-feature https://github.com/graezykev/dev-container.git
 ```
 
-> You can also use GitHub's Codespaces to run my demo (switch to branch `part-2-use-image-and-feature`):
-> ![Run demo in Codespaces](./images/part-2/run-in-codespaces.png)
+Alternatively, you can also use GitHub's Codespaces to run my demo (switch to branch `part-2-use-image-and-feature`):
+
+![Run demo in Codespaces](./images/part-2/run-in-codespaces.png)
 
 ## Introduction
 
