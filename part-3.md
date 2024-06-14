@@ -29,7 +29,7 @@ A more robust solution for development might involve using `Docker Compose` to m
 
 That is to say, use Docker Compose to manage two containers, one for development, and the other one for database. Only install PostgreSQL client on your development container, to connect the PostgreSQL server on the other container.
 
-## Compose Configuration
+## I. Compose Configuration
 
 ### 0. docker-compose.yml
 
@@ -135,7 +135,7 @@ The `${POSTGRES_PASSWORD}` stands for the `POSTGRES_PASSWORD` you define in `.en
 
 Here we pass these variables for container `postgres` so it can use them to create a database with the specific database name, user name and password. And we also pass them to container `app` so it can use them to connect to the database in container `postgres`.
 
-![docker compose environment variables](./images/part-3/dev-container-env-variables-2.png)
+> Caveat: `.env`, database usernames, password etc. should handled by CI/CD systems in real scenario.
 
 ### 5. Map `ports`
 
@@ -170,7 +170,7 @@ In this way, we can use port `8001` (on host machine) to visit container `app`'s
 
 ![docker compose port mapping](./images/part-3/dev-container-port-mapping.png)
 
-## Entry Point
+## II. Entry Point
 
 `devcontainer.json`:
 
@@ -185,7 +185,7 @@ In this way, we can use port `8001` (on host machine) to visit container `app`'s
 
 We have a `depends_on` in `docker-compose.yml` that points to container `postgres`, meaning we're going to start `postgres` at the same time with `app`.
 
-## Database Client
+## III. Add Database Client (optional)
 
 If you want to use `psql` command line in container `app` to connect to the PostgreSQL server in container `postgres`, we can install PostgreSQL client (but not server) via Dev Container Features in `devcontainer.json`:
 
@@ -201,4 +201,12 @@ psql -h postgres -U postgres -d postgres
 
 ![connect to database from app container]()
 
-## Start your Full-Stack Development
+## IV. Start Full-Stack Development
+
+Every preparing job has been done now let's built the Dev Containers (use VS Code's "Open in Container"), and start our full-stack development.
+
+I have a demo `Node.js` server in [my demo](https://github.com/graezykev/dev-container/blob/part-3-use-docker-compose-and-db/index.js).
+
+This is a program that connects to the database (in another container) with the username and password we pass from `.env`, as well as write new datas into the database every time.
+
+![docker compose environment variables](./images/part-3/dev-container-env-variables-2.png)
