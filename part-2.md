@@ -9,7 +9,7 @@ This is the second guide of the Dev Container series:
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
 - [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
 
-I suggest you clone my demo for this guide:
+I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/part-2-use-image-and-features) for this guide:
 
 ```sh
 git clone -b part-2-use-image-and-feature https://github.com/graezykev/dev-container.git
