@@ -96,6 +96,44 @@ As to the container for the database, I use the official image `postgres:latest`
 
 ### 3. Define `volumes`
 
+Volume is pretty similar to workspace mounting we mentioned in [Part 2](./part-2.md#workspace).
+
+```yml
+services:
+  app:
+    volumes:
+      - ..:/workspaces/dev-container:cached
+  postgres:
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:  
+```
+
+First, let's look at the `volumes` under container `app` whose value is `..:/workspaces/dev-container...`, which is seperate by the colon `:`.
+
+The `..` in front of the colon stands for the path on the host machine, while `/workspaces/dev-container` behind the colon stands for the path in the container.
+
+The absolute path of the Docker Compose file is `/path/to/dev-container/.devcontainer/docker-compose.yml`, so `..` gets the value of `/path/to/dev-container/`.
+
+That is to say, we mount `/path/to/dev-container/` on the host machine to `/workspaces/dev-container` in the container. Whatever you change `/path/to/dev-container/` on the host machine, you're making the same change in the `/workspaces/dev-container` of the container, and vice versa.
+
+Next look at the `volumes` under container `postgres` whose value is `postgres-data:/var/lib/postgresql/data`.
+
+We don't have a path on the host machine to serve data for the database, so we create a "virtual volume" via the configuration:
+
+```yml
+volumes:
+  postgres-data:  
+```
+
+`postgres-data` is the name, that's what we use in `postgres-data:/var/lib/postgresql/data` (also seperate by the colon), this valume is mounted to container `postgres`'s path `/var/lib/postgresql/data`.
+
+Creating a virtual volume enables the persistence of the database and the ability to share between multiple applications.
+
+For exmaple, in some scenarios you may delete the container `postgres`, but the data save in the volume `postgres-data` still exist and is reusable when you recreate another database with the same volume.
+
 ### 4. Environment variables
 
 The `docker compose` command line will automatically pick up a file called `.env` in the folder containing the `docker-compose.yml`, that's why I commented out this:
