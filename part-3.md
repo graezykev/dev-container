@@ -80,7 +80,7 @@ volumes:
 
 ```
 
-It's necessary to break down some basic concepts in this `docker-compose.yml`. You can also jump straight to the [next step](#ii-entry-point) for now and come back later to the explanations below.
+It's necessary to break down some basic concepts in this `docker-compose.yml`. But you can also jump straight to the [next step](#ii-entry-point) for now and come back later to the explanations below.
 
 ### 1. Define `services`
 
