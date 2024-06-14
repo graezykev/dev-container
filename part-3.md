@@ -93,7 +93,7 @@ It also allows us to extend our project to multiple other services (containers) 
 
 We put the image we used in `devcontainer.json` in this configuration file to initiate container `app`.
 
-As to the container for the database, I use the official image `postgres:latest`.
+As for the container for the database, I use the official image `postgres:latest`.
 
 ### 3. Define `volumes`
 
