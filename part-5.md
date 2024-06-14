@@ -9,12 +9,12 @@ This is the fifth guide of the Dev Container series:
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
 - Part 5: Multiple Projects & Shared Container Configure
 
-> Check out my demo for this guide:
->
-> ```sh
-> git clone -b part-5-shared-configure-for-multiple-projects https://github.com/graezykev/dev-container.git part-5-shared-configure-for-multiple-projects
-> ```
->
+I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/part-5-shared-configure-for-multiple-projects) for this guide:
+
+```sh
+git clone -b part-5-shared-configure-for-multiple-projects https://github.com/graezykev/dev-container.git
+```
+
 > You can also use GitHub's Codespaces to run my demo (switch to branch `part-5-shared-configure-for-multiple-projects`):
 > ![Run demo in Codespaces](./images/part-5/run-in-codespaces.png)!
 
