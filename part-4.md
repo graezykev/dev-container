@@ -12,7 +12,7 @@ This is the fourth guide of the Dev Container series:
 > Check out my demo for this guide:
 >
 > ```sh
-> git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git part-4-remote-dev
+> git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 > ```
 >
 > You can also use GitHub's Codespaces to run my demo (switch to branch `part-4-remote-dev`):
