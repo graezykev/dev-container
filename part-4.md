@@ -9,12 +9,12 @@ This is the fourth guide of the Dev Container series:
 - Part 4: Remote Dev - Develop on a Remote Docker Host
 - [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
 
-> Check out my demo for this guide:
->
-> ```sh
-> git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
-> ```
->
+I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/part-4-remote-dev) for this guide:
+
+```sh
+git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
+```
+
 > You can also use GitHub's Codespaces to run my demo (switch to branch `part-4-remote-dev`):
 > ![Run demo in Codespaces](./images/part-4/run-in-codespaces.png)!
 
