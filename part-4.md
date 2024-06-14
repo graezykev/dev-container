@@ -15,8 +15,9 @@ I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/pa
 git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 ```
 
-> You can also use GitHub's Codespaces to run my demo (switch to branch `part-4-remote-dev`):
-> ![Run demo in Codespaces](./images/part-4/run-in-codespaces.png)!
+Alternatively, you can also use GitHub's Codespaces to run my demo (switch to branch `part-4-remote-dev`):
+
+![Run demo in Codespaces](./images/part-4/run-in-codespaces.png)!
 
 ## Introduction
 
