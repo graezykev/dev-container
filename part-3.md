@@ -81,6 +81,8 @@ It's necessary to explain some basic concepts in this `docker-compose.yml`.
 
 We define 2 `services` here, each one as a container, now we have container `app` and container `postgres`.
 
+It also allows us to extend our project to multiple other services (containers) like `app2`, `app3`, `redis` etc.
+
 ### 2. Specify `image`
 
 We put the image we used in `devcontainer.json` in this configuration file to initiate container `app`.
