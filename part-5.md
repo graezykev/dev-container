@@ -12,7 +12,12 @@ This is the fifth guide of the Dev Container series:
 > Check out my demo for this guide:
 >
 > ```sh
-> git clone -b part-5-shared-configure-and-volume https://github.com/graezykev/dev-container.git part-5-shared-configure-and-volume
+> git clone -b part-5-shared-configure-for-multiple-projects https://github.com/graezykev/dev-container.git part-5-shared-configure-for-multiple-projects
 > ```
+>
+> You can also use GitHub's Codespaces to run my demo (switch to branch `part-5-shared-configure-for-multiple-projects`):
+> ![Run demo in Codespaces](./images/part-5/run-in-codespaces.png)!
+
+## Introduction
 
 The `dockerComposeFile` property specifies the paths to one or more Docker Compose files. When building the dev container, the `docker-compose` command runs using the **first path** specified in the array.
