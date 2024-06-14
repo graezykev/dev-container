@@ -9,7 +9,7 @@ This is the first guide of the Dev Container series:
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
 - [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
 
-I suggest you to clone my demo for this guide:
+I suggest you clone my demo for this guide:
 
 ```sh
 git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git
