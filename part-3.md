@@ -45,6 +45,7 @@ touch .devcontainer/docker-compose.yml
 ```
 
 ```yml
+# docker-compose.yml
 services:
   app:
     image: docker.io/your-user-name/your-image-name
