@@ -14,16 +14,15 @@ This is the second guide of the Dev Container series:
 > ```sh
 > git clone -b part-2-use-image-and-feature https://github.com/graezykev/dev-container.git part-2-use-image-and-feature
 > ```
+>
+> You can also use GitHub's Codespaces to run my demo (switch to branch `part-2-use-image-and-feature`):
+> ![Run demo in Codespaces](./images/part-2/run-in-codespaces.png)
+
+## Introduction
 
 In our [last guide](./part-1.md), I introduced a "Quick Start" on how to use a `.devcontainer` and a `devcontainer.json` as well as a `Dockerfile` to configure and build a basic Dev Container.
 
 I'm going to optimise the process by adding reusable images and extra software in this guide.
-
-> Check out my demo for this guide:
->
-> ```sh
-> git clone -b part-2-use-image-and-features https://github.com/graezykev/dev-container.git part-2-use-image-and-features
-> ```
 
 ## Problem
 
@@ -224,5 +223,7 @@ All the key/value pairs will be injected into the container as system variables:
 ![use arguments, variables in dev container](./images/part-2/dev-container-env-variables-1.png)
 
 After the container is built and run, the variables can be used inside the container via Linux commands, Shell scripts, or `Node.js` etc.
+
+## Next
 
 In our [next guide](./part-3.md), we're going to use environment variables to serve passwords and user names for the database and avoid exposing them in version control.

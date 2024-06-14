@@ -14,6 +14,11 @@ This is the first guide of the Dev Container series:
 > ```sh
 > git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git part-1-use-docker-file
 > ```
+>
+> You can also use GitHub's Codespaces to run my demo (switch to branch `part-1-use-docker-file`):
+> ![Run demo in Codespaces](./images/part-1/run-in-codespaces.png)
+
+## Introduction
 
 I wrote about [the reasons why I want to use Dev Containers](./README.md) in my last post. In this post I'm going to guide you through setting up a simple Dev Container.
 
