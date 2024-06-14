@@ -80,7 +80,7 @@ volumes:
 
 ```
 
-It's necessary to explain some basic concepts in this `docker-compose.yml`.
+It's necessary to explain some basic concepts in this `docker-compose.yml`. You can also jump straight to the [next step](#ii-entry-point) and come back later to the explanations below.
 
 ### 1. Define `services`
 
@@ -146,7 +146,7 @@ Here we pass these variables for container `postgres` so it can use them to crea
 
 ### 5. Map `ports`
 
-We learned "Forwarding Ports" in Part 1 but this is a bit different.
+We learned "Forwarding Ports" in [Part 1](./part-1.md#forwarding-ports) but this is a bit different.
 
 The `ports` section in a `docker-compose.yml` file allows you to expose ports from the container to the host machine.
 
@@ -179,7 +179,7 @@ In this way, we can use port `8001` (on host machine) to visit container `app`'s
 
 ## II. Entry Point
 
-`devcontainer.json`:
+Put our Docker Compose configuration file into `devcontainer.json` as the building entry point:
 
 ```diff
   "name": "Dev Container",
@@ -190,7 +190,7 @@ In this way, we can use port `8001` (on host machine) to visit container `app`'s
 + "service": "app",
 ```
 
-We have a `depends_on` in `docker-compose.yml` that points to container `postgres`, meaning we're going to start `postgres` at the same time with `app`.
+The `app` points to the service (container) we define in `docker-compose.yml`, and we have a `depends_on` in `docker-compose.yml` that points to container `postgres`, meaning we're going to start `postgres` at the same time with `app`.
 
 ## III. Full-Stack Development
 
@@ -198,19 +198,23 @@ Every preparing job has been done now let's built the Dev Containers (use VS Cod
 
 I have a demo `Node.js` server in [my demo](https://github.com/graezykev/dev-container/blob/part-3-use-docker-compose-and-db/index.js).
 
-This is a program that connects to the database (in another container) with the username and password we pass from `.env`, as well as write new datas into the database every time.
+This program runs in container `app`, connects to the database (in container `postgres`) with the username and password we pass from `.env`, creates a table named `clients` (for the first time) as well as write new datas into the table every time, and show all datas on the web page.
 
 ![docker compose environment variables](./images/part-3/dev-container-env-variables-2.png)
 
+![docker compose port mapping](./images/part-3/dev-container-port-mapping.png)
+
 ## VI. Add Database Client (optional)
 
-If you want to use `psql` command line in container `app` to connect to the PostgreSQL server in container `postgres`, we can install PostgreSQL client (but not server) via Dev Container Features in `devcontainer.json`:
+Sometimes you may want to use `psql` command line in container `app` to connect to the PostgreSQL server in container `postgres`, we can install PostgreSQL client (but not server) via Dev Container Features in `devcontainer.json`:
 
 ```json
   "features": {
     "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
   }
 ```
+
+And then inside container `app`'s terminal, we can connect to container `postgres`'s database:
 
 ```sh
 psql -h postgres -U postgres -d postgres # or `psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB`
