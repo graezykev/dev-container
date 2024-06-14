@@ -135,7 +135,7 @@ The `${POSTGRES_PASSWORD}` stands for the `POSTGRES_PASSWORD` you define in `.en
 
 Here we pass these variables for container `postgres` so it can use them to create a database with the specific database name, user name and password. And we also pass them to container `app` so it can use them to connect to the database in container `postgres`.
 
-> Caveat: `.env`, database usernames, password etc. should handled by CI/CD systems in real scenario.
+> Caveat: `.env`, database usernames, passwords etc. should handled by CI/CD systems in real scenario.
 
 ### 5. Map `ports`
 
