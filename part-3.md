@@ -132,7 +132,7 @@ volumes:
 
 Creating a virtual volume enables the persistence of the database data and the ability to share between multiple applications.
 
-For exmaple, in some scenarios you may delete the container `postgres`, but the data save in the volume `postgres-data` still exist and is reusable when you recreate another database with the same volume.
+Let's say, for some reason you may delete the container `postgres`, but the data save in the volume `postgres-data` still exist and is reusable when you recreate another database with the same volume.
 
 ### 4. Environment variables
 
