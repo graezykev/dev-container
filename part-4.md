@@ -14,6 +14,11 @@ This is the fourth guide of the Dev Container series:
 > ```sh
 > git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git part-4-remote-dev
 > ```
+>
+> You can also use GitHub's Codespaces to run my demo (switch to branch `part-4-remote-dev`):
+> ![Run demo in Codespaces](./images/part-4/run-in-codespaces.png)!
+
+## Introduction
 
 Here comes my favourite part, **Remote Development**, or more fashionably, cloud development.
 
