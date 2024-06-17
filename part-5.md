@@ -105,4 +105,6 @@ In this way, we define multiple Dev Containers and database in a common `docker-
 
 ## Common Docker Compose File
 
+## Extending Extending a Docker Compose File
+
 The `dockerComposeFile` property specifies the paths to one or more Docker Compose files. When building the dev container, the `docker-compose` command runs using the **first path** specified in the array.
