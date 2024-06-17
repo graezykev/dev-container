@@ -103,6 +103,8 @@ However, this can end up overlapping configurations in multiple projects which m
 
 In this way, we define multiple Dev Containers and database in a common `docker-compose.yml`, and create a `devcontainer.json` respectively for each project to reference the Dev Container in `docker-compose.yml` so you can manage all containers in the same `docker-compose.yml`, and manage each project's `features` and lifecycel scripts avoiding configurations conflics.
 
+Let's see how we can create this sharable Dev Container configuration.
+
 ## Common Docker Compose File
 
 ## Extending Extending a Docker Compose File
