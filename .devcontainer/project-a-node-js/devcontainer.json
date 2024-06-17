@@ -1,8 +1,7 @@
 {
   "name": "Dev Container",
   "dockerComposeFile": [
-    "../../shared-dev-container/docker-compose.yml",
-    "./docker-compose.override.yml"
+    "../docker-compose.yml"
   ],
   "service": "project-a-node-js",
   "features": {
