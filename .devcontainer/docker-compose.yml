@@ -39,7 +39,7 @@ services:
       - postgres
     command: /bin/zsh -c "while sleep 1000; do :; done"
 
-  postgres:3
+  postgres:
     image: postgres:latest
     restart: always
     environment:
@@ -52,4 +52,4 @@ services:
       - 5432:5432
 
 volumes:
-  postgres-data2:  # Define a named volume for PostgreSQL data persistence
+  postgres-data:  # Define a named volume for PostgreSQL data persistence
