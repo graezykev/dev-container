@@ -15,7 +15,7 @@ I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/pa
 git clone -b part-3-use-docker-compose-and-db https://github.com/graezykev/dev-container.git
 ```
 
-Alternatively, you can also use GitHub's Codespaces to run my demo (switch to branch `part-3-use-docker-compose-and-db`):
+Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-3-use-docker-compose-and-db`):
 
 ![Run demo in Codespaces](./images/part-3/run-in-codespaces.png)
 
@@ -240,7 +240,7 @@ The `app` points to the service (container) we define in `docker-compose.yml`, a
 
 Every preparing job has been done now let's build the Dev Containers (use VS Code's "Open in Container"), and start our full-stack development.
 
-I have a demo `Node.js` server in [my demo](https://github.com/graezykev/dev-container/blob/part-3-use-docker-compose-and-db/index.js).
+I have a demo `Node.js` server in [my demo](https://github.com/graezykev/dev-container/blob/part-3-use-docker-compose-and-db/index.js). You can copy it (as well as the file `package.json`) to your project to run as a demo.
 
 This program runs in container `app`, connects to the database (in container `postgres`) with the username and password we pass from `.env`, creates a table named `clients` (for the first time) as well as writes new data into the table every time, and show all data on the web page.
 

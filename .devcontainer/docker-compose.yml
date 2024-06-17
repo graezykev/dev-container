@@ -1,5 +1,5 @@
 services:
-  shared-service:
+  project-a-node-js:
     # Note that the path of the Dockerfile and context is relative to the *primary*
     # docker-compose.yml file (the first in the devcontainer.json "dockerComposeFile"
     # array).
@@ -9,12 +9,32 @@ services:
     image: graezykev/dev-container-base-image:latest # = docker.io/graezykev/dev-container-base-image:latest
     volumes:
       - ..:/workspaces:cached  # Mount the parent directory into the container's /workspaces directory
+    ports:
+      # - 8000-8999:8000-8999
+      - 8001:8000 # Maps port 8001 on the host to port 8000 in the container
+    # env_file:
+    #   - .env # This is a default setting
+    #   - ...  # Put other xxx.env files here so you can reference the variables by ${var}, such as ${POSTGRES_HOST}
     environment:
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
-      - NVM_DIR=$HOME/.nvm  # Set NVM_DIR to the .nvm directory in the home directory
+    depends_on:
+      - postgres
+    command: /bin/zsh -c "while sleep 1000; do :; done"
+  
+  project-b-node-js:
+    image: graezykev/dev-container-base-image:latest
+    volumes:
+      - ..:/workspaces:cached
+    ports:
+      - 8002:8000
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     depends_on:
       - postgres
     command: /bin/zsh -c "while sleep 1000; do :; done"

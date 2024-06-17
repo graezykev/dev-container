@@ -15,7 +15,7 @@ I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/pa
 git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git
 ```
 
-Alternatively, you can also use GitHub's Codespaces to run my demo (switch to branch `part-1-use-docker-file`):
+Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-1-use-docker-file`):
 
 ![Run demo in Codespaces](./images/part-1/run-in-codespaces.png)
 
@@ -288,7 +288,11 @@ Learn more about `forwardPorts` here <https://containers.dev/implementors/json_r
 
 ## Appendix 2: Lifecycle Commands Explanation
 
-We have used `postStartCommand` in the previous demo, here I would like to introduce more about some Lifecycle scripts you can use in `devcontainer.json`. For a full introduction, refer to this official document: <https://containers.dev/implementors/json_reference/#lifecycle-scripts>.
+We have used `postStartCommand` in the previous demo, here I would like to introduce more about some Lifecycle scripts you can use in `devcontainer.json`.
+
+Lifecycle scripts are different commands to be run at different points in the container’s lifecycle. They can be a command line or Shell scripts like [my demo](https://github.com/graezykev/dev-container/blob/part-1-use-docker-file/.devcontainer/post-start.sh).
+
+For a full introduction, refer to this official document: <https://containers.dev/implementors/json_reference/#lifecycle-scripts>.
 
 - `postCreateCommand`
 
