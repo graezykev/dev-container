@@ -1,0 +1,32 @@
+{
+  "name": "Dev Container",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "project-b-node-js",
+  "shutdownAction": "none",
+  "features": {
+    "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
+  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "postCreateCommand": ".devcontainer/post-create.sh",
+  "updateContentCommand": "",
+  "postStartCommand": ".devcontainer/post-start.sh",
+  "postAttachCommand": ".devcontainer/post-attach.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint@3.0.5",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "github.copilot"
+      ]
+    }
+  }
+}
