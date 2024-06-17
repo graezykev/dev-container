@@ -21,4 +21,92 @@ Alternatively, a faster approach to follow me is using GitHub's Codespaces to ru
 
 ## Introduction
 
+In [Part 3](./part-3.md) we learned about using Docker Compose in Dev Container to build containers for `Node.js` application and database.
+
+Currently you can only connect to one container per Visual Studio Code window.
+
+Considering if you have multiple projects using different tech stacks like `Node.js`, `Python`, `Go` etc. and you need to create Dev Containers for them respectively, you have an option to put a `.devcontainer` under each of them:
+
+```txt
+.
+└── path
+    └── to
+        ├── project-a-node-js
+        │   └── .devcontainer
+        │       ├── docker-compose.yml
+        │       ├── ...
+        │       └── devcontainer.json
+        ├── project-b-node-js
+        │   └── .devcontainer
+        │       ├── ...
+        │       └── devcontainer.json
+        ├── project-c-python
+        │   └── .devcontainer
+        │       ├── ...
+        │       └── devcontainer.json
+        ├── project-d-go-lang
+        │   └── .devcontainer
+        │       ├── ...
+        │       └── devcontainer.json
+        └── project-...
+```
+
+If these applications with different tech stacks need to share the same databaes, you need to make sure they all use the same database container in their `docker-compose.yml` as well as the same valume:
+
+```yml
+services:
+
+  app-name-...
+    ...
+
+  postgres:
+    image: postgres:latest
+    ...
+
+...
+
+volumes:
+  postgres-data:
+```
+
+However, this can end up overlapping configurations in multiple projects which makes it tedious and difficult to maintain, I recommend a better way to share a same `docker-compose.yml`:
+
+```txt
+.
+└── path
+    └── to
+        └── share-dev-container-configure
+            ├── .devcontainer
+            │   ├── ...
+            │   ├── .env
+            │   ├── docker-compose.yml
+            │   ├── ...
+            │   ├── project-a-node-js
+            │   │   └── devcontainer.json
+            │   ├── project-b-node-js
+            │   │   └── devcontainer.json
+            │   ├── project-c-python
+            │   │   └── devcontainer.json
+            │   ├── project-d-go-lang
+            │   │   └── devcontainer.json
+            │   └── project-e-...
+            │       └── devcontainer.json
+            │
+            ├── project-a-node-js
+            │       └── index.js
+            ├── project-b-node-js
+            ├── project-c-python
+            │       └── hello.py
+            ├── project-d-go-lang
+            └── project-e-...
+```
+
+In this way, we define multiple Dev Containers and database in a common `docker-compose.yml`, and create a `devcontainer.json` respectively for each project to reference the Dev Container in `docker-compose.yml` so you can manage all containers in the same `docker-compose.yml`, and manage each project's `features` and lifecycel scripts avoiding configurations conflics.
+
+Let's see how we can create this sharable Dev Container configuration.
+
+## Common Docker Compose File
+
+## Extending Extending a Docker Compose File
+
 The `dockerComposeFile` property specifies the paths to one or more Docker Compose files. When building the dev container, the `docker-compose` command runs using the **first path** specified in the array.
