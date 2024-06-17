@@ -4,6 +4,7 @@
     "../docker-compose.yml"
   ],
   "service": "project-a-node-js",
+  "shutdownAction": "none",
   "features": {
     "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
   },
