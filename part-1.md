@@ -15,7 +15,7 @@ I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/pa
 git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git
 ```
 
-Alternatively, you can also use GitHub's Codespaces to run my demo (switch to branch `part-1-use-docker-file`):
+Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-1-use-docker-file`):
 
 ![Run demo in Codespaces](./images/part-1/run-in-codespaces.png)
 
