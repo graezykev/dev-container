@@ -101,11 +101,91 @@ However, this can end up overlapping configurations in multiple projects which m
             └── project-e-...
 ```
 
-In this way, we define multiple Dev Containers and database in a common `docker-compose.yml`, and create a `devcontainer.json` respectively for each project to reference the Dev Container in `docker-compose.yml` so you can manage all containers in the same `docker-compose.yml`, and manage each project's `features` and lifecycel scripts avoiding configurations conflics.
+All Projects and the `.devcontainer` folder share a common **root level** folder, and each project has an equivalent configuration folder under this common `.devcontainer`.
+
+In this way, we define multiple Dev Containers (and container for database) in a common `docker-compose.yml`, and create a `devcontainer.json` for each project respectively to reference the Dev Container defined in `docker-compose.yml`, so we can manage all containers in the same `docker-compose.yml`.
+
+This also enable us to manage each project's `features` and lifecycel scripts, avoiding configurations conflics.
 
 Let's see how we can create this sharable Dev Container configuration.
 
 ## Common Docker Compose File
+
+The most important thing to start is create a common `docker-compose.yml` in the path I put above, and define whatever projects you like as we did in [Part 3](./part-3.md#i-compose-configuration)
+
+```yml
+services:
+  project-a-node-js:
+    image: graezykev/dev-container-base-image:latest
+    volumes:
+      - ..:/workspaces:cached
+    ports:
+      - 8001:8000
+    depends_on:
+      - postgres
+    command: /bin/zsh -c "while sleep 1000; do :; done"
+  
+  project-b-node-js:
+    ...
+    volumes:
+      - ..:/workspaces:cached
+    ports:
+      - 8002:8000
+  
+  project-c-python:
+    ...
+
+  project-d-go-lang:
+    ...
+
+  project-e-...
+
+  postgres:
+    ...
+
+volumes:
+  postgres-data:  
+```
+
+```json
+{
+  "name": "Dev Container",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "project-a-node-js",
+  "shutdownAction": "none",
+  "workspaceFolder": "/workspaces/project-a-node-js"
+}
+```
+
+![set workspaceFolder for the right dev container](./images/part-5/workspacefolder.png)
+
+```json
+  ...
+  "service": "project-b-node-js",
+  ...
+```
+
+```json
+  ...
+  "service": "project-c-python",
+  ...
+```
+
+## Build and Switch Dev Containers
+
+In VS Code, use `FILE` -> `Open Folder` to open the root level folder.
+
+And, run `Dev Containers: Reopen in Container` from the Command Palette and select the project we want to build.
+
+![choose dev container to build](./images/part-5/choose-dev-container.png)
+
+This trigger the building for the Dev Container of the first project.
+
+Then, for other projects, we can run `Dev Containers: Switch Container` from the Command Palette and select other projects we want to build.
+
+After each project's Dev Container is built, we can use this `Switch Container` command to swith between projects, the current VS Code window will reload and connect to the selected Dev Container.
 
 ## Extending Extending a Docker Compose File
 
