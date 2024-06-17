@@ -6,9 +6,6 @@
   ],
   "service": "project-a-node-js",
   "features": {
-    "ghcr.io/devcontainers/features/python:1": {
-      "version": "latest"
-    },
     "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
   },
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
