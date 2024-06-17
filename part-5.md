@@ -177,15 +177,15 @@ volumes:
 
 In VS Code, use `FILE` -> `Open Folder` to open the root level folder.
 
-And, run `Dev Containers: Reopen in Container` from the Command Palette and select the first project.
+And, run `Dev Containers: Reopen in Container` from the Command Palette and select the project we want to build.
 
 ![choose dev container to build](./images/part-5/choose-dev-container.png)
 
 This trigger the building for the Dev Container of the first project.
 
-Then, for the second project and so forth, we run `Dev Containers: Switch Container` from the Command Palette and select the project we want to build.
+Then, for other projects, we can run `Dev Containers: Switch Container` from the Command Palette and select other projects we want to build.
 
-After each Dev Container is built, we can use this `Switch Container` command to swith between projects, the current VS Code window will reload and connect to the selected Dev Container.
+After each project's Dev Container is built, we can use this `Switch Container` command to swith between projects, the current VS Code window will reload and connect to the selected Dev Container.
 
 ## Extending Extending a Docker Compose File
 
