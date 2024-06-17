@@ -109,3 +109,4 @@ RUN echo 'SHELL=/bin/zsh' >> /etc/environment \
 
 # Entrypoint
 ENTRYPOINT ["/bin/zsh", "-c", "source $HOME/.zshrc && exec \"$@\"", "--"]
+4
