@@ -288,7 +288,11 @@ Learn more about `forwardPorts` here <https://containers.dev/implementors/json_r
 
 ## Appendix 2: Lifecycle Commands Explanation
 
-We have used `postStartCommand` in the previous demo, here I would like to introduce more about some Lifecycle scripts you can use in `devcontainer.json`. For a full introduction, refer to this official document: <https://containers.dev/implementors/json_reference/#lifecycle-scripts>.
+We have used `postStartCommand` in the previous demo, here I would like to introduce more about some Lifecycle scripts you can use in `devcontainer.json`.
+
+Lifecycle scripts are different commands to be run at different points in the container’s lifecycle. They can be a command line or Shell scripts like [my demo](https://github.com/graezykev/dev-container/blob/part-1-use-docker-file/.devcontainer/post-start.sh).
+
+For a full introduction, refer to this official document: <https://containers.dev/implementors/json_reference/#lifecycle-scripts>.
 
 - `postCreateCommand`
 
