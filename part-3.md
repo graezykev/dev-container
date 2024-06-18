@@ -264,7 +264,7 @@ And then inside container `app`'s terminal, we can connect to container `postgre
 psql -h postgres -U postgres -d postgres # or `psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB`
 ```
 
-![connect to database from app container]()
+![connect to database from app container](./read-me-images/part-3/connect-to-database-from-app-container.png)
 
 ## Next
 
