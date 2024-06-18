@@ -8,7 +8,7 @@
   "features": {
     "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
   },
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "workspaceFolder": "/workspaces/project-a-node-js",
   "postCreateCommand": "${containerWorkspaceFolder}/scripts/post-create.sh",
   "updateContentCommand": "",
   "postStartCommand": "${containerWorkspaceFolder}/scripts/post-start.sh",
