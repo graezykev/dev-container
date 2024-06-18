@@ -23,7 +23,7 @@ VS Code extensions can sometimes crucially improve our development efficiency an
 
 I saw so many JavaScript developers using ESLint and Prettier extensions to auto-format their code and auto-fix some code convention problems with just hitting `Command + s` (`Control + s`):
 
-![auto format](./images/auto-format-extension.gif)
+![auto format](./read-me-images/auto-format-extension.gif)
 
 As an experienced developer, you must have lots of other extensions want to recommend to your teammates, but asking them to install them one by one is not an easy thing, let alone in some cases you may ask them to install a specific version of an extension ...
 
@@ -67,7 +67,7 @@ So what on earth is Dev Container? How does it work under the hood?
 
 If you are a backend developer, or you have experience with containers like Docker, Dev Containers is nothing new to you!
 
-![dev container architecture](./images/architecture-containers.png)
+![dev container architecture](./read-me-images/architecture-containers.png)
 
 Even if you never used containers before, you don't need to dive deep into the concepts because using Dev Containers in VS Code is very simple with no requirement of understanding what a container is or what Docker is (even though you need to install it).
 
