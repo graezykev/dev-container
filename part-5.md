@@ -168,7 +168,7 @@ Look at the ports we are mapping for each project `8001:8000`, `8002:8000`, ...
 
 Every project is using port `8000` in its own Dev Container, and we are mapping them to port `8001`, `8002` etc. on the host machine so they can be visited via the host machine's web browser from port `8001`, `8002`, ...
 
-This allows every project to listen to port `8000` without considering port conflicts between projects, and the host machine has specific ports to visit every project's server with different ports.
+This allows every project to listen to port `8000` without considering port conflicts between projects, and the host machine has specific ports to visit every project's server with different ports (see [demo preveiw](#demo-preview)).
 
 ### Volumes & Workspace
 
