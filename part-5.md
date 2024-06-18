@@ -76,6 +76,7 @@ However, this can end up overlapping configurations in multiple projects which m
 └── path
  └── to
   └── dev-container
+  │
   ├── .devcontainer
   │   ├── ...
   │   ├── .env
@@ -94,9 +95,12 @@ However, this can end up overlapping configurations in multiple projects which m
   │
   ├── project-a-node-js
   │       └── index.js
+  │
   ├── project-b-node-js
+  │
   ├── project-c-python
   │       └── hello.py
+  │
   ├── project-d-go-lang
   └── project-e-...
 ```
