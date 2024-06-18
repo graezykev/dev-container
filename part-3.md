@@ -17,7 +17,7 @@ git clone -b part-3-use-docker-compose-and-db https://github.com/graezykev/dev-c
 
 Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-3-use-docker-compose-and-db`):
 
-![Run demo in Codespaces](./images/part-3/run-in-codespaces.png)
+![Run demo in Codespaces](./read-me-images/part-3/run-in-codespaces.png)
 
 ## Introduction
 
@@ -219,7 +219,7 @@ services:
 
 In this way, we can use port `8001` (on the host machine) to visit container `app`'s port `8080`, use port `8002` to visit container `app1`'s port `8080` ...
 
-![docker compose port mapping](./images/part-3/dev-container-port-mapping.png)
+![docker compose port mapping](./read-me-images/part-3/dev-container-port-mapping.png)
 
 ## II. Entry Point
 
@@ -244,9 +244,9 @@ I have a `Node.js` server in [my demo](https://github.com/graezykev/dev-containe
 
 This program runs in container `app`, connects to the database (in container `postgres`) with the username and password we pass from `.env`, creates a table named `clients` (for the first time) as well as writes new data into the table every time, and show all data on the web page.
 
-![docker compose environment variables](./images/part-3/dev-container-env-variables-2.png)
+![docker compose environment variables](./read-me-images/part-3/dev-container-env-variables-2.png)
 
-![docker compose port mapping](./images/part-3/dev-container-port-mapping.png)
+![docker compose port mapping](./read-me-images/part-3/dev-container-port-mapping.png)
 
 ## VI. Add Database Client (optional)
 
