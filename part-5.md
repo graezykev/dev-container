@@ -234,4 +234,6 @@ In [my demo](https://github.com/graezykev/dev-container/tree/part-5-shared-confi
 
 They start an HTTP server respectively with a web page. When the web pages are visited, the projects write "visiting records" to the same database, and read all historical records to show on the page.
 
+![preview](./images/part-5/preview.png)
+
 ![visiting records](./images/part-5/visiting-record.png)
