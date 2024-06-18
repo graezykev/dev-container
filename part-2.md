@@ -17,7 +17,7 @@ git clone -b part-2-use-image-and-feature https://github.com/graezykev/dev-conta
 
 Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-2-use-image-and-feature`):
 
-![Run demo in Codespaces](./images/part-2/run-in-codespaces.png)
+![Run demo in Codespaces](./read-me-images/part-2/run-in-codespaces.png)
 
 ## Introduction
 
@@ -221,7 +221,7 @@ You can just create a `.env` file, put the key/value pairs in it, (this is usual
 
 All the key/value pairs will be injected into the container as system variables:
 
-![use arguments, variables in dev container](./images/part-2/dev-container-env-variables-1.png)
+![use arguments, variables in dev container](./read-me-images/part-2/dev-container-env-variables-1.png)
 
 After the container is built and run, the variables can be used inside the container via Linux commands, Shell scripts, or `Node.js` etc.
 
