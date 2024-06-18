@@ -180,14 +180,14 @@ And in each `devcontainer.json`, we locate the specific folder in the specific p
 
 ### Service
 
-In each `devcontainer.json`, we need to reference the Docker Compose configurations file `docker-compose.yml` and specify the name of the `service` according to the container defined in `docker-compose.yml`.
+In each `devcontainer.json`, we need to reference the Docker Compose configurations file `docker-compose.yml` through `dockerComposeFile`, and specify the name of the `service` according to the container defined in `docker-compose.yml`.
 
 ```json
 {
   "name": "Dev Container",
   "dockerComposeFile": [
     "../docker-compose.yml"
- ],
+  ],
   "service": "project-a-node-js",
   "shutdownAction": "none",
   "workspaceFolder": "/workspaces/project-a-node-js"
@@ -195,15 +195,19 @@ In each `devcontainer.json`, we need to reference the Docker Compose configurati
 ```
 
 ```json
- ...
+  ...
   "service": "project-b-node-js",
- ...
+  ...
+  "workspaceFolder": "/workspaces/project-b-node-js",
+  ...
 ```
 
 ```json
- ...
+  ...
   "service": "project-c-python",
- ...
+  ...
+  "workspaceFolder": "/workspaces/project-c-python"
+  ...
 ```
 
 ...
@@ -212,7 +216,7 @@ The `"shutdownAction": "none"` option will leave the containers running when VS 
 
 ## Build and Switch Dev Containers
 
-In VS Code, use `FILE` -> `Open Folder` to open the root level folder.
+In VS Code, use `FILE` -> `Open Folder` to open the root level folder (or `dev-container` in my demo).
 
 Run `Dev Containers: Reopen in Container` from the Command Palette and select the project we want to build.
 
@@ -220,10 +224,14 @@ Run `Dev Containers: Reopen in Container` from the Command Palette and select th
 
 This triggers building the Dev Container of the project.
 
-Then, for other projects, we can run `Dev Containers: Switch Container` from the Command Palette and select other projects we want to build.
+Then, for other projects, we can run `Dev Containers: Switch Container` from the Command Palette and select other projects we want to build or run.
 
 After each project's Dev Container is built, we can use this `Switch Container` command to switch between projects, the current VS Code window will reload and connect to the selected Dev Container.
 
-## Extending Extending a Docker Compose File
+## Demo Preview
 
-The `dockerComposeFile` property specifies the paths to one or more Docker Compose files. When building the dev container, the `docker-compose` command runs using the **first path** specified in the array.
+In [my demo](https://github.com/graezykev/dev-container/tree/part-5-shared-configure-for-multiple-projects) I have 3 projects, 2 are `Node.js` projects and the other one is `Python` project.
+
+They start an HTTP server respectively with a web page. When the web pages are visited, the projects write "visiting records" to the same database, and read all historical records to show on the page.
+
+![visiting records](./images/part-5/visiting-record.png)
