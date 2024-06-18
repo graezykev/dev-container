@@ -187,7 +187,7 @@ In each `devcontainer.json`, we need to reference the Docker Compose configurati
   "name": "Dev Container",
   "dockerComposeFile": [
     "../docker-compose.yml"
- ],
+  ],
   "service": "project-a-node-js",
   "shutdownAction": "none",
   "workspaceFolder": "/workspaces/project-a-node-js"
