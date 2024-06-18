@@ -75,30 +75,30 @@ However, this can end up overlapping configurations in multiple projects which m
 .
 └── path
  └── to
- └── dev-container
- ├── .devcontainer
- │   ├── ...
- │   ├── .env
- │   ├── docker-compose.yml
- │   ├── ...
- │   ├── project-a-node-js
- │   │   └── devcontainer.json
- │   ├── project-b-node-js
- │   │   └── devcontainer.json
- │   ├── project-c-python
- │   │   └── devcontainer.json
- │   ├── project-d-go-lang
- │   │   └── devcontainer.json
- │   └── project-e-...
- │       └── devcontainer.json
- │
- ├── project-a-node-js
- │       └── index.js
- ├── project-b-node-js
- ├── project-c-python
- │       └── hello.py
- ├── project-d-go-lang
- └── project-e-...
+  └── dev-container
+  ├── .devcontainer
+  │   ├── ...
+  │   ├── .env
+  │   ├── docker-compose.yml
+  │   ├── ...
+  │   ├── project-a-node-js
+  │   │   └── devcontainer.json
+  │   ├── project-b-node-js
+  │   │   └── devcontainer.json
+  │   ├── project-c-python
+  │   │   └── devcontainer.json
+  │   ├── project-d-go-lang
+  │   │   └── devcontainer.json
+  │   └── project-e-...
+  │       └── devcontainer.json
+  │
+  ├── project-a-node-js
+  │       └── index.js
+  ├── project-b-node-js
+  ├── project-c-python
+  │       └── hello.py
+  ├── project-d-go-lang
+  └── project-e-...
 ```
 
 All Projects and the `.devcontainer` folder share a common **root level** folder, and each project has an equivalent configuration folder under this common `.devcontainer`.
