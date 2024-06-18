@@ -17,7 +17,7 @@ git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.g
 
 Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-1-use-docker-file`):
 
-![Run demo in Codespaces](./images/part-1/run-in-codespaces.png)
+![Run demo in Codespaces](./read-me-images/part-1/run-in-codespaces.png)
 
 ## Introduction
 
@@ -85,7 +85,7 @@ docker -v # varify the installation
 
 I have a full record of the installation:
 
-![ubuntu install doker](./images/part-1/install-docker-ubuntu.gif)
+![ubuntu install doker](./read-me-images/part-1/install-docker-ubuntu.gif)
 
 ## 3. Project Setup
 
@@ -215,7 +215,7 @@ In VS Code, use `File` -> `Open Folder...` and choose **your project folder** in
 
 VS Code will show a prompt to ask you to install the Extension of Dev Containers(`ms-vscode-remote.remote-containers`).
 
-![dev container installation prompt](./images/part-1/dev-container-extension-installation-prompt.png)
+![dev container installation prompt](./read-me-images/part-1/dev-container-extension-installation-prompt.png)
 
 Click the "Install" button and wait for the installation.
 
@@ -223,13 +223,13 @@ Click the "Install" button and wait for the installation.
 
 After the extension is installed, VS Code will show another prompt to ask you to "Reopen" your project in a container, which means, to **build your Dev Container**.
 
-![reopen in container prompt](./images/part-1/reopen-in-container-prompt.png)
+![reopen in container prompt](./read-me-images/part-1/reopen-in-container-prompt.png)
 
 Click `Reopen in Container` to trigger the building process.
 
 This is the whole process I recorded:
 
-![img](./images/part-1/dev-container-install-extension-and-build.gif)
+![img](./read-me-images/part-1/dev-container-install-extension-and-build.gif)
 
 ### 4.4 Dev Container Built
 
@@ -244,13 +244,13 @@ After the building finishes, enjoy all applications and extensions installed ins
 
 Once the Dev Container is built, or every time the container is started (such as you restart your VS Code), the `postStartCommand` specified in `devcontainer.json` with a command of `node index.js` will be run, and start our `Node.js` server!
 
-![server started by postStartCommand](./images/part-1/post-start-command.png)
+![server started by postStartCommand](./read-me-images/part-1/post-start-command.png)
 
 This `Node.js` engine is installed inside the the Dev Container but not on your host machine.
 
 According to what we wrote in `Dockerfile` and `devcontainer.json`, we initiated an Ubuntu system with `Node.js` installed. We can check from the terminal console:
 
-![nodejs installed inside dev container](./images/part-1/nodejs-installed-inside-dev-container.png)
+![nodejs installed inside dev container](./read-me-images/part-1/nodejs-installed-inside-dev-container.png)
 
 (You may not have `Node.js` installed or have a different version of it installed on your host machine)
 
@@ -258,7 +258,7 @@ This `Node.js` is installed inside the Dev Container, but not on your host machi
 
 Similarly, the VS Code extensions we specified in `devcontainer.json` are not installed on the VS Code client of your host machine either, but inside the Dev Container.
 
-![vs code extensions installed in dev container](./images/part-1/vs-code-extensions-installed-in-dev-container.png)
+![vs code extensions installed in dev container](./read-me-images/part-1/vs-code-extensions-installed-in-dev-container.png)
 
 If you open another project in this host machine, you won't find these extensions.
 
