@@ -75,7 +75,7 @@ However, this can end up overlapping configurations in multiple projects which m
 .
 └── path
     └── to
-        └── share-dev-container-configure
+        └── dev-container
             ├── .devcontainer
             │   ├── ...
             │   ├── .env
@@ -111,7 +111,7 @@ Let's see how we can create this sharable Dev Container configuration.
 
 ## Common Docker Compose File
 
-The most important thing to start is create a common `docker-compose.yml` in the path I put above, and define whatever projects you like as we did in [Part 3](./part-3.md#i-compose-configuration)
+The most important thing in the beginning is creating a common `docker-compose.yml` inside the root level's `.devcontainer` I put in the directory tree above, and define whatever projects you like as we did in [Part 3](./part-3.md#i-compose-configuration)
 
 ```yml
 services:
@@ -147,6 +147,28 @@ volumes:
   postgres-data:  
 ```
 
+See the whole file in [my demo](https://github.com/graezykev/dev-container/blob/main/.devcontainer/docker-compose.yml).
+
+We have learn most of the concepts in [Part 3](./part-3.md#1-define-services) but there are a few things we need to pay attention to.
+
+### Ports
+
+Look at the ports we are mapping for each project `8001:8000`, `8002:8000`, ...
+
+Every project is using port `8000` in its own Dev Container, and we are mapping them to port `8001`, `8002` etc. on the host machine so they can be visited via the host machine's web brwoser from port `8001`, `8002`, ...
+
+### Volumes & Workspace
+
+Using `..:/workspaces` for the `volumes` sections is because here we want to mount this whole root level folder (`dev-container`) on the host machine to the `/workspaces` of the containers.
+
+And in each `devcontainer.json`, we locate to the specify folder for the specify project, such as "workspaceFolder": "/workspaces/project-b-node-js" for `project-b-node-js`, and so forth.
+
+![set workspaceFolder for the right dev container](./images/part-5/workspacefolder.png)
+
+### Service
+
+In each `devcontainer.json`, we need to reference the Docker Compose configurations file `docker-compose.yml` and specify the name of the `service` according to the container defined in `docker-compose.yml`.
+
 ```json
 {
   "name": "Dev Container",
@@ -159,8 +181,6 @@ volumes:
 }
 ```
 
-![set workspaceFolder for the right dev container](./images/part-5/workspacefolder.png)
-
 ```json
   ...
   "service": "project-b-node-js",
@@ -172,6 +192,10 @@ volumes:
   "service": "project-c-python",
   ...
 ```
+
+...
+
+The `"shutdownAction": "none"` option will leave the containers running when VS Code closes -- which prevents you from accidentally shutting down both containers by closing one window (or switching containers).
 
 ## Build and Switch Dev Containers
 
