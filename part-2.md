@@ -72,7 +72,7 @@ Specify this image in `devcontainer.json` and remove the `Dockerfile` from it:
 + "image": "docker.io/your-user-name/your-image-name"
 ```
 
-> Check out my demo here <https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L3>
+> You can check out my demo and copy the image I've built here <https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L3>
 >
 > Besides, `"image": "your-user-name/your-image-name"` also works.
 

@@ -38,6 +38,21 @@ services:
     depends_on:
       - postgres
     command: /bin/zsh -c "while sleep 1000; do :; done"
+  
+  project-c-python:
+    image: mcr.microsoft.com/devcontainers/python:latest
+    volumes:
+      - ..:/workspaces:cached
+    ports:
+      - 8003:8000
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    depends_on:
+      - postgres
+    command: /bin/sh -c "while sleep 1000; do :; done"
 
   postgres:
     image: postgres:latest

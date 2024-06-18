@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
   const client = await pool.connect();
   try {
     // Add a new client with a random name
-    const randomName = generateRandomString();
+    const randomName = generateRandomString() + ' -- written by project b (node)';
     const insertClientQuery = `
       INSERT INTO clients (name) VALUES ($1);
     `;
