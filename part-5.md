@@ -147,7 +147,9 @@ volumes:
   postgres-data:  
 ```
 
-See the whole file in [my demo](https://github.com/graezykev/dev-container/blob/main/.devcontainer/docker-compose.yml).
+See the whole file in [my demo](https://github.com/graezykev/dev-container/blob/part-5-shared-configure-for-multiple-projects/.devcontainer/docker-compose.yml).
+
+All projects share the same database in container `postgres`.
 
 We have learn most of the concepts in [Part 3](./part-3.md#1-define-services) but there are a few things we need to pay attention to.
 
