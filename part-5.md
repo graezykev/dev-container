@@ -157,6 +157,8 @@ Look at the ports we are mapping for each project `8001:8000`, `8002:8000`, ...
 
 Every project is using port `8000` in its own Dev Container, and we are mapping them to port `8001`, `8002` etc. on the host machine so they can be visited via the host machine's web brwoser from port `8001`, `8002`, ...
 
+This allows every project to listen to port `8000` without considering ports conflics between projects, and the host machine have a specify port to visit every project's server with different ports.
+
 ### Volumes & Workspace
 
 Using `..:/workspaces` for the `volumes` sections is because here we want to mount this whole root level folder (`dev-container`) on the host machine to the `/workspaces` of the containers.
