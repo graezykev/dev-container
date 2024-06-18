@@ -12,10 +12,10 @@
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-  "postCreateCommand": ".devcontainer/post-create.sh",
+  "postCreateCommand": "${containerWorkspaceFolder}/scripts/post-create.sh",
   "updateContentCommand": "",
-  "postStartCommand": ".devcontainer/post-start.sh",
-  "postAttachCommand": ".devcontainer/post-attach.sh",
+  "postStartCommand": "${containerWorkspaceFolder}/scripts/post-start.sh",
+  "postAttachCommand": "${containerWorkspaceFolder}/scripts/post-attach.sh",
   "customizations": {
     "vscode": {
       "settings": {
