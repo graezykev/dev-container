@@ -205,7 +205,7 @@ And, run `Dev Containers: Reopen in Container` from the Command Palette and sele
 
 ![choose dev container to build](./images/part-5/choose-dev-container.png)
 
-This trigger the building for the Dev Container of the project.
+This triggers building the Dev Container of the project.
 
 Then, for other projects, we can run `Dev Containers: Switch Container` from the Command Palette and select other projects we want to build.
 
