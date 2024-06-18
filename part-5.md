@@ -165,7 +165,7 @@ This allows every project to listen to port `8000` without considering ports con
 
 Using `..:/workspaces` for the `volumes` sections is because here we want to mount this whole root level folder (`dev-container`) on the host machine to the `/workspaces` of the containers.
 
-And in each `devcontainer.json`, we locate to the specify folder for the specify project, such as "workspaceFolder": "/workspaces/project-b-node-js" for `project-b-node-js`, and so forth.
+And in each `devcontainer.json`, we locate to the specify folder for the specify project, such as `"workspaceFolder": "/workspaces/project-b-node-js"` for `project-b-node-js`, and so forth.
 
 ![set workspaceFolder for the right dev container](./images/part-5/workspacefolder.png)
 
