@@ -17,7 +17,7 @@ git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 
 Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-4-remote-dev`):
 
-![Run demo in Codespaces](./images/part-4/run-in-codespaces.png)!
+![Run demo in Codespaces](./read-me-images/part-4/run-in-codespaces.png)!
 
 ## Introduction
 
@@ -27,7 +27,7 @@ In the previous parts, we stay in a stand-alone PC to do everything, building de
 
 This is how the VS Code team elaborate on the remote development architecture:
 
-![remote docker host](./images/part-4/server-arch-latest.png)
+![remote docker host](./read-me-images/part-4/server-arch-latest.png)
 
 The VS Code on the left side can be a **native client** installed on your development machine (a desktop, laptop, tablet etc.) or a **VS Code web** you visit in any web browser. This is why I say theoretically you can work everywhere as long as you have a web browser and Internet accessibility.
 
@@ -83,7 +83,7 @@ What's interesting is that **you can also skip installing Docker for now**, beca
 
 Launch the remote machine to **download and uncompress** VS Code CLI here <https://code.visualstudio.com/download>, according to the operating system you use.
 
-![download vs code cli](./images/part-4/download-vs-code-cli.png)
+![download vs code cli](./read-me-images/part-4/download-vs-code-cli.png)
 
 If you're using a Windows/Mac/Linux PC, you can click the link to download and uncompress.
 
@@ -98,7 +98,7 @@ tar -xf vscode_cli.tar.gz
 
 After it's uncompressed you'll find the executable binary file:
 
-![code exec bin](./images/part-4/vs-code-bin.png)
+![code exec bin](./read-me-images/part-4/vs-code-bin.png)
 
 ### 3. Create Secure Tunnel (Remote Machine)
 
@@ -110,7 +110,7 @@ Run the binary file to start creating a secure tunnel:
 
 You'll need some steps to set up the tunnel:
 
-![steps to create a secure tunnel](./images/part-4/create-tunnel-steps.png)
+![steps to create a secure tunnel](./read-me-images/part-4/create-tunnel-steps.png)
 
 > Here, use the GitHub / Microsoft account I mentioned before.
 
@@ -122,7 +122,7 @@ Now you can connect to the remote machine, using the dev machine I mentioned abo
 
 - 1. Directly visit the **vscode.dev URL** from a web browser.
 
-  ![visit vscode.dev URL on a web browser](./images/part-4/visit-vscode-url-in-browser.gif)
+  ![visit vscode.dev URL on a web browser](./read-me-images/part-4/visit-vscode-url-in-browser.gif)
 
 - 2. Use a VS Code client.
 
@@ -134,17 +134,17 @@ Now you can connect to the remote machine, using the dev machine I mentioned abo
 
 I recorded the steps below:
 
-![visit vscode.dev URL on a VS Code client](./images/part-4/install-extension-and-visit-remote-machine-in-vscode.gif)
+![visit vscode.dev URL on a VS Code client](./read-me-images/part-4/install-extension-and-visit-remote-machine-in-vscode.gif)
 
 > Either way you choose, when you try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
 
 Once the remote machine is connected, on the left bottom corner of VS Code (client or web), you can see the name of the remote machine (`my-remote-ubuntu` in my example), and you have control of the remote machine from the terminal.
 
-![remote machine and terminal](./images/part-4/tunnel-connected.png)
+![remote machine and terminal](./read-me-images/part-4/tunnel-connected.png)
 
 As I mentioned in [step 1](#1-install-docker-remote-machine), you can install Docker in this terminal, because it connects to the remote machine. In the example below I install Docker from VS Code client's terminal following this [guide](https://docs.docker.com/engine/install/ubuntu/#installation-methods), you can even do it from VS Code web.
 
-![install docker in remote machine](./images/part-4/tunnel-install-docker.gif)
+![install docker in remote machine](./read-me-images/part-4/tunnel-install-docker.gif)
 
 At this point, we have only connected to this remote machine. In the next step, we're going to use this remote machine to clone codes and build a dev container on top of it, so as to enjoy a truly unified dev environment.
 
@@ -168,19 +168,19 @@ The dev container isn't built yet, we're still unable to use the container envir
 
 I recorded the steps below:
 
-![open folder and reopen in container and build](./images/part-4/clone-project-and-open-folder-and-reopen-in-container-and-build.gif)
+![open folder and reopen in container and build](./read-me-images/part-4/clone-project-and-open-folder-and-reopen-in-container-and-build.gif)
 
 After the container is built, enjoy the dev environment, ports mapping, VS Code extensions, settings etc.
 
 Lifecycle commands in `devcontainer.json` are also run in the container after it's built.
 
-![after container built - port mapping & lifecycle scripts & extensions & settings](./images/part-4/tunnel-after-build.png)
+![after container built - port mapping & lifecycle scripts & extensions & settings](./read-me-images/part-4/tunnel-after-build.png)
 
 The Node.js program is listening to port 8000 on the remote machine's dev container, and the port is mapped directly to your dev machine, so you can visit it through `localhost:8000`.
 
 Besides, VS Code extensions we specify in `devcontainer.json` are not actually installed on the dev machine, but on the remote machine's dev container.
 
-![alfter container built - installed softwares](./images/part-4/tunnel-after-build-2.png)
+![alfter container built - installed softwares](./read-me-images/part-4/tunnel-after-build-2.png)
 
 Furthermore, although the remote machine actually has no Node.js or Python installed, you can enjoy the pre-installed software in the dev container built into this remote machine.
 

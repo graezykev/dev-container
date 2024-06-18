@@ -17,7 +17,7 @@ git clone -b part-5-shared-configure-for-multiple-projects https://github.com/gr
 
 Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-5-shared-configure-for-multiple-projects`):
 
-![Run demo in Codespaces](./images/part-5/run-in-codespaces.png)!
+![Run demo in Codespaces](./read-me-images/part-5/run-in-codespaces.png)!
 
 ## Introduction
 
@@ -176,7 +176,7 @@ Using `..:/workspaces` for the `volumes` sections is because here we want to mou
 
 And in each `devcontainer.json`, we locate the specific folder in the specific project, such as `"workspaceFolder": "/workspaces/project-b-node-js"` for `project-b-node-js`, and so forth.
 
-![set workspaceFolder for the right dev container](./images/part-5/workspacefolder.png)
+![set workspaceFolder for the right dev container](./read-me-images/part-5/workspacefolder.png)
 
 ### Service
 
@@ -220,7 +220,7 @@ In VS Code, use `FILE` -> `Open Folder` to open the root level folder (or `dev-c
 
 Run `Dev Containers: Reopen in Container` from the Command Palette and select the project we want to build.
 
-![choose dev container to build](./images/part-5/choose-dev-container.png)
+![choose dev container to build](./read-me-images/part-5/choose-dev-container.png)
 
 This triggers building the Dev Container of the project.
 
@@ -234,6 +234,6 @@ In [my demo](https://github.com/graezykev/dev-container/tree/part-5-shared-confi
 
 They start an HTTP server respectively with a web page. When the web pages are visited, the projects write "visiting records" to the same database, and read all historical records to show on the page.
 
-![preview](./images/part-5/preview.png)
+![preview](./read-me-images/part-5/preview.png)
 
-![visiting records](./images/part-5/visiting-record.png)
+![visiting records](./read-me-images/part-5/visiting-record.png)
