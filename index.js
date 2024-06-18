@@ -53,7 +53,7 @@ app.get('/', async (req, res) => {
 
     // Display all client names on the webpage
     const clientNames = result.rows.map(row => row.name).join('<br>');
-    res.send(`<h1>Client List</h1><p>${clientNames}</p>`);
+    res.send(`<h1>Visiting Records</h1><p>${clientNames}</p>`);
   } finally {
     client.release();
   }
