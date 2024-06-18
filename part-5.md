@@ -78,18 +78,23 @@ However, this can end up overlapping configurations in multiple projects which m
   └── dev-container
   │
   ├── .devcontainer
-  │   ├── ...
+  │   │
   │   ├── .env
   │   ├── docker-compose.yml
   │   ├── ...
+  │   │
   │   ├── project-a-node-js
   │   │   └── devcontainer.json
+  │   │
   │   ├── project-b-node-js
   │   │   └── devcontainer.json
+  │   │
   │   ├── project-c-python
   │   │   └── devcontainer.json
+  │   │
   │   ├── project-d-go-lang
   │   │   └── devcontainer.json
+  │   │
   │   └── project-e-...
   │       └── devcontainer.json
   │
