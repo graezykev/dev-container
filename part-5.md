@@ -168,7 +168,7 @@ Look at the ports we are mapping for each project `8001:8000`, `8002:8000`, ...
 
 Every project is using port `8000` in its own Dev Container, and we are mapping them to port `8001`, `8002` etc. on the host machine so they can be visited via the host machine's web browser from port `8001`, `8002`, ...
 
-This allows every project to listen to port `8000` without considering port conflicts between projects, and the host machine has specific ports to visit every project's server with different ports.
+This allows every project to listen to port `8000` without considering port conflicts between projects, and the host machine has specific ports to visit every project's server with different ports (see [demo preveiw](#demo-preview)).
 
 ### Volumes & Workspace
 
@@ -233,5 +233,7 @@ After each project's Dev Container is built, we can use this `Switch Container` 
 In [my demo](https://github.com/graezykev/dev-container/tree/part-5-shared-configure-for-multiple-projects) I have 3 projects, 2 are `Node.js` projects and the other one is `Python` project.
 
 They start an HTTP server respectively with a web page. When the web pages are visited, the projects write "visiting records" to the same database, and read all historical records to show on the page.
+
+![preview](./images/part-5/preview.png)
 
 ![visiting records](./images/part-5/visiting-record.png)
