@@ -31,24 +31,24 @@ Considering if you have multiple projects using different tech stacks like `Node
 .
 └── path
  └── to
- ├── project-a-node-js
- │   └── .devcontainer
- │       ├── docker-compose.yml
- │       ├── ...
- │       └── devcontainer.json
- ├── project-b-node-js
- │   └── .devcontainer
- │       ├── ...
- │       └── devcontainer.json
- ├── project-c-python
- │   └── .devcontainer
- │       ├── ...
- │       └── devcontainer.json
- ├── project-d-go-lang
- │   └── .devcontainer
- │       ├── ...
- │       └── devcontainer.json
- └── project-...
+  ├── project-a-node-js
+  │   └── .devcontainer
+  │       ├── docker-compose.yml
+  │       ├── ...
+  │       └── devcontainer.json
+  ├── project-b-node-js
+  │   └── .devcontainer
+  │       ├── ...
+  │       └── devcontainer.json
+  ├── project-c-python
+  │   └── .devcontainer
+  │       ├── ...
+  │       └── devcontainer.json
+  ├── project-d-go-lang
+  │   └── .devcontainer
+  │       ├── ...
+  │       └── devcontainer.json
+  └── project-...
 ```
 
 If these applications with different tech stacks need to share the same database, you need to make sure they all use the same database container in their `docker-compose.yml` as well as the same volume:
@@ -76,38 +76,38 @@ However, this can end up overlapping configurations in multiple projects which m
 └── path
  └── to
   └── dev-container
-  │
-  ├── .devcontainer
-  │   │
-  │   ├── .env
-  │   ├── docker-compose.yml
-  │   ├── ...
-  │   │
-  │   ├── project-a-node-js
-  │   │   └── devcontainer.json
-  │   │
-  │   ├── project-b-node-js
-  │   │   └── devcontainer.json
-  │   │
-  │   ├── project-c-python
-  │   │   └── devcontainer.json
-  │   │
-  │   ├── project-d-go-lang
-  │   │   └── devcontainer.json
-  │   │
-  │   └── project-e-...
-  │       └── devcontainer.json
-  │
-  ├── project-a-node-js
-  │       └── index.js
-  │
-  ├── project-b-node-js
-  │
-  ├── project-c-python
-  │       └── hello.py
-  │
-  ├── project-d-go-lang
-  └── project-e-...
+    │
+    ├── .devcontainer
+    │   │
+    │   ├── .env
+    │   ├── docker-compose.yml
+    │   ├── ...
+    │   │
+    │   ├── project-a-node-js
+    │   │   └── devcontainer.json
+    │   │
+    │   ├── project-b-node-js
+    │   │   └── devcontainer.json
+    │   │
+    │   ├── project-c-python
+    │   │   └── devcontainer.json
+    │   │
+    │   ├── project-d-go-lang
+    │   │   └── devcontainer.json
+    │   │
+    │   └── project-e-...
+    │       └── devcontainer.json
+    │
+    ├── project-a-node-js
+    │       └── index.js
+    │
+    ├── project-b-node-js
+    │
+    ├── project-c-python
+    │       └── hello.py
+    │
+    ├── project-d-go-lang
+    └── project-e-...
 ```
 
 All Projects and the `.devcontainer` folder share a common **root level** folder, and each project has an equivalent configuration folder under this common `.devcontainer`.
