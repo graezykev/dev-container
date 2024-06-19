@@ -1,21 +1,21 @@
 # Dev Containers - Part 4: Remote Dev - Develop on a Remote Docker Host
 
-This is the fourth guide of the Dev Container series:
+Welcome to the fourth guide in the Dev Container series:
 
 - [Dev Containers - Why You Need Them](./README.md)
-- [Part 1: Quick Start - Basic Setups and Usage](./part-1.md)
+- [Part 1: Quick Start - Basic Setup and Usage](./part-1.md)
 - [Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
 - [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
 - Part 4: Remote Dev - Develop on a Remote Docker Host
-- [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
+- [Part 5: Multiple Projects & Shared Container Configuration](./part-5.md)
 
-I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/part-4-remote-dev) for this guide:
+To get started, you can clone [my demo project](https://github.com/graezykev/dev-container/tree/part-4-remote-dev) using the following command:
 
 ```sh
 git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 ```
 
-Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-4-remote-dev`):
+Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-4-remote-dev`):
 
 ![Run demo in Codespaces](./read-me-images/part-4/run-in-codespaces.png)!
 
