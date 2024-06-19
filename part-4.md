@@ -1,8 +1,8 @@
-# Dev Container - Part 4: Remote Dev - Develop on a Remote Docker Host
+# Dev Containers - Part 4: Remote Dev - Develop on a Remote Docker Host
 
 This is the fourth guide of the Dev Container series:
 
-- [Part 0: Dev Container - Why I Need It](./README.md)
+- [Dev Containers - Why You Need Them](./README.md)
 - [Part 1: Quick Start - Basic Setups and Usage](./part-1.md)
 - [Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
 - [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
