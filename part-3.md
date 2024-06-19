@@ -1,21 +1,21 @@
 # Dev Containers - Part 3: Full Stack Dev - Docker Compose & Database
 
-This is the third guide of the Dev Container series:
+Welcome to the third guide in the Dev Container series:
 
 - [Dev Containers - Why You Need Them](./README.md)
-- [Part 1: Quick Start - Basic Setups and Usage](./part-1.md)
+- [Part 1: Quick Start - Basic Setup and Usage](./part-1.md)
 - [Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
 - Part 3: Full Stack Dev - Docker Compose & Database
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
-- [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
+- [Part 5: Multiple Projects & Shared Container Configuration](./part-5.md)
 
-I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/part-3-use-docker-compose-and-db) for this guide:
+To get started, you can clone [my demo project](https://github.com/graezykev/dev-container/tree/part-3-use-docker-compose-and-db) using the following command:
 
 ```sh
 git clone -b part-3-use-docker-compose-and-db https://github.com/graezykev/dev-container.git
 ```
 
-Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-3-use-docker-compose-and-db`):
+Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-3-use-docker-compose-and-db`):
 
 ![Run demo in Codespaces](./read-me-images/part-3/run-in-codespaces.png)
 
