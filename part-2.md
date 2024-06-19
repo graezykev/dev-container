@@ -9,7 +9,7 @@ Welcome to the second guide in the Dev Container series:
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
 - [Part 5: Multiple Projects & Shared Container Configuration](./part-5.md)
 
-To get started, you can clone [my demo project](https://github.com/graezykev/dev-container/tree/part-2-use-image-and-feature) using the following command:
+To get started, clone [my demo project](https://github.com/graezykev/dev-container/tree/part-2-use-image-and-feature) using the following command:
 
 ```sh
 git clone -b part-2-use-image-and-feature https://github.com/graezykev/dev-container.git
@@ -21,49 +21,49 @@ Alternatively, the faster approach is to use GitHub's Codespaces to run the demo
 
 ## Introduction
 
-In our [last guide](./part-1.md), I introduced a "Quick Start" on how to use a `.devcontainer` and a `devcontainer.json` as well as a `Dockerfile` to configure and build a basic Dev Container.
+In our [last guide](./part-1.md), we introduced the basics of using `.devcontainer`, `devcontainer.json`, and a `Dockerfile` to configure and build a Dev Container.
 
-I'm going to optimise the process by adding reusable images and extra software in this guide.
+In this guide, we'll optimise the process by adding reusable images and extra software.
 
 ## Problem
 
-Defining a `Dockerfile` in our `.devcontainer` folder and using it to build a Dev Container can sometimes be very long, especially when you have multiple software to pre-install in the container.
+Using a `Dockerfile` in our `.devcontainer` folder to build a Dev Container can be time-consuming, especially when pre-installing multiple software.
 
-Even though the newcomer only needs to build for the first time, they can still face issues because they are still installing the software while building via a `Dockerfile`.
+Newcomers might face issues due to the time taken to install software while building via a `Dockerfile`. They might also end up with different versions of the software, leading to inconsistencies.
 
-What's worse, a newcomer is very likely to install a different version of the software which is beyond your expectation.
-
-For example, if we have this line in `Dockerfile`:
+For example, the command:
 
 ```dockerfile
 RUN apt-get install -y nodejs
 ```
 
-They may end up installing different versions of `Node.js` depending on when they are building the container because this command is intended to install the newest LTS version of `Node.s` which is changing all the time.
+might install different versions of `Node.js` over time, leading to unexpected issues.
 
-To address these kinds of issues, I would prefer to provide a relatively fixed "clone" of an environment with a fixed version of software installed, like installing Go lang v1.22.4 in this environment and prevent newcomers from upgrading it unconsciously.
+To address this, we can provide a fixed environment with specific software versions, like `Go lang v1.22.4`, and prevent unintended upgrades. We can pre-install multiple versions of `Node.js` in this environment, allowing new team members to switch between versions easily.
 
-Or, in terms of my last `Node.js` example, I would pre-install multiple versions of the `Node.js` engine in this clone-able environment, and my new teammates only need to switch whichever version between them.
+This fixed environment is known as a "Docker image" or simply "image."
 
-The term for this clone-able environment is "Docker image", or "image".
-
-The newcomer just needs to "clone" (download) an image, and run it like starting an operating system (but much faster), the bottleneck of which will be on the downloading speed of the image.
+Newcomers just need to "clone" (download) this image and run it, similar to starting an operating system, but much faster.
 
 ## Use an Image
 
-What we need to do for the newcomers is build a Docker image from a basic `Dockerfile`, and push the image to a "cloud warehouse" - [Docker Hub](https://hub.docker.com/).
+To streamline the process for newcomers, we build a Docker image from a basic `Dockerfile` and push it to a "cloud warehouse" - [Docker Hub](https://hub.docker.com/).
 
-We can regard Docker Hub as a free file server to serve our built, ready-to-use Docker image, and anyone can download the image from it to re-use.
+Docker Hub serves as a free file server for our built, ready-to-use Docker images, which anyone can download and reuse.
 
 ### 1. Build & Push Image
 
-As we have a `Dockerfile` in our [last guide](./part-1.md), building and pushing a Docker image is quite simple, and you also need to sign up for a free account on Docker Hub.
+Building and pushing a Docker image is straightforward if you have a `Dockerfile` from our [last guide](./part-1.md).
 
-I don't want to go into too much detail here, but if you're not familiar with Docker, check out this [guide to register, build and push](https://github.com/graezykev/docker-build-push-101).
+You will also need to sign up for a free account on Docker Hub.
+
+For detailed steps, check out this [guide to register, build, and push](https://github.com/graezykev/docker-build-push-101).
+
+In the end of this step you should get a URL of the image from Docker Hub like `docker.io/your-user-name/your-image-name`.
 
 ### 2. Configure Image
 
-Specify this image in `devcontainer.json` and remove the `Dockerfile` from it:
+Specify this image in `devcontainer.json` and remove the `Dockerfile` reference:
 
 ```diff
 - "build": {
@@ -72,17 +72,17 @@ Specify this image in `devcontainer.json` and remove the `Dockerfile` from it:
 + "image": "docker.io/your-user-name/your-image-name"
 ```
 
-> You can check out my demo and copy the image I've built here <https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L3>
+> You can check out my demo and copy the image I've built here: <https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L3>
 >
-> Besides, `"image": "your-user-name/your-image-name"` also works.
+> Using `"image": "your-user-name/your-image-name"` also works.
 
-That's all! When our new teammates use "Open in Container" in VS Code to open our project, the image will be auto-downloaded and cloned and started as a Dev Container in their machines.
+That's all! When new teammates use "Open in Container" in VS Code to open our project, the image will be automatically downloaded, cloned, and started as a Dev Container on their machines.
 
 ## Features
 
-Using an image to create Dev Containers can be much faster if we have a hefty `Dockerfile` because we only need to build this image once (or rebuild it if we modify it).
+Using an image to create Dev Containers is much faster, especially with a hefty `Dockerfile`, as we only need to build the image once (or rebuild it if modified).
 
-However, it's yet to be ideal when you consider scenarios like this:
+However, it's yet to be ideal, consider scenarios with multiple tech stacks:
 
 ```txt
 .
@@ -94,15 +94,17 @@ However, it's yet to be ideal when you consider scenarios like this:
 └── project-rust
 ```
 
-You have multiple tech stacks in different projects, are you going to write a `Dockerfile` to pre-install all of the `Node.js`, `Go`, `python` etc. and build an image to use in each project?
+Are you going to write a `Dockerfile` to pre-install all tech stacks (`Node.js`, `Go`, `Python`, etc.) and build an enormous image to use in each project?
 
 No! You don't do this.
 
-I only pre-install and pre-configure the "most used" software in the image. For divergent tech stack projects, install extra software in their own project.
+Instead, pre-install and pre-configure the most commonly used software in the image.
 
-Adding extra software to a Dev Container is super easy you can specify them in `devcontainer.json` by the `features` field. You can add different software to different projects with the same image.
+For projects with divergent tech stacks, install extra software as needed.
 
-Add `python` engine to `devcontainer.json` in Project A:
+Adding extra software to a Dev Container is simple by specifying them in `devcontainer.json` using the `features` field. This allows different projects to use the same image with additional specific features.
+
+For example, add the `Python` engine to `devcontainer.json` in Project A:
 
 ```diff
   "image": "docker.io/your-user-name/your-image-name",
@@ -113,7 +115,7 @@ Add `python` engine to `devcontainer.json` in Project A:
 + }
 ```
 
-Add `Go` language engine to `devcontainer.json` in Project B:
+And add the `Go` language engine to `devcontainer.json` in Project B:
 
 ```diff
   "image": "docker.io/your-user-name/your-image-name",
@@ -122,34 +124,28 @@ Add `Go` language engine to `devcontainer.json` in Project B:
 + }
 ```
 
-...
-
-Find out all ready-to-use available Dev Container features here <https://containers.dev/features>, you can also [make your own feature](https://github.com/devcontainers/feature-starter).
-
-With the configurations above, different projects can use the same image and the features you add in their own `devcontainer.json` to create different (by similar) Dev Containers.
+Find available Dev Container features here: <https://containers.dev/features>. You can also [create your own feature](https://github.com/devcontainers/feature-starter).
 
 Adding features is like adding sprinkles to your ice cream!
 
 ## Workspace
 
-If you look at the `devcontainer.json` in [my demo](https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L13-L14), I have 2 lines:
+In the `devcontainer.json` of [my demo](https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L13-L14), you'll see these lines:
 
 ```json
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 ```
 
-The 2 configurations are not necessary for most cases but I still like to explain what they are.
-
-If you have experience with containers, it's all about the "`mount`" concept.
+These configurations aren't necessary for most cases but are worth explaining.
 
 Well, `workspaceMount` and `workspaceFolder` always come together, to understand them, let me explain the variables of `${localWorkspaceFolder}` and `${localWorkspaceFolderBasename}` first.
 
 ### Pre-defined Variables
 
-`${localWorkspaceFolder}` and `${localWorkspaceFolderBasename}` are some pre-defined variables in `devcontainer.json` for Dev Container.
+`${localWorkspaceFolder}` and `${localWorkspaceFolderBasename}` are some **pre-defined** variables in `devcontainer.json`.
 
-Let's say, you have a project `project-a` in your host machine and you're going to build a Dev Container:
+If you have a project `project-a` on your host machine:
 
 ```txt
 .
@@ -163,68 +159,77 @@ Let's say, you have a project `project-a` in your host machine and you're going 
         └── project-c
 ```
 
-In this case, `${localWorkspaceFolder}` represents the whole absolute path of `/path/to/project-a`, and `${localWorkspaceFolderBasename}` represents the project folder name `project-a`.
+`${localWorkspaceFolder}` represents the absolute path `/path/to/project-a`, and `${localWorkspaceFolderBasename}` represents the folder name `project-a`.
 
 ### workspaceMount & workspaceFolder
 
-So, put the values back into the configurations, we get `"workspaceMount": "source=/path/to/project-a,target=/workspaces/project-a, ...`, divide the configuration into 2 parts:
+When you set:
 
-- `source=/path/to/project-a`
-- `target=/workspaces/project-a`
+```json
+"workspaceMount": "source=/path/to/project-a,target=/workspaces/project-a, ..."
+```
 
-This means we mount the folder `/path/to/project-a` in the host machine to the folder `/workspaces/project-a` of the container.
+it means you're mounting the folder `/path/to/project-a` from the host machine to the folder `/workspaces/project-a` in the container.
 
-**Whatever you change `/path/to/project-a` in the host machine, you're making the same change in the `/workspaces/project-a` of the container, and vice versa**.
+**Whatever you change `/path/to/project-a` on the host machine, you're making the same change in the `/workspaces/project-a` of the container, and vice versa**.
 
-Similarly, we can get the value of `workspaceFolder` - `"workspaceFolder": "/workspaces/project-a"`, which points to the `target` of `workspaceMount`.
+The `workspaceFolder`:
 
-**When we connect to the container in VS Code, the default source code location will be set to `workspaceFolder`.**
+```json
+"workspaceFolder": "/workspaces/project-a"
+```
 
-**And, the `postStartCommand` (we mentioned in the [last guide](./part-1.md)) is also run within `workspaceFolder`**.
+sets the default source code location in VS Code within the container.
+
+i.e., **when we connect to the container in VS Code, the default source code location will be set to `workspaceFolder`.**
+
+And, the `postStartCommand` (we mentioned in our [last guide](./part-1.md)) is also run within `workspaceFolder`.
 
 ### When to Use
 
-As I said, in most cases we don't set `workspaceMount` and `workspaceFolder`.
+You generally don't need to set `workspaceMount` and `workspaceFolder`. However, in scenarios where `project-a` needs to reference code in `project-b` or `project-c` without modifying them, you can set:
 
-But in some scenarios, for example, `project-a` needs to use some code in `project-b` or `project-c` (only read configurations of reference code from them but do not want to modify them).
+```json
+"workspaceMount": "source=/path/to,target=/workspaces, ..."
+"workspaceFolder": "/workspaces/project-a"
+```
 
-You may set `"workspaceMount": "source=/path/to,target=/workspaces, ...` so you can mount `project-a`, `project-b` and `project-c` (they are all under `/path/to`) into the container, and you set `"workspaceFolder": "/workspaces/project-a"` so you only modify `project-a`'s code.
+This mounts all projects under `/path/to` into the container while only modifying `project-a`.
 
 ## Environment Variables
 
-I have a configuration of the `runArgs` field in the `devcontainer.json` in [my demo](https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L9-L12):
+In the `devcontainer.json` of [my demo](https://github.com/graezykev/dev-container/blob/part-2-use-image-and-features/.devcontainer/devcontainer.json#L9-L12), I have:
 
 ```json
-  "runArgs": [
-    "--env-file",
-    "${localWorkspaceFolder}/.devcontainer/.env"
-  ]
+"runArgs": [
+  "--env-file",
+  "${localWorkspaceFolder}/.devcontainer/.env"
+]
 ```
 
-Well, if you have ever used `.env` in any case, this is general for the same purpose.
+Environment variables in Dev Containers are useful for managing configuration settings specific to your application or development environment, such as database connection strings, API keys, or feature flags.
 
-Environment variables in Dev Containers are useful for various scenarios.
-
-You can set environment variables to manage configuration settings specific to your application or development environment. For example, database connection strings, API keys, or feature flags can be stored as environment variables.
-
-Environment variables allow you to securely store sensitive information, such as passwords or API tokens, without hardcoding them in your code.
-
-By using environment variables, you can keep secrets separate from your codebase and avoid accidentally exposing them in version control.
+By using environment variables, you can securely store sensitive information without hardcoding them in your code.
 
 Moreover, creating separate environment variable files for development, testing, and production environments are very common use case.
 
 ### How to Set Environment Variables
 
-Setting environment variables is super easy too.
+Create a `.env` file with **key/value** pairs, and reference it via `runArgs` in `devcontainer.json`:
 
-You can just create a `.env` file, put the key/value pairs in it, (this is usually done by CI/CD systems' automatic script etc.) and reference it via `runArgs` in `devcontainer.json`.
+```json
+"runArgs": [
+  "--env-file",
+  "${localWorkspaceFolder}/.devcontainer/.env"
+]
+```
 
-All the key/value pairs will be injected into the container as system variables:
+These variables will be injected into the container as system variables:
 
 ![use arguments, variables in dev container](./read-me-images/part-2/dev-container-env-variables-1.png)
 
-After the container is built and run, the variables can be used inside the container via Linux commands, Shell scripts, or `Node.js` etc.
+Once the container is built and running, the variables can be used inside the container via Linux commands, shell scripts, or in your code.
 
 ## Next
 
-In our [next guide](./part-3.md), we're going to use environment variables to serve passwords and user names for the database and avoid exposing them in version control.
+In our next guide [Full Stack Dev - Docker Compose & Database](./part-3.md), we'll use environment variables to manage database passwords and usernames, avoiding exposure in version control.
