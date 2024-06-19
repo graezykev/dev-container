@@ -1,21 +1,21 @@
 # Dev Containers - Part 2: Image, Features, Workspace, Environment Variables
 
-This is the second guide of the Dev Container series:
+Welcome to the second guide in the Dev Container series:
 
 - [Dev Containers - Why You Need Them](./README.md)
-- [Part 1: Quick Start - Basic Setups and Usage](./part-1.md)
+- [Part 1: Quick Start - Basic Setup and Usage](./part-1.md)
 - Part 2: Image, Features, Workspace, Environment Variables
 - [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
-- [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
+- [Part 5: Multiple Projects & Shared Container Configuration](./part-5.md)
 
-I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/part-2-use-image-and-features) for this guide:
+To get started, you can clone [my demo project](https://github.com/graezykev/dev-container/tree/part-2-use-image-and-feature) using the following command:
 
 ```sh
 git clone -b part-2-use-image-and-feature https://github.com/graezykev/dev-container.git
 ```
 
-Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-2-use-image-and-feature`):
+Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-2-use-image-and-feature`):
 
 ![Run demo in Codespaces](./read-me-images/part-2/run-in-codespaces.png)
 
