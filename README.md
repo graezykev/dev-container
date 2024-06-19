@@ -24,7 +24,7 @@ Whenever a new member joins, they must install `NVM` and multiple versions of `N
 
 VS Code extensions can significantly boost development efficiency.
 
-For instance, many JavaScript developers use `ESLint` and `Prettier` extensions to auto-format code and fix conventions with a simple `Command + S` (`Control + S`):
+For instance, many JavaScript developers use [`ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [`Prettier`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions to auto-format code and fix conventions with a simple `Command + S` (`Control + S`):
 
 ![vscode auto format](./read-me-images/auto-format-extension.gif)
 
