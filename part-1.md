@@ -1,55 +1,53 @@
-# Dev Containers - Part 1: Quick Start - Basic Setups and Usage
+# Dev Containers - Part 1: Quick Start - Basic Setup and Usage
 
-This is the first guide of the Dev Container series:
+Welcome to the first guide in the Dev Container series:
 
 - [Dev Containers - Why You Need Them](./README.md)
-- Part 1: Quick Start - Basic Setups and Usage
+- Part 1: Quick Start - Basic Setup and Usage
 - [Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
 - [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
-- [Part 5: Multiple Projects & Shared Container Configure](./part-5.md)
+- [Part 5: Multiple Projects & Shared Container Configuration](./part-5.md)
 
-I suggest you clone [my demo](https://github.com/graezykev/dev-container/tree/part-1-use-docker-file) for this guide:
+To get started, you can clone [my demo project](https://github.com/graezykev/dev-container/tree/part-1-use-docker-file) using the following command:
 
 ```sh
 git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git
 ```
 
-Alternatively, a faster approach to follow me is using GitHub's Codespaces to run my demo (switch to branch `part-1-use-docker-file`):
+Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-1-use-docker-file`):
 
 ![Run demo in Codespaces](./read-me-images/part-1/run-in-codespaces.png)
 
 ## Introduction
 
-I wrote about [the reasons why I want to use Dev Containers](./README.md) in my last post. In this post I'm going to guide you through setting up a simple Dev Container.
+In my previous post, I explained [why Dev Containers are essential](./README.md). Now, let's dive into setting up a simple Dev Container.
 
-Imagine we have a `Node.js` project, I want anyone who wants to develop this project (like newly joined colleagues) without manually installing `Node.js` (`Python`, `Go Lang`, or other projects are similar).
+Imagine we have a `Node.js` project (or `Python`, `Go` etc.).
 
-Besides, we have some "must use" VS Code extensions when they are developing this project, as it's painful for them to proofread every extension's name and install them manually, it would be great if there is a way to automatically install the extensions without noticing them!
+We want anyone joining our project to start developing without manually installing `Node.js`, or other required software (`YARN`, `PNPM`, etc.).
 
-Moreover, we have some coding conventions everyone needs to stick to, like using 2 spaces to indent our code (instead of a `Tab` or 4 spaces etc.), I want my teammates to achieve this even without knowing the conventions.
+We also want to ensure they have the necessary VS Code extensions and adhere to our coding conventions, like using 2 spaces for indentation.
 
-All these initial setups can be seamlessly shared by defining a Dev Container for our project and what all our future teammates need is to build this Dev Container and start developing instead of setting environments and installing software and extensions from scratch!
+By defining a Dev Container, we can share all these setups seamlessly.
+
+Future teammates will only need to build the Dev Container and start coding, without the hassle of setting up environments and installing software from scratch.
 
 ## 1. Install VS Code
 
-In this guide, I primarily focus on VS Code, so first thing first, install the VS Code client on your computer.
+First, install the VS Code client on your computer.
 
-> [JetBrains WebStorm](https://www.jetbrains.com/help/webstorm/connect-to-devcontainer.html) also supports Dev Containers, but I haven't tried it before.
+> Note: [JetBrains WebStorm](https://www.jetbrains.com/help/webstorm/connect-to-devcontainer.html) also supports Dev Containers, though I haven't tried it yet.
 
-## 2. Install **Docker**
+## 2. Install Docker
 
-Installing Docker is quite easy and fast, I suggest you follow the [official guide](https://docs.docker.com/engine/install/).
+Installing Docker is straightforward. Follow the [official guide](https://docs.docker.com/engine/install/).
 
-If you are using a Windows or Mac system, it's super straightforward with a few clicks to install with `.ext` or `.dmg`.
+- **Windows PC**: Install **Docker Desktop** with a few clicks. [Installation guide](https://docs.docker.com/desktop/install/windows-install/).
+- **Mac**: Install **Docker Desktop** with a few clicks. [Installation guide](https://docs.docker.com/desktop/install/mac-install/).
+- **Linux PC**: Install **Docker Engine** with a few commands. [Installation guide](https://docs.docker.com/engine/install/ubuntu/).
 
-Even if you're using Linux, it's also effortless with a few Linux commands.
-
-- Windows PC: Install **Docker Desktop** within a few clicks <https://docs.docker.com/desktop/install/windows-install/>.
-- Mac: Install **Docker Desktop** within a few clicks <https://docs.docker.com/desktop/install/mac-install/>.
-- Linux PC: Install **Docker Engine** within a few Linux comnands <https://docs.docker.com/engine/install/ubuntu/>.
-
-For example, I'm using Ubuntu Linux, I install Docker Engine by the following commands according to [this guide](https://docs.docker.com/engine/install/ubuntu/):
+For example, on Ubuntu Linux, use these commands:
 
 ```sh
 # Add Docker's official GPG key:
@@ -68,42 +66,40 @@ sudo apt-get update
 ```
 
 ```sh
+# Install Docker Engine:
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 ```sh
-sudo usermod -aG docker $USER # replace $USER with your Linux login user name
+# Add user to the Docker group:
+sudo usermod -aG docker $USER # replace $USER with your Linux login username
 ```
 
 ```sh
-sudo reboot # restart the system
+# Restart the system:
+sudo reboot
 ```
 
 ```sh
-docker -v # varify the installation
+# Verify the installation:
+docker -v
 ```
 
-I have a full record of the installation:
+Here's a recording of the installation process:
 
-![ubuntu install doker](./read-me-images/part-1/install-docker-ubuntu.gif)
+![ubuntu install docker](./read-me-images/part-1/install-docker-ubuntu.gif)
 
 ## 3. Project Setup
 
-If you're looking to have a glance, you can just clone my demo project here <https://github.com/graezykev/dev-container/tree/part-1-use-docker-file> and go to the next step.
+Clone my demo project here: <https://github.com/graezykev/dev-container/tree/part-1-use-docker-file>
 
 ```sh
-git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git part-1-use-docker-file
+git clone -b part-1-use-docker-file https://github.com/graezykev/dev-container.git
 ```
 
-My demo above might be sort of hefty and take a relatively long time to build.
+My demo project above might be sort of hefty and take a relatively long time to build. If you prefer a simpler demo, follow these steps to set up a "Hello World" project:
 
-If you prefer to write a light-weight, simpler demo, here's how you can set up a "Hello World" demo:
-
-- Initiate a project.
-- Create a `.devcontainer` folder.
-- Create a file named `devcontainer.json`.
-- Create a file named `Dockerfile`.
-- Create a simplest `Node.js` program.
+- Create a project folder and necessary files:
 
 ```sh
 mkdir your-project-folder && \
@@ -114,7 +110,7 @@ touch .devcontainer/Dockerfile && \
 touch index.js
 ```
 
-Let's modify `index.js` to produce a "Hello World" web page:
+- Modify `index.js` to create a "Hello World" web page:
 
 ```js
 // index.js
@@ -131,9 +127,7 @@ server.listen(port1, hostname, () => {
 })
 ```
 
-Theoretically, if you want to start this `Node.js` program, you'll have to install the `Node.js` software (engine), but you don't need to do that today! Keep up with me!
-
-Let's write a simple `Dockerfile` (the simplest to set up a `Node.js` environment) that is based on an Ubuntu Linux system, as well as `Node.js` installed:
+- Create a simple `Dockerfile`:
 
 ```dockerfile
 FROM ubuntu:24.04
@@ -141,10 +135,9 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y nodejs
 RUN apt-get install -y npm
-# RUN apt-get install -y python3
 ```
 
-Reference `Dockerfile` in your `devcontainer.json`:
+- Reference the `Dockerfile` in `devcontainer.json`:
 
 ```json
 {
@@ -155,13 +148,9 @@ Reference `Dockerfile` in your `devcontainer.json`:
 }
 ```
 
-This is the basic paradigm of defining a Dev Container.
+This basic setup defines a Dev Container, creating a virtual Ubuntu system with `Node.js` installed.
 
-`devcontainer.json` is the entry point, and it uses the `Dockerfile` to build a (Docker) container, kind of like creating a **virtual** Ubuntu system with `Node.js` ready to use.
-
-> Containers and virtual machines share some similarities but more differences
-
-To optimise the workflow, add an auto-run command line to `devcontainer.json`:
+To enhance the workflow, add an auto-run command in `devcontainer.json`:
 
 ```diff
 {
@@ -174,13 +163,9 @@ To optimise the workflow, add an auto-run command line to `devcontainer.json`:
 }
 ```
 
-This is intended to run the `Node.js` program every time the container is started (I'm going to elaborate more on this command `postStartCommand` later).
+This command will run the `Node.js` program every time the container starts.
 
-The configuration is yet to be finished.
-
-Like I said from the beginning, I want to have some VS Code extensions installed automatically, and I want my teammates to insert 2 spaces when they hit their `Tab` keys to indent the code.
-
-Edit `devcontainer.json` to add the following configuration:
+Additionally, add configurations for VS Code extensions and editor settings:
 
 ```json
   "customizations": {
@@ -199,100 +184,83 @@ Edit `devcontainer.json` to add the following configuration:
   }
 ```
 
-I specify some useful VS Code extensions here, like `ESLint`, `Prettier` and the `GitLens` visualising tools, in your scenario you may add your extensions.
-
-We can even specify the version of an extension such as `@3.0.5`.
+I specify some useful VS Code extensions here, like `ESLint`, `Prettier` and the `GitLens` visualising tools, in your scenario you may add your extensions. You can even specify the version of an extension such as `@3.0.5`.
 
 ## 4. Build Dev Container
 
-Configuration works are done now, our next step is to build the Dev Container based on what we have configured.
+Configuration works are done now, the next step is to build the Dev Container based on what we have configured.
 
 ### 4.1 Open Project in VS Code
 
-In VS Code, use `File` -> `Open Folder...` and choose **your project folder** in the previous step, such as `part-1-use-docker-file` in my demo project or `your-project-folder` in the demo we just created.
+In VS Code, go to `File` -> `Open Folder...` and select your project folder (`dev-container` for my demo project or `your-project-folder`).
 
-### 4.2 VS Code settings & extensions
+### 4.2 Install Dev Containers Extension
 
-VS Code will show a prompt to ask you to install the Extension of Dev Containers(`ms-vscode-remote.remote-containers`).
+VS Code will prompt you to install the Dev Containers extension (`ms-vscode-remote.remote-containers`).
 
 ![dev container installation prompt](./read-me-images/part-1/dev-container-extension-installation-prompt.png)
 
-Click the "Install" button and wait for the installation.
+Click "Install" and wait for the installation.
 
 ### 4.3 Reopen in Container
 
-After the extension is installed, VS Code will show another prompt to ask you to "Reopen" your project in a container, which means, to **build your Dev Container**.
+After installing the extension, VS Code will prompt you to "Reopen" your project in a container.
 
 ![reopen in container prompt](./read-me-images/part-1/reopen-in-container-prompt.png)
 
-Click `Reopen in Container` to trigger the building process.
+Click `Reopen in Container` to start the building process.
 
-This is the whole process I recorded:
+Here is a recording of the process:
 
-![img](./read-me-images/part-1/dev-container-install-extension-and-build.gif)
+![dev container installation and build](./read-me-images/part-1/dev-container-install-extension-and-build.gif)
 
 ### 4.4 Dev Container Built
 
-After "Reopen in Container", we need to wait for the building.
+Once you reopen the project in a container, the building process will begin. This may take some time, depending on your Dockerfile and system performance. Subsequent starts will be faster unless you change the `.devcontainer` setup.
 
-Building (or rebuilding) may take some time, depending on how many tasks you define in `Dockerfile`, how fast your Internet is, and how good your computer performance is. But we only need to build for the first time we "Reopen in Container", as long as we have nothing changed in `.devcontainer` in the future, VS Code won't ask us to **rebuild**.
+After building, enjoy a unified development environment with all applications, extensions, and settings pre-configured!
 
-After the building finishes, enjoy all applications and extensions installed inside the container and unified settings!
+> Moving forward, I'll refer to the computer you're using as the "**host machine**".
+>
+> VS Code and Docker run on the host machine, while the Dev Container is built and executed within Docker.
 
-> Moving forward, I'm going to call the computer we're using as a "**host machine**".
-> VS Code client and Docker engine are installed on the host machine, while the container (Dev Container) is built and run on top of it.
-
-Once the Dev Container is built, or every time the container is started (such as you restart your VS Code), the `postStartCommand` specified in `devcontainer.json` with a command of `node index.js` will be run, and start our `Node.js` server!
+When the Dev Container is built or started, the `postStartCommand` specified in `devcontainer.json` will run, starting the `Node.js` server:
 
 ![server started by postStartCommand](./read-me-images/part-1/post-start-command.png)
 
-This `Node.js` engine is installed inside the the Dev Container but not on your host machine.
-
-According to what we wrote in `Dockerfile` and `devcontainer.json`, we initiated an Ubuntu system with `Node.js` installed. We can check from the terminal console:
+This `Node.js` engine runs inside the Dev Container, not on your host machine. You can verify this from the terminal:
 
 ![nodejs installed inside dev container](./read-me-images/part-1/nodejs-installed-inside-dev-container.png)
 
-(You may not have `Node.js` installed or have a different version of it installed on your host machine)
-
-This `Node.js` is installed inside the Dev Container, but not on your host machine, which looks like you have a separate "sandbox" environment to run  `Node.js` programs inside it.
-
-Similarly, the VS Code extensions we specified in `devcontainer.json` are not installed on the VS Code client of your host machine either, but inside the Dev Container.
+Similarly, the VS Code extensions specified in `devcontainer.json` are installed inside the Dev Container, not on your host machine:
 
 ![vs code extensions installed in dev container](./read-me-images/part-1/vs-code-extensions-installed-in-dev-container.png)
 
-If you open another project in this host machine, you won't find these extensions.
-
 ## Unified Working Environment
 
-Now, we have created a shareable working environment, with a `Node.js` engine, some VS Code extensions, and editor configurations, within a project scope.
+We've now created a shareable working environment with a `Node.js` engine, useful VS Code extensions, and consistent editor settings, all scoped to your project.
 
-Next, we're going to optimise this Dev Container by using a reusable docker image as an entry point, and add some extra software without using a `Dockerfile`.
+Next, we'll optimise this Dev Container using a reusable Docker image and add extra software without modifying the `Dockerfile`.
 
-[Dev Container - Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
+[Dev Containers - Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
 
-## Appendix 1: Explanation of some Basic Configurations
+## Appendix 1: Explanation of Basic Configurations
 
 ### Building Entry Point
 
-The `build` -> `dockerfile` field defined in `devcontainer.json` is the entry point of the Dev Container, VS Code automatically uses what you specify here to build a Docker image and run the image after it's built.
+The `build` -> `dockerfile` field in `devcontainer.json` serves as the entry point for the Dev Container. VS Code uses this to build and run the Docker image.
 
 ### Forwarding Ports
 
-In our previous `devcontainer.json` we have a configuration `"forwardPorts": [8080]` which is used to forward ports from the container to the host machine.
-
-As I mentioned, the `Node.js` and other environment settings are actually inside the container but do not sit on the host machine, so the `Node.js` server we started by `node index.js` is also run inside the container, if we want to visit the server from the host machine's browser (or the host machine's VS Code), we need to forward the port `8080` in the container to the host machine.
+The `"forwardPorts": [8080]` configuration forwards ports from the container to the host machine, allowing you to access the `Node.js` server running inside the container from your host machine's browser.
 
 `"forwardPorts": [8080]` is an abbreviation for `"forwardPorts": ["8080:8080"]`, you can make your own adjustment like `"forwardPorts": ["port-on-host:port-in-container"]`.
 
-Learn more about `forwardPorts` here <https://containers.dev/implementors/json_reference/#general-properties>.
+For more on `forwardPorts`, refer to [this guide](https://containers.dev/implementors/json_reference/#general-properties).
 
 ## Appendix 2: Lifecycle Commands Explanation
 
-We have used `postStartCommand` in the previous demo, here I would like to introduce more about some Lifecycle scripts you can use in `devcontainer.json`.
-
-Lifecycle scripts are different commands to be run at different points in the container’s lifecycle. They can be a command line or Shell scripts like [my demo](https://github.com/graezykev/dev-container/blob/part-1-use-docker-file/.devcontainer/post-start.sh).
-
-For a full introduction, refer to this official document: <https://containers.dev/implementors/json_reference/#lifecycle-scripts>.
+Lifecycle scripts in `devcontainer.json` run at different points in the container’s lifecycle. These can be command lines or shell scripts. For detailed information, refer to [this documentation](https://containers.dev/implementors/json_reference/#lifecycle-scripts).
 
 - `postCreateCommand`
 
