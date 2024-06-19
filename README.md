@@ -122,4 +122,4 @@ I have several guides on setting up and using Dev Containers, each brief and eas
 - [Part 2: Image, Features, Workspace, Environment Variables](./part-2.md)
 - [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
-- [Part 5: Multiple Projects & Shared Container Configurations](./part-5.md)
+- [Part 5: Multiple Projects & Shared Container Configuration](./part-5.md)
