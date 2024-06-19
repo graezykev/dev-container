@@ -1,6 +1,6 @@
 # Dev Containers - Part 3: Full Stack Dev - Docker Compose & Database
 
-Welcome to the second guide in the Dev Container series:
+Welcome to the third guide in the Dev Container series:
 
 - [Dev Containers - Why You Need Them](./README.md)
 - [Part 1: Quick Start - Basic Setup and Usage](./part-1.md)
