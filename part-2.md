@@ -1,8 +1,8 @@
-# Dev Container - Part 2: Image, Features, Workspace, Environment Variables
+# Dev Containers - Part 2: Image, Features, Workspace, Environment Variables
 
 This is the second guide of the Dev Container series:
 
-- [Part 0: Dev Container - Why I Need It](./README.md)
+- [Dev Containers - Why You Need Them](./README.md)
 - [Part 1: Quick Start - Basic Setups and Usage](./part-1.md)
 - Part 2: Image, Features, Workspace, Environment Variables
 - [Part 3: Full Stack Dev - Docker Compose & Database](./part-3.md)
