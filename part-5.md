@@ -17,7 +17,7 @@ git clone -b part-5-shared-configure-for-multiple-projects https://github.com/gr
 
 Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-5-shared-configure-for-multiple-projects`):
 
-![Run demo in Codespaces](./read-me-images/part-5/run-in-codespaces.png)!
+![Run demo in Codespaces](./read-me-images/part-5/run-in-codespaces.png)
 
 ## Introduction
 
