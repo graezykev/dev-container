@@ -21,31 +21,31 @@ Alternatively, the faster approach is to use GitHub's Codespaces to run the demo
 
 ## Introduction
 
-Imagine you're developing server applications relying on both `Node.js` and `PostgreSQL`.
+Imagine you're developing server applications relying on both `Node.js` and `PostgreSQL`. You might initially use installation commands in a `Dockerfile` (as discussed in [Part 1](./part-1.md)) or leverage Dev Container [Features](https://containers.dev/features) (covered in [Part 2](./part-2.md)) to install PostgreSQL within your container.
 
-You may use installation commands in `Dockerfile` (as we mentioned in [Part 1](./part-1.md)), or, use Dev Container [Features](https://containers.dev/features)  (as we mentioned in [Part 2](./part-2.md)) to install PostgreSQL in your container. Then, have PostgreSQL start automatically when the Docker container is started.
+However, managing PostgreSQL this way can lead to unexpected behaviours if not handled correctly.
 
-But this can lead to unexpected behaviours if not handled correctly.
-
-For example, if your database startup script exits for any reason, the container will stop unless it ends with an instruction to keep running, such as starting a shell or a daemon process.
+For instance, if your database startup script exits unexpectedly, the container may stop unless it includes a command to keep running, such as starting a shell or a daemon process.
 
 ## Environment Isolation
 
-A more robust solution for development might involve using [Docker Compose](https://docs.docker.com/compose/) to manage both your application container and your PostgreSQL service in **separate** containers. It's often better to manage services like databases with separate containers or services, using Docker Compose or similar tools, especially in production environments.
+A more robust solution for development involves using [Docker Compose](https://docs.docker.com/compose/) to manage both your application container and your PostgreSQL service in **separate** containers. It's generally better to handle services like databases with separate containers or services, especially in production environments.
 
-That is to say, use Docker Compose to manage two containers, one for development, and the other one for database. Only install the PostgreSQL client on your development container, to connect the PostgreSQL server on the other container.
+Using Docker Compose, you can manage two containers: one for development and the other for the database.
+
+Install only the PostgreSQL client on your development container to connect to the PostgreSQL server running in the other container.
 
 ## I. Compose Configuration
 
 ### 0. docker-compose.yml
 
-Creating a Docker Compose configuration file `docker-compose.yml` is the most important part for using multiple containers:
+Creating a Docker Compose configuration file `docker-compose.yml` is crucial for using multiple containers:
 
 ```sh
 touch .devcontainer/docker-compose.yml
 ```
 
-```yml
+```yaml
 # docker-compose.yml
 services:
   app:
@@ -54,9 +54,6 @@ services:
       - ..:/workspaces/dev-container:cached
     ports:
       - 8001:8000
-    # env_file:
-    #   - .env # This is a default setting
-    #   - ...  # Put other xxx.env files here so you can reference the variables by ${var}, such as ${POSTGRES_HOST}
     environment:
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_USER=${POSTGRES_USER}
@@ -79,28 +76,27 @@ services:
 
 volumes:
   postgres-data:  # Define a named volume for PostgreSQL data persistence
-
 ```
 
-It's necessary to break down some basic concepts in this `docker-compose.yml`. But you can also jump straight to the [next step](#ii-entry-point) for now and come back later to the explanations below.
+Let's break down some basic concepts in this `docker-compose.yml`. You can also jump straight to the the next step of [Entry Point](#ii-entry-point) and come back to the explanations below.
 
 ### 1. Define `services`
 
-We define 2 `services` here, each one as a container, now we have container `app` and container `postgres`.
+We define 2 `services` here, each as a container: `app` and `postgres`.
 
-It also allows us to extend our project to multiple other services (containers) like `app2`, `app3`, `redis` etc.
+This setup allows extending the project to include multiple other services (containers) like `app2`, `app3`, `redis`, etc.
 
 ### 2. Specify `image`
 
-We put the image we used in `devcontainer.json` in this configuration file to initiate container `app`.
+Specify the image used in `devcontainer.json` in this configuration file to initiate the `app` container.
 
-As for the container for the database, I use the official image `postgres:latest`.
+For the database container, use the official image `postgres:latest`.
 
 ### 3. Define `volumes`
 
-Volume is pretty similar to the workspace mounting we mentioned in [Part 2](./part-2.md#workspace).
+Volumes are pretty similar to the workspace mounting mentioned in [Part 2](./part-2.md#workspace).
 
-```yml
+```yaml
 services:
   app:
     volumes:
@@ -113,40 +109,42 @@ volumes:
   postgres-data:  
 ```
 
-But notice that if we're using Docker Compose we also need to eliminate the `workspaceMount` in `devcontainer.json`:
+If using Docker Compose, eliminate the `workspaceMount` in `devcontainer.json`:
 
 ```diff
 - "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
 ```
 
-First, let's look at the `volumes` under container `app` whose value is `..:/workspaces/dev-container...`, which is separated by the colon `:`.
+For the `volumes` under container `app`, the value `..:/workspaces/dev-container` is separated by a colon `:`.
 
-The `..` in front of the colon stands for the path on the host machine, while `/workspaces/dev-container` behind the colon stands for the path in the container.
+The `..` before the colon represents the path on the host machine, while `/workspaces/dev-container` after the colon represents the path in the container.
 
-The absolute path of the Docker Compose file is `/path/to/dev-container/.devcontainer/docker-compose.yml`, so `..` gets the value of `/path/to/dev-container/`.
+The absolute path of the Docker Compose file is `/path/to/dev-container/.devcontainer/docker-compose.yml`, so `..` equals `/path/to/dev-container/`.
 
-That is to say, we mount `/path/to/dev-container/` on the host machine to `/workspaces/dev-container` in the container. Whatever you change `/path/to/dev-container/` on the host machine, you're making the same change in the `/workspaces/dev-container` of the container, and vice versa.
+This setup mounts `/path/to/dev-container/` on the host machine to `/workspaces/dev-container` in the container.
 
-Next, look at the `volumes` under container `postgres` whose value is `postgres-data:/var/lib/postgresql/data`.
+Changes in one are reflected in the other. Whatever you change `/path/to/dev-container/` on the host machine, you're making the same change in the `/workspaces/dev-container` of the container, and vice versa.
 
-We don't have a path on the host machine to serve data for the database, so we create a "virtual volume" via the configuration:
+For the `volumes` under container `postgres`, the value is `postgres-data:/var/lib/postgresql/data`.
 
-```yml
+We don't have a path on the host machine to serve data for the database, so create a "virtual volume" via the configuration:
+
+```yaml
 volumes:
   postgres-data:  
 ```
 
-`postgres-data` is the name, that's what we use in `postgres-data:/var/lib/postgresql/data` (also separated by the colon), this volume is mounted to container `postgres`'s path `/var/lib/postgresql/data`.
+`postgres-data` is the name used in `postgres-data:/var/lib/postgresql/data`, this volume is mounted to container `postgres`'s path `/var/lib/postgresql/data`.
 
-Creating a virtual volume enables the persistence of the database data and the ability to share between multiple applications.
+Creating a virtual volume enables the persistence of database data and the ability to share it between multiple applications.
 
-Let's say, for some reason, you may delete the container `postgres`, but the data saved in the volume `postgres-data` still exists and is reusable when you create another database with the same volume.
+For instance, if you delete the container `postgres`, the data saved in the volume `postgres-data` still exists and is reusable when creating another database with the same volume.
 
 ### 4. Environment variables
 
-The `docker compose` command line will automatically pick up a file called `.env` in the folder containing the `docker-compose.yml`, that's why I commented out this:
+The `docker compose` command will automatically pick up a file called `.env` in the folder containing the `docker-compose.yml`. That's why I commented out this section:
 
-```yml
+```yaml
 ...
     # env_file:
     #   - .env # This is a default setting
@@ -154,9 +152,9 @@ The `docker compose` command line will automatically pick up a file called `.env
 ...
 ```
 
-Unless you want to use multiple `.env` files, you don't need to specify any other files here.
+Unless you use multiple `.env` files, you don't need to specify any other files here.
 
-So, the `runArgs` is no longer needed in `devcontainer.json`, let's get rid of it:
+Also, we need to remove the `runArgs` in `devcontainer.json`:
 
 ```diff
 - "runArgs": [
@@ -165,9 +163,9 @@ So, the `runArgs` is no longer needed in `devcontainer.json`, let's get rid of i
 - ]
 ```
 
-However, variables in `.env` are not automatically injected into containers, we need to pass them for each container manually:
+Variables in `.env` are not automatically injected into containers; pass them manually for each container:
 
-```yml
+```yaml
 services:
   app:
     environment:
@@ -182,48 +180,42 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
 ```
 
-The `${POSTGRES_PASSWORD}` stands for the `POSTGRES_PASSWORD` you define in `.env`, and so forth.
+`${POSTGRES_PASSWORD}` represents the `POSTGRES_PASSWORD` defined in `.env`, and so forth.
 
-Here we pass these variables for container `postgres` so it can use them to create a database with the specific database name, user name and password. We also pass them to container `app` so it can use them to connect to the database in container `postgres`.
+Pass these variables to container `postgres` to create a database with specific credentials, and to container `app` to connect to the database in container `postgres`.
 
-> Caveat: `.env`, database usernames, passwords etc. should handled by CI/CD systems in real scenarios.
+> Note: In real scenarios, `.env` and database credentials should be handled by CI/CD systems.
 
 ### 5. Map `ports`
 
 We learned "Forwarding Ports" in [Part 1](./part-1.md#forwarding-ports) but this is a bit different.
 
-The `ports` section in a `docker-compose.yml` file allows you to expose ports from the container to the host machine.
+The `ports` section in `docker-compose.yml` exposes container ports to the host machine, specified as `HOST:CONTAINER`.
 
-You can specify both the host port and the container port (in the format `HOST:CONTAINER`).
+While the `forwardPorts` section in `devcontainer.json` is specific to VS Code Dev Containers and makes ports accessible within the container and to linked services.
 
-The `forwardPorts` section in a `devcontainer.json` file is specific to VS Code Dev Containers.
+In scenarios with multiple containers (`app`, `app1`, `app2`), each listening on port `8080`, map the ports as follows:
 
-It allows you to forward ports from inside the container to the local machine.
-
-Unlike `ports`, which expose ports to the host machine, `forwardPorts` only makes them accessible within the container and to linked services.
-
-In some scenarios, we may have container `app`, `app1`, and `app2` and their `Node.js` HTTP servers are listening to port `8080` respectively, in this way they are actually listening to port `8080` in their own container, from the host machine we can not use `8080` to visit all servers. So we may map the ports in this way:
-
-```yml
+```yaml
 services:
   app:
     ports:
-      - 8001:8080 # Maps port 8001 on the host to port 8080 in the container
+      - 8001:8080
   app1:
     ports:
-      - 8002:8080 # Maps port 8002 on the host to port 8080 in the container
+      - 8002:8080
   app2:
     ports:
-      - 8003:8080 # Maps port 8001 on the host to port 8080 in the container
+      - 8003:8080
 ```
 
-In this way, we can use port `8001` (on the host machine) to visit container `app`'s port `8080`, use port `8002` to visit container `app1`'s port `8080` ...
+This setup allows using port `8001` on the host to access container `app`'s port `8080`, port `8002` for container `app1`, and so on.
 
 ![docker compose port mapping](./read-me-images/part-3/dev-container-port-mapping.png)
 
 ## II. Entry Point
 
-Put our Docker Compose configuration file into `devcontainer.json` as the building entry point:
+Update `devcontainer.json` to use Docker Compose as the entry point:
 
 ```diff
   "name": "Dev Container",
@@ -234,15 +226,15 @@ Put our Docker Compose configuration file into `devcontainer.json` as the buildi
 + "service": "app",
 ```
 
-The `app` points to the service (container) we define in `docker-compose.yml`, and we have a `depends_on` in `docker-compose.yml` that points to container `postgres`, meaning we're going to start `postgres` at the same time with `app`.
+The `app` points to the service defined in `docker-compose.yml`. The `depends_on` in `docker-compose.yml` ensures `postgres` starts with `app`.
 
 ## III. Full-Stack Development
 
-Every preparing job has been done now let's build the Dev Containers (use VS Code's "Open in Container"), and start our full-stack development.
+With everything prepared, build the Dev Containers (use VS Code's "Open in Container") and start full-stack development.
 
-I have a `Node.js` server in [my demo](https://github.com/graezykev/dev-container/blob/part-3-use-docker-compose-and-db/index.js). You can copy the `index.js` (as well as the file `package.json`) to your project to run as a demo.
+In my demo, I have a `Node.js` server ([index.js](https://github.com/graezykev/dev-container/blob/part-3-use-docker-compose-and-db/index.js)). You can copy `index.js` and `package.json` to your project for the demo.
 
-This program runs in container `app`, connects to the database (in container `postgres`) with the username and password we pass from `.env`, creates a table named `clients` (for the first time) as well as writes new data into the table every time, and show all data on the web page.
+This program runs in container `app`, connects to the database in container `postgres` with credentials from `.env`, creates a table named `clients` (on first run), writes new data, and displays all data on the web page.
 
 ![docker compose environment variables](./read-me-images/part-3/dev-container-env-variables-2.png)
 
@@ -250,7 +242,7 @@ This program runs in container `app`, connects to the database (in container `po
 
 ## VI. Add Database Client (optional)
 
-Sometimes you may want to use `psql` command line in container `app` to connect to the PostgreSQL server in container `postgres`, we can install PostgreSQL client (but not server) via Dev Container Features in `devcontainer.json`:
+To use the `psql` command line in container `app` to connect to the PostgreSQL server in container `postgres`, install the PostgreSQL client via Dev Container Features in `devcontainer.json`:
 
 ```json
   "features": {
@@ -258,14 +250,16 @@ Sometimes you may want to use `psql` command line in container `app` to connect 
   }
 ```
 
-And then inside container `app`'s terminal, we can connect to container `postgres`'s database:
+Then, in container `app`'s terminal, connect to the database:
 
 ```sh
-psql -h postgres -U postgres -d postgres # or `psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB`
+psql -h postgres -U postgres -d postgres
+# or
+# psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB
 ```
 
 ![connect to database from app container](./read-me-images/part-3/connect-to-database-from-app-container.png)
 
 ## Next
 
-Our [next guide](./part-4.md) will be focusing on how to develop remotely, that is to put our Dev Containers on a remote machine (cloud machine), so we can use VS Code client or VS Code web to connect to this remote machine and Dev Containers inside it and enjoy the development anywhere.
+Our [next guide](./part-4.md) will focus on developing remotely by putting Dev Containers on a remote machine (cloud machine). This allows you to use the VS Code client or web to connect to the remote machine and Dev Containers, enabling development from anywhere.
