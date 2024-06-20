@@ -228,4 +228,6 @@ When visited, the projects write "visiting records" to the shared database and d
 
 ![preview](./read-me-images/part-5/preview.png)
 
+And remember the [port mapping](#ports) we mentioned before?
+
 ![visiting records](./read-me-images/part-5/visiting-record.png)
