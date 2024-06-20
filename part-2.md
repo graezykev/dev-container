@@ -9,13 +9,13 @@ Welcome to the second guide in the Dev Container series:
 - [Part 4: Remote Dev - Develop on a Remote Docker Host](./part-4.md)
 - [Part 5: Multiple Projects & Shared Container Configuration](./part-5.md)
 
-To get started, clone [my demo project](https://github.com/graezykev/dev-container/tree/part-2-use-image-and-feature) using the following command:
+To get started, clone [my demo project](https://github.com/graezykev/dev-container/tree/part-2-use-image-and-features) using the following command:
 
 ```sh
-git clone -b part-2-use-image-and-feature https://github.com/graezykev/dev-container.git
+git clone -b part-2-use-image-and-features https://github.com/graezykev/dev-container.git
 ```
 
-Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-2-use-image-and-feature`):
+Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-2-use-image-and-features`):
 
 ![Run demo in Codespaces](./read-me-images/part-2/run-in-codespaces.png)
 
