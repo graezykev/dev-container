@@ -17,43 +17,43 @@ git clone -b part-5-shared-configure-for-multiple-projects https://github.com/gr
 
 Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-5-shared-configure-for-multiple-projects`):
 
-![Run demo in Codespaces](./read-me-images/part-5/run-in-codespaces.png)!
+![Run demo in Codespaces](./read-me-images/part-5/run-in-codespaces.png)
 
 ## Introduction
 
-In [Part 3](./part-3.md) we learned about using Docker Compose in Dev Container to build containers for `Node.js` applications and databases.
+In [Part 3](./part-3.md), we learned about using Docker Compose in Dev Containers to build containers for `Node.js` applications and databases.
 
-Currently, you can only connect to one container per Visual Studio Code window.
+Currently, you can only connect to one container per Visual Studio Code window. But what if you have multiple projects using different tech stacks like `Node.js`, `Python`, `Go`, etc., and need to create Dev Containers for each?
 
-Considering if you have multiple projects using different tech stacks like `Node.js`, `Python`, `Go` etc. and you need to create Dev Containers for them respectively, you have the option to put a `.devcontainer` under each of them:
+One option is to place a `.devcontainer` folder under each project:
 
-```txt
+```plaintext
 .
 └── path
  └── to
-  ├── project-a-node-js
-  │   └── .devcontainer
-  │       ├── docker-compose.yml
-  │       ├── ...
-  │       └── devcontainer.json
-  ├── project-b-node-js
-  │   └── .devcontainer
-  │       ├── ...
-  │       └── devcontainer.json
-  ├── project-c-python
-  │   └── .devcontainer
-  │       ├── ...
-  │       └── devcontainer.json
-  ├── project-d-go-lang
-  │   └── .devcontainer
-  │       ├── ...
-  │       └── devcontainer.json
-  └── project-...
+    ├── project-a-node-js
+    │   └── .devcontainer
+    │       ├── docker-compose.yml
+    │       ├── ...
+    │       └── devcontainer.json
+    ├── project-b-node-js
+    │   └── .devcontainer
+    │       ├── ...
+    │       └── devcontainer.json
+    ├── project-c-python
+    │   └── .devcontainer
+    │       ├── ...
+    │       └── devcontainer.json
+    ├── project-d-go-lang
+    │   └── .devcontainer
+    │       ├── ...
+    │       └── devcontainer.json
+    └── project-...
 ```
 
-If these applications with different tech stacks need to share the same database, you need to make sure they all use the same database container in their `docker-compose.yml` as well as the same volume:
+If these applications need to share the same database, you must ensure they all use the same database container in their `docker-compose.yml` and the same volume:
 
-```yml
+```yaml
 services:
 
   app-name-...
@@ -69,60 +69,56 @@ volumes:
   postgres-data:
 ```
 
-However, this can end up overlapping configurations in multiple projects which makes it tedious and difficult to maintain, I recommend a better way to share the same `docker-compose.yml`:
+However, this can result in overlapping configurations across multiple projects, making maintenance tedious. A better approach is to share a common `docker-compose.yml`:
 
-```txt
+```plaintext
 .
 └── path
  └── to
   └── dev-container
-    │
-    ├── .devcontainer
-    │   │
-    │   ├── .env
-    │   ├── docker-compose.yml
-    │   ├── ...
-    │   │
-    │   ├── project-a-node-js
-    │   │   └── devcontainer.json
-    │   │
-    │   ├── project-b-node-js
-    │   │   └── devcontainer.json
-    │   │
-    │   ├── project-c-python
-    │   │   └── devcontainer.json
-    │   │
-    │   ├── project-d-go-lang
-    │   │   └── devcontainer.json
-    │   │
-    │   └── project-e-...
-    │       └── devcontainer.json
-    │
-    ├── project-a-node-js
-    │       └── index.js
-    │
-    ├── project-b-node-js
-    │
-    ├── project-c-python
-    │       └── hello.py
-    │
-    ├── project-d-go-lang
-    └── project-e-...
+      │
+      ├── .devcontainer
+      │   │
+      │   ├── .env
+      │   ├── docker-compose.yml
+      │   ├── ...
+      │   │
+      │   ├── project-a-node-js
+      │   │   └── devcontainer.json
+      │   │
+      │   ├── project-b-node-js
+      │   │   └── devcontainer.json
+      │   │
+      │   ├── project-c-python
+      │   │   └── devcontainer.json
+      │   │
+      │   ├── project-d-go-lang
+      │   │   └── devcontainer.json
+      │   │
+      │   └── project-e-...
+      │       └── devcontainer.json
+      │
+      ├── project-a-node-js
+      │       └── index.js
+      │
+      ├── project-b-node-js
+      │
+      ├── project-c-python
+      │       └── hello.py
+      │
+      ├── project-d-go-lang
+      └── project-e-...
 ```
 
-All Projects and the `.devcontainer` folder share a common **root level** folder, and each project has an equivalent configuration folder under this common `.devcontainer`.
+All projects and the `.devcontainer` folder share a common root-level folder, with each project having its own configuration folder under `.devcontainer`.
 
-In this way, we define multiple Dev Containers (and container for the database) in a common `docker-compose.yml`, and create a `devcontainer.json` for each project respectively to reference the Dev Container defined in `docker-compose.yml`, so we can manage all containers in the same `docker-compose.yml`.
-
-This also enables us to manage each project's `features` and lifecycle scripts, avoiding configuration conflicts.
-
-Let's see how we can create this sharable Dev Container configuration.
+This setup allows you to define multiple Dev Containers (and a container for the database) in a common `docker-compose.yml`, and create a `devcontainer.json` for each project to reference the shared `docker-compose.yml`. This approach also helps manage each project's features and lifecycle scripts, avoiding configuration conflicts.
 
 ## Common Docker Compose File
 
-The most important thing, in the beginning, is creating a common `docker-compose.yml` inside the root level's `.devcontainer` I put in the directory tree above, and define whatever projects you like as we did in [Part 3](./part-3.md#i-compose-configuration)
+First, create a common `docker-compose.yml` inside the root-level `.devcontainer`:
 
-```yml
+```yaml
 services:
   project-a-node-js:
     image: graezykev/dev-container-base-image:latest
@@ -156,31 +152,33 @@ volumes:
   postgres-data:  
 ```
 
-See the whole file in [my demo](https://github.com/graezykev/dev-container/blob/part-5-shared-configure-for-multiple-projects/.devcontainer/docker-compose.yml).
+See the complete file in [my demo](https://github.com/graezykev/dev-container/blob/part-5-shared-configure-for-multiple-projects/.devcontainer/docker-compose.yml).
 
-All projects share the same database in container `postgres`.
+All projects share the same database container `postgres`.
 
 We have learned most of the concepts in [Part 3](./part-3.md#1-define-services) but there are a few things we need to pay attention to.
 
 ### Ports
 
-Look at the ports we are mapping for each project `8001:8000`, `8002:8000`, ...
+Notice the port mappings: `8001:8000`, `8002:8000`, etc. Each project uses port `8000` within its own Dev Container, mapped to different ports on the host machine. This setup avoids port conflicts and allows access to each project's server via distinct ports (e.g., `8001`, `8002`, etc.).
 
-Every project is using port `8000` in its own Dev Container, and we are mapping them to port `8001`, `8002` etc. on the host machine so they can be visited via the host machine's web browser from port `8001`, `8002`, ...
-
-This allows every project to listen to port `8000` without considering port conflicts between projects, and the host machine has specific ports to visit every project's server with different ports (see [demo preveiw](#demo-preview)).
+> See [demo preveiw](#demo-preview) below.
 
 ### Volumes & Workspace
 
-Using `..:/workspaces` for the `volumes` sections is because here we want to mount this whole root level folder (`dev-container`) on the host machine to the `/workspaces` of the containers.
+Using `..:/workspaces` for the `volumes` sections mounts the entire root-level folder (`dev-container`) on the host machine to `/workspaces` in the containers.
 
-And in each `devcontainer.json`, we locate the specific folder in the specific project, such as `"workspaceFolder": "/workspaces/project-b-node-js"` for `project-b-node-js`, and so forth.
+In each `devcontainer.json`, specify the project folder within the workspace:
+
+```json
+"workspaceFolder": "/workspaces/project-b-node-js"
+```
 
 ![set workspaceFolder for the right dev container](./read-me-images/part-5/workspacefolder.png)
 
 ### Service
 
-In each `devcontainer.json`, we need to reference the Docker Compose configurations file `docker-compose.yml` through `dockerComposeFile`, and specify the name of the `service` according to the container defined in `docker-compose.yml`.
+In each `devcontainer.json`, reference the Docker Compose file `docker-compose.yml` and specify the service name:
 
 ```json
 {
@@ -195,44 +193,38 @@ In each `devcontainer.json`, we need to reference the Docker Compose configurati
 ```
 
 ```json
-  ...
+{
   "service": "project-b-node-js",
-  ...
-  "workspaceFolder": "/workspaces/project-b-node-js",
-  ...
+  "workspaceFolder": "/workspaces/project-b-node-js"
+}
 ```
 
 ```json
-  ...
+{
   "service": "project-c-python",
-  ...
   "workspaceFolder": "/workspaces/project-c-python"
-  ...
+}
 ```
-
-...
 
 The `"shutdownAction": "none"` option will leave the containers running when VS Code closes -- which prevents you from accidentally shutting down both containers by closing one window (or switching containers).
 
 ## Build and Switch Dev Containers
 
-In VS Code, use `FILE` -> `Open Folder` to open the root level folder (or `dev-container` in my demo).
-
-Run `Dev Containers: Reopen in Container` from the Command Palette and select the project we want to build.
+In VS Code, open the root-level folder (`dev-container` in my demo). Run `Dev Containers: Reopen in Container` from the Command Palette and select the project to build.
 
 ![choose dev container to build](./read-me-images/part-5/choose-dev-container.png)
 
-This triggers building the Dev Container of the project.
+This triggers the Dev Container build for the selected project.
 
-Then, for other projects, we can run `Dev Containers: Switch Container` from the Command Palette and select other projects we want to build or run.
+To switch between projects, use `Dev Containers: Switch Container` from the Command Palette and select the desired project.
 
-After each project's Dev Container is built, we can use this `Switch Container` command to switch between projects, the current VS Code window will reload and connect to the selected Dev Container.
+After each Dev Container is built, we can use this `Switch Container` command to switch between projects, the current VS Code window will reload each time and connect to the selected Dev Container.
 
 ## Demo Preview
 
-In [my demo](https://github.com/graezykev/dev-container/tree/part-5-shared-configure-for-multiple-projects) I have 3 projects, 2 are `Node.js` projects and the other one is `Python` project.
+In [my demo](https://github.com/graezykev/dev-container/tree/part-5-shared-configure-for-multiple-projects), I have three projects: two `Node.js` projects and one `Python` project, each starts an HTTP server with a web page.
 
-They start an HTTP server respectively with a web page. When the web pages are visited, the projects write "visiting records" to the same database, and read all historical records to show on the page.
+When visited, the projects write "visiting records" to the shared database and display all records on the page.
 
 ![preview](./read-me-images/part-5/preview.png)
 
