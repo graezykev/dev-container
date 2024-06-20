@@ -17,7 +17,7 @@ git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 
 Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-4-remote-dev`):
 
-![Run demo in Codespaces](./read-me-images/part-4/run-in-codespaces.png)!
+![Run demo in Codespaces](./read-me-images/part-4/run-in-codespaces.png)
 
 ## Introduction
 
