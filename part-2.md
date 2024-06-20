@@ -215,7 +215,7 @@ Moreover, creating separate environment variable files for development, testing,
 
 ### How to Set Environment Variables
 
-Create a `.env` file with **key/value** pairs, and reference it via `runArgs` in `devcontainer.json`:
+Create a `.env` file with **key/value** pairs (mostly handled by CI/CD systems), and reference it via `runArgs` in `devcontainer.json`:
 
 ```json
 "runArgs": [
