@@ -158,7 +158,7 @@ Furthermore, although the remote machine doesn’t have Node.js or Python instal
 
 Now you’re able to work anywhere with internet access!
 
-Use a spare laptop (with Windows, Mac, or Linux OS) to install VS Code, login with the GitHub/Microsoft account, and connect to the remote machine via "**Remote Explorer**" (don't forget to install the [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extension pack).
+Use a spare laptop (with Windows, Mac, or Linux OS) to install VS Code, login with the GitHub/Microsoft account, and connect to the remote machine via "**Remote Explorer**" (Don't forget to install the [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extension pack).
 
 ![remote explorer](./read-me-images/part-4/remote-explorer.png)
 
