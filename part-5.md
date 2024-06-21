@@ -15,10 +15,6 @@ To get started, you can clone [my demo project](https://github.com/graezykev/dev
 git clone -b part-5-shared-configure-for-multiple-projects https://github.com/graezykev/dev-container.git
 ```
 
-Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-5-shared-configure-for-multiple-projects`):
-
-![Run demo in Codespaces](./read-me-images/part-5/run-in-codespaces.png)
-
 ## Introduction
 
 In [Part 3](./part-3.md), we learned about using Docker Compose in Dev Containers to build containers for `Node.js` applications and databases.

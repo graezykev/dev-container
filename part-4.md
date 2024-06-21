@@ -15,10 +15,6 @@ To get started, you can clone [my demo project](https://github.com/graezykev/dev
 git clone -b part-4-remote-dev https://github.com/graezykev/dev-container.git
 ```
 
-Alternatively, the faster approach is to use GitHub's Codespaces to run the demo (switch to branch `part-4-remote-dev`):
-
-![Run demo in Codespaces](./read-me-images/part-4/run-in-codespaces.png)
-
 ## Introduction
 
 Here comes my favourite part: **Remote Development**, or more fashionably, cloud development.
