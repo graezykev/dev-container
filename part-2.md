@@ -57,7 +57,7 @@ Building and pushing a Docker image is straightforward if you have a `Dockerfile
 
 You will also need to sign up for a free account on Docker Hub.
 
-For detailed steps, check out this [guide to register, build, and push](https://github.com/graezykev/docker-build-push-101).
+For detailed steps, check out this [guide to register, build, and push Docker images](https://github.com/graezykev/docker-build-push-101).
 
 In the end of this step you should get a URL of the image from Docker Hub like `docker.io/your-user-name/your-image-name`.
 
