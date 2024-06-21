@@ -110,7 +110,7 @@ Now you can connect to the remote machine using the dev machine. You have two op
 
 Here are the steps in action:
 
-![visit vscode.dev URL on a VS Code client](./read-me-images/part-4/install-extension-and-visit-remote-machine-in-vscode.gif)
+![visit vscode.dev URL on a VS Code client](./read-me-images/part-4/visit-remote-machine-in-vscode.gif)
 
 > Either option you choose, when you try to connect for the first time, you'll be prompted to log into your Github/Microsoft account at a `https://github.com/login/oauth/authorize...` URL.
 
