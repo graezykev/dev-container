@@ -1,5 +1,7 @@
 # Dev Containers - Why You Need Them
 
+Blog on [DEV.to](https://dev.to/graezykev/series/27802)
+
 Welcome to the Dev Container series:
 
 - [Part 0: Dev Containers - Why You Need Them](./README.md)
